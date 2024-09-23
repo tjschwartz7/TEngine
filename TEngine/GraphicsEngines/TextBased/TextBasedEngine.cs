@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.GraphicsEngines
+namespace TEngine.GraphicsEngines.TextBased
 {
     internal class TextBasedEngine
     {
@@ -46,7 +46,7 @@ namespace TEngine.GraphicsEngines
             Console.WriteLine($"{Background}");
             Console.WriteLine($"{Foreground}");
             Console.Write(Resolution.TerminalWidthLine);
-            if(AwaitingUserInput)
+            if (AwaitingUserInput)
             {
                 if (SelectOptions != null)
                 {
@@ -64,10 +64,10 @@ namespace TEngine.GraphicsEngines
                     Console.Write(Resolution.TerminalWidthLine);
                 }
             }
-            
+
             Console.WriteLine($"{Footer}");
             Console.Write(Resolution.TerminalWidthLine);
-            if(PauseUI)
+            if (PauseUI)
             {
                 ResumeUI = false;
                 PauseUI = false;

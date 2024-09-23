@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.GraphicsEngines;
+using TEngine.GraphicsEngines.TextBased;
 using TEngine.Project;
 
 namespace TEngine
@@ -15,18 +15,19 @@ namespace TEngine
         private double _framesPerSecond;
         private bool _stopProgram;
         private bool _isRunning;
-        internal static Application ApplicationInstance { get => _applicationInstance; }
-        internal static GraphicsEngine GraphicsEngineInstance { get => _graphicsEngineInstance; set => _graphicsEngineInstance = value; }
+        internal protected static Application ApplicationInstance { get => _applicationInstance; }
+        internal protected static GraphicsEngine GraphicsEngineInstance { get => _graphicsEngineInstance; set => _graphicsEngineInstance = value; }
 
-        public Application(GraphicsEngine.Style graphicsEngine) 
+        public Application() 
         {
-            _graphicsEngineInstance = new GraphicsEngine(graphicsEngine);
-            
             Begin(); 
         }
         public void Begin()
         {
             _isRunning = true;
+            //Call user initialization code
+            InitializeSettings();
+            OnStart();
             //Create all of our threads
             CreateThreads();
         }
@@ -37,6 +38,11 @@ namespace TEngine
                 Task updater = Task.Run(() => OnUpdate());
                 await Task.Delay(1000);
             }
+        }
+
+        protected virtual void InitializeSettings()
+        {
+
         }
 
         protected virtual void OnStart()
@@ -72,13 +78,13 @@ namespace TEngine
         static async Task Main()
         {
             //Plug in your chosen graphics engine
-            Application._applicationInstance = new Primary(GraphicsEngine.Style.TextBased);
+            Application._applicationInstance = new Primary();
 
 
 
             //Non-busy waiting because this loop doesnt matter
             //Use tasks to keep our thread pool ready and waiting for use
-            while (Application.IsRunning()) { await Task.Delay(2 * 1000); }
+            while (Application.IsRunning()) { await Task.Delay(1 * 1000); }
 
         }
     }

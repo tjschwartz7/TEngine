@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.GraphicsEngines
+namespace TEngine.GraphicsEngines.TextBased
 {
     internal class Resolution
     {
@@ -28,7 +28,7 @@ namespace TEngine.GraphicsEngines
 
         public static async Task ScreenChangeHandler()
         {
-            while(Application.IsRunning())
+            while (Application.IsRunning())
             {
                 // Create a background task
                 Task backgroundTask = Task.Run(() => HandleScreenSizeChanges());
@@ -40,7 +40,7 @@ namespace TEngine.GraphicsEngines
         {
             bool heightChanged = _screenHeight != Console.WindowHeight;
             bool widthChanged = _screenWidth != Console.WindowWidth;
-            if(heightChanged || widthChanged) 
+            if (heightChanged || widthChanged)
             {
                 _screenHeight = Console.WindowHeight;
                 _screenWidth = Console.WindowWidth;
