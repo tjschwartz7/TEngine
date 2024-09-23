@@ -38,13 +38,14 @@ namespace TEngine.GraphicsEngines.TextBased
 
         public static async Task Print()
         {
+            int displayWidth = Resolution.ScreenWidth - 5; //Don't question the almighty 5
             Console.Clear();
 
-
-            Console.WriteLine($"{PrimaryHeader}");
-            Console.WriteLine($"{SecondaryHeader}");
-            Console.WriteLine($"{Background}");
-            Console.WriteLine($"{Foreground}");
+            Console.Write(Resolution.TerminalWidthLine);
+            Console.WriteLine($"# {PrimaryHeader.PadRight(displayWidth)} #");
+            Console.WriteLine($"# {SecondaryHeader.PadRight(displayWidth)} #");
+            Console.WriteLine($"# {Background.PadRight(displayWidth)} #");
+            Console.WriteLine($"# {Foreground.PadRight(displayWidth)} #");
             Console.Write(Resolution.TerminalWidthLine);
             if (AwaitingUserInput)
             {
@@ -58,14 +59,14 @@ namespace TEngine.GraphicsEngines.TextBased
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.BackgroundColor = ConsoleColor.White;
                         }
-                        Console.WriteLine($"#{option}");
+                        Console.WriteLine($"# {option.PadRight(displayWidth)} #");
                         Console.ResetColor();
                     }
                     Console.Write(Resolution.TerminalWidthLine);
                 }
             }
 
-            Console.WriteLine($"{Footer}");
+            Console.WriteLine($"# {Footer.PadRight(displayWidth)} #");
             Console.Write(Resolution.TerminalWidthLine);
             if (PauseUI)
             {
@@ -75,10 +76,26 @@ namespace TEngine.GraphicsEngines.TextBased
                 //Busy sleep
                 while (!ResumeUI)
                 {
+                    //Clear up this thread for a second while we're waiting
                     await Task.Delay(1000);
                 }
             }
 
+        }
+
+        public static void Initialize()
+        {
+            _primaryHeader = "";
+            _secondaryHeader = "";
+            _selectOptions = [""];
+            _background = "";
+            _foreground = "";
+            _footer = "";
+            _awaitingUserInput = false;
+            _isUIPaused = false;
+            _pauseUI = false;
+            _resumeUI = false;
+            _selectedIndex = -1;
         }
     }
 }

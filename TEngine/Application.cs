@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.GraphicsEngines.TextBased;
@@ -13,6 +15,8 @@ namespace TEngine
         private static Application _applicationInstance;
         private static GraphicsEngine _graphicsEngineInstance;
         private double _framesPerSecond;
+        private double _targetFramesPerSecond;
+        private double _updateDelay_ms;
         private bool _stopProgram;
         private bool _isRunning;
         internal protected static Application ApplicationInstance { get => _applicationInstance; }
@@ -25,6 +29,7 @@ namespace TEngine
         public void Begin()
         {
             _isRunning = true;
+            _updateDelay_ms = 100; 
             //Call user initialization code
             InitializeSettings();
             OnStart();
@@ -33,11 +38,44 @@ namespace TEngine
         }
         private async Task AsyncUpdate()
         {
-            while(_isRunning) 
+            Stopwatch watch = new Stopwatch();
+            double elapsedSeconds = 0;
+            int frames = 0;
+            watch.Start();
+            while (_isRunning) 
             {
-                Task updater = Task.Run(() => OnUpdate());
+                await Task.Run(() => OnUpdate());
+                elapsedSeconds = watch.Elapsed.TotalSeconds;
+                frames++;
+
+                //One second has passed
+                if(elapsedSeconds > 1.0)
+                {
+
+                    // Calculate FPS as the number of frames rendered in the last second
+                    _framesPerSecond = frames / elapsedSeconds;
+
+                    frames = 0;
+                    watch.Restart();
+
+                    //Not quite enough frames
+                    if(_framesPerSecond < _targetFramesPerSecond)
+                    {
+                        //Decrease delay time
+                        if(_updateDelay_ms > 0)
+                            _updateDelay_ms--;
+                    }
+                    //Too many frames
+                    else if(_framesPerSecond > _targetFramesPerSecond)
+                    {
+                        //Increase delay time
+                        _updateDelay_ms++;
+                    }
+                }
+
                 await Task.Delay(1000);
             }
+            watch.Stop();
         }
 
         protected virtual void InitializeSettings()
@@ -73,6 +111,16 @@ namespace TEngine
             Application.ApplicationInstance._stopProgram = true;
             Application.ApplicationInstance._isRunning = false;
             Application.ApplicationInstance.Stop();
+        }
+
+        protected void SetTargetFPS(double fps)
+        {
+            _targetFramesPerSecond = fps;
+        }
+
+        public double GetFPS()
+        {
+            return _framesPerSecond;
         }
 
         static async Task Main()
