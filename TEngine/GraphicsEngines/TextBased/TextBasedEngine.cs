@@ -8,66 +8,45 @@ using System.Threading.Tasks;
 
 namespace TEngine.GraphicsEngines.TextBased
 {
-    internal class TextBasedEngine
+    internal class TextBasedEngine : GraphicsEngine
     {
-        private static string _primaryHeader;
-        private static string _secondaryHeader;
-        private static string _background;
-        private static string _foreground;
-        private static string _footer;
-        //Input related
-        private static bool _awaitingUserInput;
-        private static string[] _selectOptions;
-        private static int _selectedIndex;
-        //Other
-        private static bool _pauseUI;
-        private static bool _resumeUI;
-        private static bool _isUIPaused;
+        private bool[,] _lineHasChanged;
+        private char[,] _screen;
 
-        public static string PrimaryHeader { get => _primaryHeader; set => _primaryHeader = value; }
-        public static string SecondaryHeader { get => _secondaryHeader; set => _secondaryHeader = value; }
-        public static string Background { get => _background; set => _background = value; }
-        public static string Foreground { get => _foreground; set => _foreground = value; }
-        public static bool AwaitingUserInput { get => _awaitingUserInput; set => _awaitingUserInput = value; }
-        public static string[] SelectOptions { get => _selectOptions; set => _selectOptions = value; }
-        public static int SelectedIndex { get => _selectedIndex; set => _selectedIndex = value; }
-        public static bool PauseUI { get => _pauseUI; set => _pauseUI = value; }
-        public static bool ResumeUI { get => _resumeUI; set => _resumeUI = value; }
-        public static bool IsUIPaused { get => _isUIPaused; set => _isUIPaused = value; }
-        public static string Footer { get => _footer; set => _footer = value; }
 
-        public static async Task Print()
+        //This is the Screen that is used to display things to the user.
+        //It is not intended to be updated correctly;
+        //Whenever a line is edited, those lines must be updated in the bool LineHasChanged array.
+        //If they aren't things won't display properly!
+        public char[,] Screen { get => _screen; }
+
+        //Again, this is not meant to be updated directly. 
+        //One bool in the array represents a line that has changed on the screen.
+        public bool[,] LineHasChanged {  get => _lineHasChanged; }   
+
+        public async Task Print()
         {
-            int displayWidth = Resolution.ScreenWidth - 5; //Don't question the almighty 5
-            Console.Clear();
 
-            Console.Write(Resolution.TerminalWidthLine);
-            Console.WriteLine($"# {PrimaryHeader.PadRight(displayWidth)} #");
-            Console.WriteLine($"# {SecondaryHeader.PadRight(displayWidth)} #");
-            Console.WriteLine($"# {Background.PadRight(displayWidth)} #");
-            Console.WriteLine($"# {Foreground.PadRight(displayWidth)} #");
-            Console.Write(Resolution.TerminalWidthLine);
-            if (AwaitingUserInput)
+            Console.Clear();
+            OnFrame();
+
+            //One loop is faster than 2
+            for(int i = 0; i < ScreenWidth*ScreenHeight; i++)
             {
-                if (SelectOptions != null)
+                //Save some calculations
+                int row = i / ScreenHeight;
+                int col = i % ScreenWidth;
+                if (_lineHasChanged[row, col])
                 {
-                    for (int i = 0; i < SelectOptions.Length; i++)
-                    {
-                        string option = SelectOptions[i];
-                        if (i == SelectedIndex)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Black;
-                            Console.BackgroundColor = ConsoleColor.White;
-                        }
-                        Console.WriteLine($"# {option.PadRight(displayWidth)} #");
-                        Console.ResetColor();
-                    }
-                    Console.Write(Resolution.TerminalWidthLine);
+                    Console.Write($"\033[{i};0H"); //Move cursor to line we want to erase
+                    Console.Write("\033[K"); //Erase the line
+                    Console.WriteLine($"\033[{i};0H{_screen[row, col]}"); //Move cursor to start of line and write new text
                 }
             }
 
-            Console.WriteLine($"# {Footer.PadRight(displayWidth)} #");
-            Console.Write(Resolution.TerminalWidthLine);
+
+            
+
             if (PauseUI)
             {
                 ResumeUI = false;
@@ -83,19 +62,54 @@ namespace TEngine.GraphicsEngines.TextBased
 
         }
 
-        public static void Initialize()
+        public TextBasedEngine(int screenWidth, int screenHeight) : base(Style.TextBased, screenWidth, screenHeight)
         {
-            _primaryHeader = "";
-            _secondaryHeader = "";
-            _selectOptions = [""];
-            _background = "";
-            _foreground = "";
-            _footer = "";
-            _awaitingUserInput = false;
-            _isUIPaused = false;
-            _pauseUI = false;
-            _resumeUI = false;
-            _selectedIndex = -1;
+            _lineHasChanged = new bool[screenHeight, screenWidth];
+            _screen = new char[screenHeight, screenWidth];
         }
+        public void Initialize()
+        {
+        }
+
+
+        
+
+        protected virtual void PrintDebug()
+        {
+
+        }
+
+        protected virtual void PrintPrimaryHeader()
+        {
+
+        }
+
+        protected virtual void PrintSecondaryHeader()
+        {
+
+        }
+
+        protected virtual void PrintBackground()
+        {
+
+        }
+
+        protected virtual void PrintForeground()
+        {
+
+        }
+
+        protected virtual void PrintOptions()
+        {
+
+        }
+
+        protected virtual void PrintFooter()
+        {
+
+        }
+
+       
+
     }
 }

@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.GraphicsEngines.TextBased;
+using TEngine.Project.Graphics;
 using TEngine.SaveEngine;
 
 namespace TEngine.Project
@@ -17,8 +18,8 @@ namespace TEngine.Project
         /// </summary>
         protected override void InitializeSettings()
         {
-            GraphicsEngineInstance = new GraphicsEngine(GraphicsEngine.Style.TextBased); //Change this to whatever you want your engine to be
-            SetTargetFPS(60); //Set your target FPS here (can be changed dynamically later)
+            GraphicsEngineInstance = new TextBased(30, 30); //Change this to whatever you want your engine to be
+            SetTargetFPS(3); //Set your target FPS here (can be changed dynamically later)
         }
 
         /// <summary>
@@ -26,8 +27,8 @@ namespace TEngine.Project
         /// </summary>
         protected override void OnStart()
         {
-            TextBasedEngine.Initialize();
-            TextBasedEngine.Footer = $"FPS - {GetFPS()}";
+           
+            
         }
 
         /// <summary>
@@ -35,8 +36,7 @@ namespace TEngine.Project
         /// </summary>
         protected override void OnUpdate()
         {
-           
-            _ = TextBasedEngine.Print();
+
         }
     }
 }
