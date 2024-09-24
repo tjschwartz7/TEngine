@@ -26,49 +26,53 @@ namespace TEngine.GraphicsEngines.TextBased
 
         public async Task Print()
         {
-
-            Console.Clear();
-            OnFrame();
-
-            //One loop is faster than 2
-            for(int i = 0; i < ScreenWidth*ScreenHeight; i++)
+            while(Application.IsRunning())
             {
-                //Save some calculations
-                int row = i / ScreenHeight;
-                int col = i % ScreenWidth;
-                if (_lineHasChanged[row, col])
+                Console.Clear();
+                OnFrame();
+                //Do this here to prevent repetitive multiplication
+                int numPixels = ScreenWidth * ScreenHeight;
+
+                //One loop is faster than 2
+                for (int i = 0; i < numPixels; i++)
                 {
-                    Console.Write($"\033[{i};0H"); //Move cursor to line we want to erase
-                    Console.Write("\033[K"); //Erase the line
-                    Console.WriteLine($"\033[{i};0H{_screen[row, col]}"); //Move cursor to start of line and write new text
+                    //Save some calculations by doing this once here
+                    int row = i / ScreenHeight;
+                    int col = i % ScreenWidth;
+                    if (_lineHasChanged[row, col])
+                    {
+                        Console.WriteLine($"\033[{i};0H{_screen[row, col]}"); //Move cursor to start of line and write new character
+                    }
+                }
+
+                //This is what controls our framerate
+                await Task.Delay(Application.GetTargetLatency());
+
+                if (PauseUI)
+                {
+                    ResumeUI = false;
+                    PauseUI = false;
+                    IsUIPaused = true;
+                    //Busy sleep
+                    while (!ResumeUI)
+                    {
+                        //Clear up this thread for a second while we're waiting
+                        await Task.Delay(1000);
+                    }
                 }
             }
-
-
-            
-
-            if (PauseUI)
-            {
-                ResumeUI = false;
-                PauseUI = false;
-                IsUIPaused = true;
-                //Busy sleep
-                while (!ResumeUI)
-                {
-                    //Clear up this thread for a second while we're waiting
-                    await Task.Delay(1000);
-                }
-            }
-
         }
 
         public TextBasedEngine(int screenWidth, int screenHeight) : base(Style.TextBased, screenWidth, screenHeight)
         {
             _lineHasChanged = new bool[screenHeight, screenWidth];
             _screen = new char[screenHeight, screenWidth];
+            Initialize();
         }
         public void Initialize()
         {
+            //Set up our Screen Loop
+            _= Task.Run(() => Print());
         }
 
 

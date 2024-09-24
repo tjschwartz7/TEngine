@@ -121,6 +121,11 @@ namespace TEngine
             Application.ApplicationInstance.Stop();
         }
 
+        public static int GetTargetLatency()
+        {
+            return Application._applicationInstance._updateDelay_ms;
+        }
+
         protected void SetTargetFPS(double fps)
         {
             _targetFramesPerSecond = fps;
