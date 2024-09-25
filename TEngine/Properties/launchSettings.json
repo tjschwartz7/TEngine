@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TEngine": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

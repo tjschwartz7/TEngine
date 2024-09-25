@@ -10,19 +10,9 @@ namespace TEngine.GraphicsEngines.TextBased
 {
     internal class TextBasedEngine : GraphicsEngine
     {
-        private bool[,] _lineHasChanged;
-        private char[,] _screen;
 
+        private Tuple<int, int, int, int>[] boundaries;
 
-        //This is the Screen that is used to display things to the user.
-        //It is not intended to be updated correctly;
-        //Whenever a line is edited, those lines must be updated in the bool LineHasChanged array.
-        //If they aren't things won't display properly!
-        public char[,] Screen { get => _screen; }
-
-        //Again, this is not meant to be updated directly. 
-        //One bool in the array represents a line that has changed on the screen.
-        public bool[,] LineHasChanged {  get => _lineHasChanged; }   
 
         public async Task Print()
         {
@@ -30,20 +20,7 @@ namespace TEngine.GraphicsEngines.TextBased
             {
                 Console.Clear();
                 OnFrame();
-                //Do this here to prevent repetitive multiplication
-                int numPixels = ScreenWidth * ScreenHeight;
-
-                //One loop is faster than 2
-                for (int i = 0; i < numPixels; i++)
-                {
-                    //Save some calculations by doing this once here
-                    int row = i / ScreenHeight;
-                    int col = i % ScreenWidth;
-                    if (_lineHasChanged[row, col])
-                    {
-                        Console.WriteLine($"\033[{i};0H{_screen[row, col]}"); //Move cursor to start of line and write new character
-                    }
-                }
+                //$"\033[{i};0H{_screen[row, col]}"
 
                 //This is what controls our framerate
                 await Task.Delay(Application.GetTargetLatency());
@@ -63,57 +40,12 @@ namespace TEngine.GraphicsEngines.TextBased
             }
         }
 
-        public TextBasedEngine(int screenWidth, int screenHeight) : base(Style.TextBased, screenWidth, screenHeight)
+        public TextBasedEngine(int screenWidth, int screenHeight, int numGrids) : base(Style.TextBased, screenWidth, screenHeight)
         {
-            _lineHasChanged = new bool[screenHeight, screenWidth];
-            _screen = new char[screenHeight, screenWidth];
-            Initialize();
+            ScreenRenderer.Initialize(screenWidth, screenHeight);
+            boundaries = new Tuple<int, int, int, int>[numGrids];
         }
-        public void Initialize()
-        {
-            //Set up our Screen Loop
-            _= Task.Run(() => Print());
-        }
-
-
-        
-
-        protected virtual void PrintDebug()
-        {
-
-        }
-
-        protected virtual void PrintPrimaryHeader()
-        {
-
-        }
-
-        protected virtual void PrintSecondaryHeader()
-        {
-
-        }
-
-        protected virtual void PrintBackground()
-        {
-
-        }
-
-        protected virtual void PrintForeground()
-        {
-
-        }
-
-        protected virtual void PrintOptions()
-        {
-
-        }
-
-        protected virtual void PrintFooter()
-        {
-
-        }
-
-       
 
     }
+
 }

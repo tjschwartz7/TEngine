@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using TEngine.GraphicsEngines.TextBased;
 using TEngine.Project;
 using TEngine.Project.UserInput;
+using System.Xml.Linq;
+using TEngine.Project.Graphics;
 
 namespace TEngine
 {
@@ -87,9 +89,83 @@ namespace TEngine
             frameTimer.Stop();
         }
 
-        protected virtual void InitializeSettings()
+        static string GetSettingValue(XDocument doc, string name)
         {
+            // Query the setting by name
+            var setting = doc.Descendants("setting")
+                             .FirstOrDefault(s => s.Attribute("name")?.Value == name);
 
+            return setting?.Attribute("value")?.Value;
+        }
+
+        private void InitializeSettings()
+        {
+            var doc = XDocument.Load("../../../../TEngine/Project/config.xml");
+            // Get all settings
+            var settings = doc.Descendants("setting").ToArray(); // Convert to array for indexing
+
+            int screenWidth = -1;
+            int screenHeight = -1;
+            int numSections = -1;
+            int targetFPS = -1;
+            foreach(var setting in settings) 
+            {
+
+                // Get the name and value attributes
+                string? name = setting.Attribute("name")?.Value;
+                string? value = setting.Attribute("value")?.Value;
+                if (name == null || value == null) 
+                {
+                    TextWriter errorWriter = Console.Error;
+                    errorWriter.WriteLine("InitializeSettings - Config file invalid!!");
+                    Application.TerminateApplication();
+                }
+
+                switch (name)
+                {
+                    case "ScreenWidth":
+                        screenWidth = int.Parse(value);
+
+                        break;
+                    case "ScreenHeight":
+                        screenHeight = int.Parse(value);
+                        break;
+                    case "NumScreenSections":
+                        numSections = int.Parse(value);
+                        break;
+                    case "TargetFPS":
+                        targetFPS = int.Parse(value);
+                        break;
+
+                }
+            }
+
+            {
+                TextWriter errorWriter = Console.Error;
+                if (screenWidth < 0)
+                {
+                    
+                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'ScreenWidth'!!");
+                    Application.TerminateApplication();
+                }
+                else if (screenHeight < 0)
+                {
+                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'ScreenHeight'!!");
+                    Application.TerminateApplication();
+                }
+                else if (numSections < 0)
+                {
+                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'NumScreenSections'!!");
+                    Application.TerminateApplication();
+                }
+                else if (targetFPS < 0)
+                {
+                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'TargetFPS'!!");
+                    Application.TerminateApplication();
+                }
+            }
+            GraphicsEngineInstance = new TextBased(screenHeight, screenWidth, numSections); //Change this to whatever you want your engine to be
+            SetTargetFPS(targetFPS); //Set your target FPS here (can be changed dynamically later)
         }
 
         protected virtual void OnStart()
