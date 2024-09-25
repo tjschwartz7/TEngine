@@ -120,7 +120,7 @@ namespace TEngine.GraphicsEngines.TextBased
                     //Replace character at this index
                     //But only if its changed
                     if (_screenHasChanged[i])
-                        Console.WriteLine($"\033[{row};{col}H{_screen[i]}");
+                        Console.Write($"\033[{row};{col}H{_screen[i]}");
                 }
                     await Task.Delay(Application.GetTargetLatency()); //Clear up a thread in the pool
             }

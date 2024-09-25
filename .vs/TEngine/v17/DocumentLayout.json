@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\tjsch\\source\\repos\\TEngine\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine\\tengine\\graphicsengines\\textbased\\screenrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\graphicsengines\\textbased\\screenrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine\\tengine\\graphicsengines\\textbased\\textbasedengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\graphicsengines\\textbased\\textbasedengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine\\tengine\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,16 +27,8 @@
       "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\project\\primary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine\\tengine\\graphicsengines\\textbased\\screenrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\graphicsengines\\textbased\\screenrenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine\\tengine\\project\\graphics\\textbased.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\project\\graphics\\textbased.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine\\tengine\\graphicsengines\\textbased\\textbasedengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\graphicsengines\\textbased\\textbasedengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine\\tengine\\graphicsengines\\textbased\\cpp\\screen.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -70,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "config.xml",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\Project\\config.xml",
               "RelativeDocumentMoniker": "TEngine\\Project\\config.xml",
@@ -90,31 +90,30 @@
               "RelativeToolTip": "TEngine\\Project\\config.xml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
-              "WhenOpened": "2024-09-25T15:24:17.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T15:24:17.214Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "ScreenRenderer.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\GraphicsEngines\\TextBased\\ScreenRenderer.cs",
               "RelativeDocumentMoniker": "TEngine\\GraphicsEngines\\TextBased\\ScreenRenderer.cs",
               "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\GraphicsEngines\\TextBased\\ScreenRenderer.cs",
               "RelativeToolTip": "TEngine\\GraphicsEngines\\TextBased\\ScreenRenderer.cs",
-              "ViewState": "AQIAAIgAAAAAAAAAAAAuwJsAAAAAAAAA",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAuwHkAAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T14:29:04.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Application.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\Application.cs",
               "RelativeDocumentMoniker": "TEngine\\Application.cs",
               "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\Application.cs",
               "RelativeToolTip": "TEngine\\Application.cs",
-              "ViewState": "AQIAAG0AAAAAAAAAAAAuwIYAAAAeAAAA",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAuwIYAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-22T15:37:54.355Z",
               "EditorCaption": ""
@@ -129,12 +128,11 @@
               "RelativeToolTip": "TEngine\\GraphicsEngines\\TextBased\\Resolution.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAQwB4AAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-22T16:03:40.404Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T16:03:40.404Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "TextBasedEngine.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\GraphicsEngines\\TextBased\\TextBasedEngine.cs",
               "RelativeDocumentMoniker": "TEngine\\GraphicsEngines\\TextBased\\TextBasedEngine.cs",
@@ -155,12 +153,11 @@
               "RelativeToolTip": "TEngine\\GraphicsEngines\\TextBased\\CPP\\Screen.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-24T23:43:31.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-24T23:43:31.182Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Primary.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\Project\\Primary.cs",
               "RelativeDocumentMoniker": "TEngine\\Project\\Primary.cs",
@@ -168,8 +165,7 @@
               "RelativeToolTip": "TEngine\\Project\\Primary.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-22T17:42:29.059Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T17:42:29.059Z"
             },
             {
               "$type": "Document",
@@ -181,12 +177,11 @@
               "RelativeToolTip": "TEngine\\GraphicsEngine.cs",
               "ViewState": "AQIAAB8AAAAAAAAAAAAkwDEAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-22T15:39:47.799Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T15:39:47.799Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "SaveFileHandler.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\SaveEngine\\SaveFileHandler.cs",
               "RelativeDocumentMoniker": "TEngine\\SaveEngine\\SaveFileHandler.cs",
@@ -194,8 +189,7 @@
               "RelativeToolTip": "TEngine\\SaveEngine\\SaveFileHandler.cs",
               "ViewState": "AQIAADAAAAAAAAAAAAAowEAAAABfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T12:05:15.675Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-23T12:05:15.675Z"
             },
             {
               "$type": "Document",
@@ -207,12 +201,11 @@
               "RelativeToolTip": "TEngine\\GraphicsEngines\\TextBased\\CPP\\screenfuncs.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAIQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-25T14:21:21.153Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T14:21:21.153Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "TextBased.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\Project\\Graphics\\TextBased.cs",
               "RelativeDocumentMoniker": "TEngine\\Project\\Graphics\\TextBased.cs",
@@ -220,8 +213,7 @@
               "RelativeToolTip": "TEngine\\Project\\Graphics\\TextBased.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T14:07:58.092Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-24T14:07:58.092Z"
             },
             {
               "$type": "Document",
@@ -233,8 +225,7 @@
               "RelativeToolTip": "TEngine\\GraphicsEngines\\TextBased\\CPP\\ScreenWrapper.cpp",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-25T12:11:34.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T12:11:34.378Z"
             },
             {
               "$type": "Document",
