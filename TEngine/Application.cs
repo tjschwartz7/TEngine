@@ -10,6 +10,7 @@ using TEngine.Project;
 using TEngine.Project.UserInput;
 using System.Xml.Linq;
 using TEngine.Project.Graphics;
+using TEngine.Helpers;
 
 namespace TEngine
 {
@@ -25,8 +26,17 @@ namespace TEngine
         private int _targetFrames_high_ms;
         private bool _stopProgram;
         private bool _isRunning;
+
+        //Result handler
+        private string _errorMessage;
+        private bool _errorFlag;
+        private string _statusMessage;
+        private bool _statusFlag;
         internal protected static Application ApplicationInstance { get => _applicationInstance; }
-        internal protected static GraphicsEngine GraphicsEngineInstance { get => _graphicsEngineInstance; set => _graphicsEngineInstance = value; }
+        internal protected static GraphicsEngine GraphicsEngineInstance { get => _graphicsEngineInstance; }
+        internal protected static InputEngine.InputHandler InputHandlerInstance { get => _inputHandlerInstance; }
+        public string ErrorMessage { get => _errorMessage; set => _errorMessage = value; }
+        public string StatusMessage { get => _statusMessage; set => _statusMessage = value; }
 
         public Application() 
         {
@@ -56,7 +66,11 @@ namespace TEngine
             frameTimer.Start();
             while (_isRunning) 
             {
-                await Task.Run(() => OnUpdate());
+                Task updateTask;
+                updateTask = Task.Run(() => OnUpdate());
+                if(_errorFlag) await Task.Run(() => OnNewError()); 
+                if (_statusFlag) await Task.Run(() => OnNewStatus());
+                await updateTask;
                 elapsedSeconds = frameTimer.Elapsed.TotalSeconds;
                 frames++;
 
@@ -97,7 +111,6 @@ namespace TEngine
 
             int screenWidth = -1;
             int screenHeight = -1;
-            int numSections = -1;
             int targetFPS = -1;
             GraphicsEngine.Style engine = GraphicsEngine.Style.NoneSelected;
             foreach(var setting in settings) 
@@ -108,9 +121,7 @@ namespace TEngine
                 string? value = setting.Attribute("value")?.Value;
                 if (name == null || value == null) 
                 {
-                    TextWriter errorWriter = Console.Error;
-                    errorWriter.WriteLine("InitializeSettings - Config file invalid!!");
-                    Application.TerminateApplication();
+                    MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file invalid!!");
                 }
 
                 switch (name)
@@ -121,9 +132,6 @@ namespace TEngine
                         break;
                     case "ScreenHeight":
                         screenHeight = int.Parse(value);
-                        break;
-                    case "NumScreenSections":
-                        numSections = int.Parse(value);
                         break;
                     case "TargetFPS":
                         targetFPS = int.Parse(value);
@@ -147,40 +155,31 @@ namespace TEngine
                 }
             }
 
+            //Handle errors in the config file
+            //The conditions here express configs that MUST be contained in the config file for everything to work
             {
-                TextWriter errorWriter = Console.Error;
                 if (screenWidth < 0)
                 {
-                    
-                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'ScreenWidth'!!");
-                    Application.TerminateApplication();
+                    MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file missing parameter 'ScreenWidth'!!");
                 }
                 else if (screenHeight < 0)
                 {
-                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'ScreenHeight'!!");
-                    Application.TerminateApplication();
-                }
-                else if (numSections < 0)
-                {
-                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'NumScreenSections'!!");
-                    Application.TerminateApplication();
+                    MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file missing parameter 'ScreenHeight'!!");
                 }
                 else if (targetFPS < 0)
                 {
-                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'TargetFPS'!!");
-                    Application.TerminateApplication();
+                    MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file missing parameter 'TargetFPS'!!");
                 }
                 else if(engine == GraphicsEngine.Style.NoneSelected)
                 {
-                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'GraphicsEngine'!!");
-                    Application.TerminateApplication();
+                    MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file missing parameter 'GraphicsEngine'!!");
                 }
             }
 
             switch (engine)
             {
                 case GraphicsEngine.Style.TextBased:
-                    GraphicsEngineInstance = new TextBased(screenHeight, screenWidth, numSections);
+                    _graphicsEngineInstance = new TextBased(screenHeight, screenWidth);
                     break;
                 case GraphicsEngine.Style.G_2D:
                     break;
@@ -198,6 +197,15 @@ namespace TEngine
         protected virtual void OnUpdate()
         {
 
+        }
+
+        protected virtual void OnNewError()
+        {
+            _errorFlag = false;
+        }
+        protected virtual void OnNewStatus()
+        {
+            _statusFlag = false;
         }
 
         private void CreateThreads()
@@ -233,6 +241,22 @@ namespace TEngine
         public double GetFPS()
         {
             return _framesPerSecond;
+        }
+
+        /// <summary>
+        /// Notify that an error has occurred.
+        /// </summary>
+        public void SetErrorFlag()
+        {
+            _errorFlag = true;
+        }
+
+        /// <summary>
+        /// Notify that a new status message is available.
+        /// </summary>
+        public void SetStatusFlag()
+        {
+            _statusFlag = true;
         }
 
         static async Task Main()

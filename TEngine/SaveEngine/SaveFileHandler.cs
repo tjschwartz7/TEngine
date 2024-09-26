@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using TEngine.Helpers;
 
 
 namespace TEngine.SaveEngine
@@ -72,13 +73,13 @@ namespace TEngine.SaveEngine
                 // Write the JSON string to the file
                 File.WriteAllText(_filePath, jsonString);
 
-                Console.WriteLine("JSON file created successfully.");
+                Console.WriteLine("Save file created successfully.");
 
             }
             catch (Exception ex)
             {
                 // Handle any errors that might occur
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageUtils.SetErrorMessage("SaveFileHandler", "SaveCurrentFile", $"An error occurred: {ex.Message}");
             }
         }
 
@@ -98,7 +99,7 @@ namespace TEngine.SaveEngine
             catch (Exception ex)
             {
                 // Handle any errors that might occur
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageUtils.SetErrorMessage("SaveFileHandler", "SaveCurrentFile", $"An error occurred: {ex.Message}");
                 return null;
             }
         }
@@ -118,7 +119,7 @@ namespace TEngine.SaveEngine
             catch (Exception ex)
             {
                 // Handle any errors that might occur
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageUtils.SetErrorMessage("SaveFileHandler", "InitializeSaveFiles", $"An error occurred: {ex.Message}");
             }
         }
 

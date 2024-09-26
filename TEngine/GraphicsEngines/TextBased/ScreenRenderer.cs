@@ -6,6 +6,7 @@ using System.Drawing.Interop;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.Helpers;
 
 namespace TEngine.GraphicsEngines.TextBased
 {
@@ -14,16 +15,16 @@ namespace TEngine.GraphicsEngines.TextBased
     /// It is a static class, declared once in memory, because it should only ever exist once in any Application,
     /// and because we don't need to hold instances of it for anything.
     /// </summary>
-    internal static class ScreenRenderer
+    internal class ScreenRenderer
     {
         public const int MAX_THREADS = 4;
-        private static char[]? _screen;
-        private static bool[]? _screenHasChanged;
-        private static int _latency;
-        private static int _width;
-        private static int _height;
-        private static bool _stop;
-        private static bool _initialized = false;
+        private char[]? _screen;
+        private bool[]? _screenHasChanged;
+        private int _latency;
+        private int _width;
+        private int _height;
+        private bool _stop;
+        private bool _initialized = false;
 
 
         /// <summary>
@@ -31,7 +32,7 @@ namespace TEngine.GraphicsEngines.TextBased
         /// </summary>
         /// <param name="width">The width of our screen.</param>
         /// <param name="height">The height of our screen.</param>
-        public static void Initialize(int width, int height)
+        public void Initialize(int width, int height)
         {
             _width = width;
             _height = height;
@@ -45,13 +46,19 @@ namespace TEngine.GraphicsEngines.TextBased
 
             //Create our screen rendering threads
             CreateScreenRenderer();
+        }
+
+        public ScreenRenderer(int width, int height)
+        {
+            _width = width;
+            _height = height;
 
         }
 
         /// <summary>
         /// Starts our screen render threads.
         /// </summary>
-        private static void CreateScreenRenderer()
+        private void CreateScreenRenderer()
         {
             int slice = _height / MAX_THREADS;
 
@@ -98,7 +105,7 @@ namespace TEngine.GraphicsEngines.TextBased
         /// </summary>
         /// <param name="startIndex">The starting index of where to handle screen printing.</param>
         /// <param name="stopIndex">The final (included) index of where to handle screen printing.</param>
-        private static async void RenderScreen(int startIndex, int stopIndex)
+        private async void RenderScreen(int startIndex, int stopIndex)
         {
 
             //If these were null here it would be really bad...
@@ -135,7 +142,7 @@ namespace TEngine.GraphicsEngines.TextBased
         /// <param name="topLeftCol">The col of the top left coordinate.</param>
         /// <param name="bottomRightRow">The row of the bottom right coordinate.</param>
         /// <param name="bottomRightCol">The col of the bottom right coordinate.</param>
-        public static void UpdateScreen(char[] charArray, int topLeftRow, int topLeftCol, int bottomRightRow, int bottomRightCol)
+        public void UpdateScreen(char[] charArray, int topLeftRow, int topLeftCol, int bottomRightRow, int bottomRightCol)
         {
             //Initializer call hasn't been made yet; don't do anything.
             if (!_initialized) return;
@@ -147,32 +154,53 @@ namespace TEngine.GraphicsEngines.TextBased
 
             int startIndex = topLeftRow * _height + topLeftCol;
             int stopIndex = bottomRightRow * _height + bottomRightCol;
+
+            int cols = bottomRightCol - topLeftCol;
+            int rows = bottomRightRow - topLeftRow;
+
+            //Invalid selection
+            if(cols < 0 || rows < 0)
+            {
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid selection coordinates!!");
+            }
             //Calculate how many pixels our charArray SHOULD be
             //Subtract actual indices (top from bottom) to get the result
-            int totalNumPixels = stopIndex - startIndex;
+            int totalNumPixels = rows*cols; //This is effectively the area of the surface
             //Invalid
             if (charArray.Length != totalNumPixels) 
             {
-                TextWriter errorWriter = Console.Error;
-                errorWriter.WriteLine("UpdateScreen - Array size does not match selection size!!");
-                Application.TerminateApplication();
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Array size does not match selection size!!");
             }
             else if(stopIndex > charArray.Length)
             {
-                    TextWriter errorWriter = Console.Error;
-                    errorWriter.WriteLine("UpdateScreen - Selection size larger than array size!!");
-                    Application.TerminateApplication();
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Selection size larger than array size!!");
             }
 
+            int row = 0;
             //Iterate over each character in the selection
             for (int i = startIndex; i <= stopIndex; i++)
             {
-                    //Note: We COULD call UpdateSinglePixel here, for clarity, but we won't.
-                    //The reason is, the function call would make this loop take longer than it needs to. No reason when the code is already so short.
 
-                    //Check if the pixels are different.
-                    //We only need to write to _screen if they are.
-                    if (_screen[i] != charArray[i]) { _screenHasChanged[i] = true; _screen[i] = charArray[i]; }
+                //Note: We COULD call UpdateSinglePixel here, for clarity, but we won't.
+                //The reason is, the function call would make this loop take longer than it needs to. No reason when the code is already so short.
+
+                //Check if the pixels are different.
+                //We only need to write to _screen if they are.
+                if (_screen[i] != charArray[i]) { _screenHasChanged[i] = true; _screen[i] = charArray[i]; }
+
+                //Quick note: putting the conditional below the actual screen change calculation saves one iteration in the loop. Yay.
+                //Another condition in here to avoid needing another for loop
+                //If i is out of range of our selection, jump to the next row
+                int col = i % rows;
+                if(col >= cols)
+                {
+                    //Increment our row number
+                    row++;
+                    //Set i to the col 0 of the next row, plus the topLeftCol
+                    //This jumps to our next starting position
+                    i = row * cols + topLeftCol;
+                    continue;
+                }
             }
         }
 
@@ -182,7 +210,7 @@ namespace TEngine.GraphicsEngines.TextBased
         /// <param name="pixel">The new pixel to overwrite the previous one.</param>
         /// <param name="row">The row of the new pixel.</param>
         /// <param name="col">The column of the new pixel. </param>
-        public static void UpdatePixel(char pixel, int row, int col)
+        public void UpdatePixel(char pixel, int row, int col)
         {
             //Initializer call hasn't been made yet; don't do anything.
             if (!_initialized) return;
