@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.GraphicsEngines.TextBased.ScreenElements;
 using TEngine.Helpers;
 
 namespace TEngine.GraphicsEngines.TextBased
@@ -12,12 +13,13 @@ namespace TEngine.GraphicsEngines.TextBased
     internal class TextBasedEngine : GraphicsEngine
     {
         private ScreenRenderer _renderer;
-        private List<Tuple<int, int, int, int>> _boundaries;
+        private Boundaries _bounds;
 
         public TextBasedEngine(int screenWidth, int screenHeight) : base(Style.TextBased, screenWidth, screenHeight)
         {
             _renderer = new ScreenRenderer(screenWidth, screenHeight);
-            _boundaries = new List<Tuple<int, int, int, int>>();
+            _bounds = new Boundaries();
+
         }
 
         public async Task Print()
@@ -59,23 +61,20 @@ namespace TEngine.GraphicsEngines.TextBased
         /// </returns>
         public int AddBoundary(int topLeftRow, int topLeftCol, int bottomRightRow, int bottomRightCol)
         {
-            _boundaries.Add(new Tuple<int, int, int, int>(topLeftRow, topLeftCol, bottomRightRow, bottomRightCol));
-
-            //This will always be the index of the most recently inserted boundary
-            return _boundaries.Count() - 1;
+            return _bounds.AddBoundary(topLeftRow, topLeftCol, bottomRightRow, bottomRightCol);
         }
 
         public void SetScreenOnBound(int boundaryIndex, string[] screen)
         {
-            if(boundaryIndex < 0 || boundaryIndex >= _boundaries.Count)
+            if(boundaryIndex < 0 || boundaryIndex >= _bounds.Count())
             {
                 MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound","Set boundary does not exist!!");
             }
-            Tuple<int,int,int,int> boundary = _boundaries.ElementAt(boundaryIndex);
+            Tuple<int,int,int,int> boundary = _bounds.GetBound(boundaryIndex);
 
 
 
-            _renderer.UpdateScreen(, boundary.Item1, boundary.Item2, boundary.Item3, boundary.Item4);
+            //_renderer.UpdateScreen(, boundary, _bounds.getNumRows(boundaryIndex), _bounds.getNumCols(boundaryIndex));
         }
 
 

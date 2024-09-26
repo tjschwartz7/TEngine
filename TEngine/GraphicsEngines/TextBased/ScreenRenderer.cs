@@ -142,8 +142,13 @@ namespace TEngine.GraphicsEngines.TextBased
         /// <param name="topLeftCol">The col of the top left coordinate.</param>
         /// <param name="bottomRightRow">The row of the bottom right coordinate.</param>
         /// <param name="bottomRightCol">The col of the bottom right coordinate.</param>
-        public void UpdateScreen(char[] charArray, int topLeftRow, int topLeftCol, int bottomRightRow, int bottomRightCol)
+        public void UpdateScreen(char[] charArray, Tuple<int,int,int,int> bound, int numRows, int numCols)
         {
+            int topLeftRow = bound.Item1;
+            int topLeftCol = bound.Item2;
+            int bottomRightRow = bound.Item3;
+            int bottomRightCol = bound.Item4;
+
             //Initializer call hasn't been made yet; don't do anything.
             if (!_initialized) return;
 
@@ -155,17 +160,14 @@ namespace TEngine.GraphicsEngines.TextBased
             int startIndex = topLeftRow * _height + topLeftCol;
             int stopIndex = bottomRightRow * _height + bottomRightCol;
 
-            int cols = bottomRightCol - topLeftCol;
-            int rows = bottomRightRow - topLeftRow;
-
             //Invalid selection
-            if(cols < 0 || rows < 0)
+            if(numCols < 0 || numRows < 0)
             {
                 MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid selection coordinates!!");
             }
             //Calculate how many pixels our charArray SHOULD be
             //Subtract actual indices (top from bottom) to get the result
-            int totalNumPixels = rows*cols; //This is effectively the area of the surface
+            int totalNumPixels = numRows*numCols; //This is effectively the area of the surface
             //Invalid
             if (charArray.Length != totalNumPixels) 
             {
@@ -191,14 +193,14 @@ namespace TEngine.GraphicsEngines.TextBased
                 //Quick note: putting the conditional below the actual screen change calculation saves one iteration in the loop. Yay.
                 //Another condition in here to avoid needing another for loop
                 //If i is out of range of our selection, jump to the next row
-                int col = i % rows;
-                if(col >= cols)
+                int col = i % numRows;
+                if(col >= numCols)
                 {
                     //Increment our row number
                     row++;
                     //Set i to the col 0 of the next row, plus the topLeftCol
                     //This jumps to our next starting position
-                    i = row * cols + topLeftCol;
+                    i = row * numCols + topLeftCol;
                     continue;
                 }
             }
