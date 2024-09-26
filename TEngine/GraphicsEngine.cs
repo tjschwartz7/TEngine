@@ -51,7 +51,8 @@ namespace TEngine
         }
         public enum Style
         {
-            TextBased = 0,
+            NoneSelected = 0,
+            TextBased,
             G_2D,
             G_3D,
         }

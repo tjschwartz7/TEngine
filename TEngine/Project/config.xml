@@ -4,4 +4,7 @@
 	<setting name="ScreenHeight" value="100"/>
 	<setting name="NumScreenSections" value="10"/>
 	<setting name="TargetFPS" value="3"/>
+	<setting name="GraphicsEngine" value="TextBased"/>
+	<!--<setting name="GraphicsEngine" value="G_2D"/>  The tag for loading a 2D graphics engine -->
+	<!--<setting name="GraphicsEngine" value="G_3D"/>  Load a 3D engine -->
 </settings>

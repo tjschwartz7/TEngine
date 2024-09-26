@@ -89,15 +89,6 @@ namespace TEngine
             frameTimer.Stop();
         }
 
-        static string GetSettingValue(XDocument doc, string name)
-        {
-            // Query the setting by name
-            var setting = doc.Descendants("setting")
-                             .FirstOrDefault(s => s.Attribute("name")?.Value == name);
-
-            return setting?.Attribute("value")?.Value;
-        }
-
         private void InitializeSettings()
         {
             var doc = XDocument.Load("../../../../TEngine/Project/config.xml");
@@ -108,6 +99,7 @@ namespace TEngine
             int screenHeight = -1;
             int numSections = -1;
             int targetFPS = -1;
+            GraphicsEngine.Style engine = GraphicsEngine.Style.NoneSelected;
             foreach(var setting in settings) 
             {
 
@@ -136,6 +128,21 @@ namespace TEngine
                     case "TargetFPS":
                         targetFPS = int.Parse(value);
                         break;
+                    case "GraphicsEngine":
+                        switch (value)
+                        {
+                            case "TextBased":
+                                engine = GraphicsEngine.Style.TextBased;
+                                break;
+                            case "G_2D":
+                                engine = GraphicsEngine.Style.G_2D;
+                                break;
+                            case "G_3D":
+                                engine = GraphicsEngine.Style.G_3D;
+                                break;
+                        }
+
+                        break;
 
                 }
             }
@@ -163,8 +170,24 @@ namespace TEngine
                     errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'TargetFPS'!!");
                     Application.TerminateApplication();
                 }
+                else if(engine == GraphicsEngine.Style.NoneSelected)
+                {
+                    errorWriter.WriteLine("InitializeSettings - Config file missing parameter 'GraphicsEngine'!!");
+                    Application.TerminateApplication();
+                }
             }
-            GraphicsEngineInstance = new TextBased(screenHeight, screenWidth, numSections); //Change this to whatever you want your engine to be
+
+            switch (engine)
+            {
+                case GraphicsEngine.Style.TextBased:
+                    GraphicsEngineInstance = new TextBased(screenHeight, screenWidth, numSections);
+                    break;
+                case GraphicsEngine.Style.G_2D:
+                    break;
+                case GraphicsEngine.Style.G_3D:
+                    break;
+            }
+
             SetTargetFPS(targetFPS); //Set your target FPS here (can be changed dynamically later)
         }
 
