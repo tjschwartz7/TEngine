@@ -18,8 +18,6 @@ namespace TEngine.Project
         /// </summary>
         protected override void OnStart()
         {
-            GraphicsEngineInstance.AddBoundary();
-
 
         }
 

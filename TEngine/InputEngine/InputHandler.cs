@@ -55,6 +55,7 @@ namespace TEngine.InputEngine
         {
             while(Application.IsRunning())
             {
+                Console.WriteLine(_currentlyPressedKeys.Count);
                 CheckIfKeysStillPressed();
                 await Task.Delay(Application.GetTargetLatency());
             }

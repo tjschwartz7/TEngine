@@ -19,7 +19,7 @@ namespace TEngine.GraphicsEngines.TextBased
         {
             _renderer = new ScreenRenderer(screenWidth, screenHeight);
             _bounds = new Boundaries();
-
+            OnStart();
         }
 
         public async Task Print()
@@ -28,7 +28,6 @@ namespace TEngine.GraphicsEngines.TextBased
             {
                 Console.Clear();
                 OnFrame();
-                //$"\033[{i};0H{_screen[row, col]}"
 
                 //This is what controls our framerate
                 await Task.Delay(Application.GetTargetLatency());
@@ -64,19 +63,27 @@ namespace TEngine.GraphicsEngines.TextBased
             return _bounds.AddBoundary(topLeftRow, topLeftCol, bottomRightRow, bottomRightCol);
         }
 
-        public void SetScreenOnBound(int boundaryIndex, string[] screen)
+        public void SetScreenOnBound(int boundaryIndex, string[] partition)
         {
+
             if(boundaryIndex < 0 || boundaryIndex >= _bounds.Count())
             {
                 MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound","Set boundary does not exist!!");
             }
             Bound boundary = _bounds.GetBound(boundaryIndex);
-
-
-
-            //_renderer.UpdateScreen(, boundary, _bounds.getNumRows(boundaryIndex), _bounds.getNumCols(boundaryIndex));
+            if(partition.Length < boundary.GetNumRows())
+            {
+                MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound", "Incorrect number of rows provided!!");
+            }
+            
+            int row = boundary.GetTopLeftRow();
+            int startCol = boundary.GetTopLeftCol();
+            int stopCol = boundary.GetBottomRightCol();
+            int width = boundary.GetNumCols();
+            foreach(string scanline in partition)
+            {
+                _renderer.UpdateScreenRow(scanline.PadRight(width).ToCharArray(), row, startCol, stopCol);
+            }
         }
-
-
     }
 }

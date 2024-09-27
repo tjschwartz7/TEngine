@@ -48,6 +48,7 @@ namespace TEngine
             _selectOptions = null;
             _screenHeight = screenHeight;
             _screenWidth = screenWidth;
+            _debugInfo = "";
         }
         public enum Style
         {

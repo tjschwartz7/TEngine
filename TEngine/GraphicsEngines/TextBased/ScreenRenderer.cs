@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using System.Drawing.Interop;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace TEngine.GraphicsEngines.TextBased
         private int _width;
         private int _height;
         private bool _stop;
+        private int _numPixels;
 
 
         public ScreenRenderer(int width, int height)
@@ -32,11 +34,12 @@ namespace TEngine.GraphicsEngines.TextBased
             _height = height;
 
             _stop = false;
+            _numPixels = height * width;
             //We use 1D arrays for a quick speed boost
             //Screen declaration
-            _screen = new char[height * width];
+            _screen = new char[_numPixels];
             //Screen change array declaration
-            _screenHasChanged = new bool[height * width];
+            _screenHasChanged = new bool[_numPixels];
 
             //Create our screen rendering threads
             CreateScreenRenderer();
@@ -116,7 +119,7 @@ namespace TEngine.GraphicsEngines.TextBased
                     if (_screenHasChanged[i])
                         Console.Write($"\033[{row};{col}H{_screen[i]}");
                 }
-                    await Task.Delay(Application.GetTargetLatency()); //Clear up a thread in the pool
+                await Task.Delay(Application.GetTargetLatency()); //Clear up a thread in the pool
             }
         }
 
@@ -126,52 +129,50 @@ namespace TEngine.GraphicsEngines.TextBased
         /// </summary>
         /// <param name="charArray">The char array to write over the local screen bound.</param>
         /// <param name="bound">The actual boundary of our screen to be written over.</param>
-        public void UpdateScreen(char[] charArray, ScreenElements.ScreenBounds.Bound bound)
+        public void UpdateScreenRow(char[] charArray, int row, int startCol, int stopCol)
         {
-            int topLeftRow = bound.GetTopLeftRow();
-            int topLeftCol = bound.GetTopLeftCol();
-            int bottomRightRow = bound.GetBottomRightRow();
-            int bottomRightCol = bound.GetBottomRightCol();
-            int numCols = bound.GetNumCols();
-            int numRows = bound.GetNumRows();
-            int totalNumPixels = bound.GetNumPixels();
 
             //Just in case
             if (_screen == null) { return; }
             if (_screenHasChanged == null) { return; }
 
 
-            int startColumn = topLeftCol;
-            int stopColumn = bottomRightCol;
-            int startRow = topLeftRow;
-            int stopRow = bottomRightRow;
 
             //Invalid selection
-            if(numCols < 0 || numRows < 0)
+            if(startCol < 0 || startCol > _width)
             {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid selection coordinates!!");
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid starting column coordinate!!");
             }
-            //Invalid
-            else if (charArray.Length != totalNumPixels) 
+            else if(stopCol < 0 || stopCol > _width)
             {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Array size does not match selection size!!");
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid stopping column coordinate!!");
+            }
+            else if(row < 0 || row > _height)
+            {
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid row coordinate!!");
             }
 
             //Iterate over each character in the selection
-            for(int row = startRow; row <= stopRow; row++)
+            int rowIndex = row * _width;
+            int startIndex = rowIndex + startCol;
+            int stopIndex = startIndex + stopCol;
+            if(startIndex > _numPixels)
             {
-                int rowIndex = row * _width;
-                for (int col = startColumn; col <= stopColumn; col++)
-                {
-                    int currentIndex = rowIndex + col;
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Start index out of bounds!!");
+            }
+            else if(stopIndex > _numPixels) 
+            {
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Stop index out of bounds!!");
+            }
 
-                    //Note: We COULD call UpdateSinglePixel here, for clarity, but we won't.
-                    //The reason is, the function call would make this loop take longer than it needs to. No reason when the code is already so short.
+            for (int index = startIndex; index <= stopIndex; index++)
+            {
+                //Note: We COULD call UpdateSinglePixel here, for clarity, but we won't.
+                //The reason is, the function call would make this loop take longer than it needs to. No reason when the code is already so short.
 
-                    //Check if the pixels are different.
-                    //We only need to write to _screen if they are.
-                    if (_screen[currentIndex] != charArray[currentIndex]) { _screenHasChanged[currentIndex] = true; _screen[currentIndex] = charArray[currentIndex]; }
-                }
+                //Check if the pixels are different.
+                //We only need to write to _screen if they are.
+                if (_screen[index] != charArray[index]) { _screenHasChanged[index] = true; _screen[index] = charArray[index]; }
             }
         }
 

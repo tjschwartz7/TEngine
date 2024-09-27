@@ -15,7 +15,8 @@ namespace TEngine.Project.Graphics
         protected override void OnStart()
         {
             base.OnStart();
-
+            AddBoundary(0, 0, 3, 99);
+            AddBoundary(4, 0, 99, 99);
         }
 
         /// <summary>
@@ -24,6 +25,8 @@ namespace TEngine.Project.Graphics
         protected override void OnFrame()
         {
             base.OnFrame();
+            SetScreenOnBound(0, [Resolution.TerminalWidthLine, $"FPS: {Application.GetFPS()}", Resolution.TerminalWidthLine]);
+            
 
         }
     }

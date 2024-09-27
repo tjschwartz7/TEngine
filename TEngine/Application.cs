@@ -45,13 +45,15 @@ namespace TEngine
         {
             _isRunning = true;
             _stopProgram = false;
+
             //Call user initialization code
             InitializeSettings();
-            OnStart();
             //Set important variables
             _updateDelay_ms =(int)(1000 / (double)_targetFramesPerSecond); //Assume starting out that update loop takes 0 seconds
             _targetFrames_low_ms = (int)((double)_targetFramesPerSecond * .9);
             _targetFrames_high_ms = (int)((double)_targetFramesPerSecond * 1.1);
+            OnStart();
+
             //Create all of our threads
             _inputHandlerInstance = new InputEngine.InputHandler();
             _ = Task.Run(() => AsyncUpdate());
@@ -231,9 +233,9 @@ namespace TEngine
             _targetFramesPerSecond = fps;
         }
 
-        public double GetFPS()
+        public static double GetFPS()
         {
-            return _framesPerSecond;
+            return _applicationInstance._framesPerSecond;
         }
 
         /// <summary>
