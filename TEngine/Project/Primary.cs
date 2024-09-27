@@ -18,8 +18,9 @@ namespace TEngine.Project
         /// </summary>
         protected override void OnStart()
         {
-           
-            
+            GraphicsEngineInstance.AddBoundary();
+
+
         }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace TEngine.Project
         /// </summary>
         protected override void OnUpdate()
         {
-
+            if(KeyPressed(ConsoleKey.Escape)) TerminateApplication();
         }
     }
 }

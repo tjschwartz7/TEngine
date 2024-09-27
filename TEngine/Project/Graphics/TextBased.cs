@@ -12,12 +12,18 @@ namespace TEngine.Project.Graphics
     {
         public TextBased(int screenHeight, int screenWidth) : base(screenHeight, screenWidth) { }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+        }
+
         /// <summary>
         /// This code runs in the TextEngine and is designed to be used for calculating what goes on the screen. It runs once per frame.
         /// </summary>
         protected override void OnFrame()
         {
-            base.OnFrame(); 
+            base.OnFrame();
 
         }
     }

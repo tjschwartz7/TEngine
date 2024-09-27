@@ -3,126 +3,86 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+
 
 namespace TEngine.InputEngine
 {
     internal class InputHandler
     {
+        IntPtr _keyboardLayout;
+        private Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>> _currentlyPressedKeys;
+        const int KEY_HELD_DOWN = 0x8000;
+        const int KEY_NEWLY_PRESSED = 0x0001;
+
+        public Dictionary<ConsoleKey,Tuple<ConsoleKeyInfo, bool>> CurrentlyPressedKeys { get => _currentlyPressedKeys; }
+
+        public InputHandler() 
+        {
+            _currentlyPressedKeys = new Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>>();
+            _keyboardLayout = GetKeyboardLayout(0);
+            _ = Task.Run(() => KeyReader());
+            _ = Task.Run(() => KeyChecker());
+        }
+
+        [DllImport("user32.dll")]
+        public static extern short GetAsyncKeyState(int vKey);
+        [DllImport("user32.dll", CharSet = CharSet.Ansi)]
+        public static extern short VkKeyScanExA(char ch, IntPtr dwhkl);
+        // Import GetKeyboardLayout to retrieve the current keyboard layout
+        [DllImport("user32.dll")]
+
+        public static extern IntPtr GetKeyboardLayout(uint idThread);
+
         public async Task KeyReader()
         {
+            
             // Loop to keep the application running
             while (Application.IsRunning())
             {
                 // Wait for a key press
-                ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true); // intercept: true to not show the key in the console
-                Task backgroundTask = Task.Run(() => HandleKeyPress(keyInfo));
-                await Task.Delay(10);
+                ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true); // intercept: true to not show the key in the console((
+                if(!_currentlyPressedKeys.ContainsKey(keyInfo.Key))
+                    _currentlyPressedKeys.Add(keyInfo.Key, new Tuple<ConsoleKeyInfo,bool>(keyInfo, true));
+                
+                await Task.Delay(25); //Let the key reader be a fast thread
             }
         }
 
-        //You'll have to edit this to do what you need it to do
-        private void HandleKeyPress(ConsoleKeyInfo keyInfo)
+        public async Task KeyChecker()
         {
-
-            // Check which key was pressed
-            switch (keyInfo.Key)
+            while(Application.IsRunning())
             {
-                case ConsoleKey.UpArrow:
-                    OnUpArrowPressed();
-                    break;
-
-                case ConsoleKey.DownArrow:
-                    OnDownArrowPressed();
-                    break;
-
-                case ConsoleKey.LeftArrow:
-                    OnLeftArrowPressed();
-                    break;
-
-                case ConsoleKey.RightArrow:
-                    OnRightArrowPressed();
-                    break;
-                case ConsoleKey.W:
-                    OnWKeyPressed();
-                    break;
-                case ConsoleKey.A:
-                    OnAKeyPressed();
-                    break;
-                case ConsoleKey.S:
-                    OnSKeyPressed();
-                    break;
-                case ConsoleKey.D:
-                    OnDKeyPressed();
-                    break;
-                case ConsoleKey.F:
-                    OnFKeyPressed();
-                    break;
-                case ConsoleKey.Enter:
-                    OnEnterPressed();
-                    break;
-                case ConsoleKey.Escape:
-                    OnEscapePressed();
-                    break;
-
-                default:
-                    break;
+                CheckIfKeysStillPressed();
+                await Task.Delay(Application.GetTargetLatency());
             }
         }
 
-        protected virtual void OnUpArrowPressed()
-        {
+        private void CheckIfKeysStillPressed()
+        { 
+            foreach (var key in CurrentlyPressedKeys)
+            {
+                //Get the result
+                short result = VkKeyScanExA(key.Value.Item1.KeyChar, _keyboardLayout);
 
+                // Extract the virtual key code (low byte) and shift state (high byte)
+                byte vkCode = (byte)(result & 0xFF);  // Low byte
+                byte shiftState = (byte)((result >> 8) & 0xFF);  // High byte
+
+                //Check if key has been released
+                if((GetAsyncKeyState(vkCode) & KEY_HELD_DOWN) == 0)
+                {
+                    //Remove key; its been released
+                    _currentlyPressedKeys.Remove(key.Key);
+                }
+            }
         }
 
-        protected virtual void OnDownArrowPressed()
+        public bool KeyPressed(ConsoleKey key)
         {
-
-        }
-
-        protected virtual void OnLeftArrowPressed()
-        {
-
-        }
-
-        protected virtual void OnRightArrowPressed()
-        {
-
-        }
-
-        protected virtual void OnWKeyPressed()
-        {
-
-        }
-
-        protected virtual void OnAKeyPressed()
-        {
-
-        }
-
-        protected virtual void OnSKeyPressed()
-        {
-
-        }
-
-        protected virtual void OnDKeyPressed()
-        {
-
-        }
-
-        protected virtual void OnFKeyPressed()
-        {
-
-        }
-
-
-        protected virtual void OnEnterPressed()
-        {
-
-        }
-
-        protected virtual void OnEscapePressed()
-        {
-
+            return _currentlyPressedKeys.ContainsKey(key);
         }
     }
 }

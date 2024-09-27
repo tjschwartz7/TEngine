@@ -24,20 +24,14 @@ namespace TEngine.GraphicsEngines.TextBased
         private int _width;
         private int _height;
         private bool _stop;
-        private bool _initialized = false;
 
 
-        /// <summary>
-        /// Initialize all of our variables and start the screen renderer threads.
-        /// </summary>
-        /// <param name="width">The width of our screen.</param>
-        /// <param name="height">The height of our screen.</param>
-        public void Initialize(int width, int height)
+        public ScreenRenderer(int width, int height)
         {
             _width = width;
             _height = height;
+
             _stop = false;
-            _initialized = true;
             //We use 1D arrays for a quick speed boost
             //Screen declaration
             _screen = new char[height * width];
@@ -46,13 +40,6 @@ namespace TEngine.GraphicsEngines.TextBased
 
             //Create our screen rendering threads
             CreateScreenRenderer();
-        }
-
-        public ScreenRenderer(int width, int height)
-        {
-            _width = width;
-            _height = height;
-
         }
 
         /// <summary>
@@ -137,71 +124,53 @@ namespace TEngine.GraphicsEngines.TextBased
         /// <summary>
         /// Updates the screen in a rectangular fashion from the top left coordinate to the bottom right coordinate.
         /// </summary>
-        /// <param name="charArray">The character array to write over the screen. Must be the same size as your rectangular selection.</param>
-        /// <param name="topLeftRow">The row of the top left coordinate.</param>
-        /// <param name="topLeftCol">The col of the top left coordinate.</param>
-        /// <param name="bottomRightRow">The row of the bottom right coordinate.</param>
-        /// <param name="bottomRightCol">The col of the bottom right coordinate.</param>
-        public void UpdateScreen(char[] charArray, Tuple<int,int,int,int> bound, int numRows, int numCols)
+        /// <param name="charArray">The char array to write over the local screen bound.</param>
+        /// <param name="bound">The actual boundary of our screen to be written over.</param>
+        public void UpdateScreen(char[] charArray, ScreenElements.ScreenBounds.Bound bound)
         {
-            int topLeftRow = bound.Item1;
-            int topLeftCol = bound.Item2;
-            int bottomRightRow = bound.Item3;
-            int bottomRightCol = bound.Item4;
-
-            //Initializer call hasn't been made yet; don't do anything.
-            if (!_initialized) return;
+            int topLeftRow = bound.GetTopLeftRow();
+            int topLeftCol = bound.GetTopLeftCol();
+            int bottomRightRow = bound.GetBottomRightRow();
+            int bottomRightCol = bound.GetBottomRightCol();
+            int numCols = bound.GetNumCols();
+            int numRows = bound.GetNumRows();
+            int totalNumPixels = bound.GetNumPixels();
 
             //Just in case
             if (_screen == null) { return; }
             if (_screenHasChanged == null) { return; }
 
 
-            int startIndex = topLeftRow * _height + topLeftCol;
-            int stopIndex = bottomRightRow * _height + bottomRightCol;
+            int startColumn = topLeftCol;
+            int stopColumn = bottomRightCol;
+            int startRow = topLeftRow;
+            int stopRow = bottomRightRow;
 
             //Invalid selection
             if(numCols < 0 || numRows < 0)
             {
                 MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid selection coordinates!!");
             }
-            //Calculate how many pixels our charArray SHOULD be
-            //Subtract actual indices (top from bottom) to get the result
-            int totalNumPixels = numRows*numCols; //This is effectively the area of the surface
             //Invalid
-            if (charArray.Length != totalNumPixels) 
+            else if (charArray.Length != totalNumPixels) 
             {
                 MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Array size does not match selection size!!");
             }
-            else if(stopIndex > charArray.Length)
-            {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Selection size larger than array size!!");
-            }
 
-            int row = 0;
             //Iterate over each character in the selection
-            for (int i = startIndex; i <= stopIndex; i++)
+            for(int row = startRow; row <= stopRow; row++)
             {
-
-                //Note: We COULD call UpdateSinglePixel here, for clarity, but we won't.
-                //The reason is, the function call would make this loop take longer than it needs to. No reason when the code is already so short.
-
-                //Check if the pixels are different.
-                //We only need to write to _screen if they are.
-                if (_screen[i] != charArray[i]) { _screenHasChanged[i] = true; _screen[i] = charArray[i]; }
-
-                //Quick note: putting the conditional below the actual screen change calculation saves one iteration in the loop. Yay.
-                //Another condition in here to avoid needing another for loop
-                //If i is out of range of our selection, jump to the next row
-                int col = i % numRows;
-                if(col >= numCols)
+                int rowIndex = row * _width;
+                for (int col = startColumn; col <= stopColumn; col++)
                 {
-                    //Increment our row number
-                    row++;
-                    //Set i to the col 0 of the next row, plus the topLeftCol
-                    //This jumps to our next starting position
-                    i = row * numCols + topLeftCol;
-                    continue;
+                    int currentIndex = rowIndex + col;
+
+                    //Note: We COULD call UpdateSinglePixel here, for clarity, but we won't.
+                    //The reason is, the function call would make this loop take longer than it needs to. No reason when the code is already so short.
+
+                    //Check if the pixels are different.
+                    //We only need to write to _screen if they are.
+                    if (_screen[currentIndex] != charArray[currentIndex]) { _screenHasChanged[currentIndex] = true; _screen[currentIndex] = charArray[currentIndex]; }
                 }
             }
         }
@@ -214,8 +183,6 @@ namespace TEngine.GraphicsEngines.TextBased
         /// <param name="col">The column of the new pixel. </param>
         public void UpdatePixel(char pixel, int row, int col)
         {
-            //Initializer call hasn't been made yet; don't do anything.
-            if (!_initialized) return;
             //Just in case
             if (_screen == null) { return; }
             if(_screenHasChanged == null) { return; }

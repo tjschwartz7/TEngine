@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using TEngine.GraphicsEngines.TextBased;
 using TEngine.Project;
-using TEngine.Project.UserInput;
 using System.Xml.Linq;
 using TEngine.Project.Graphics;
 using TEngine.Helpers;
@@ -44,7 +43,6 @@ namespace TEngine
         }
         public void Begin()
         {
-            _inputHandlerInstance = new UserInput();
             _isRunning = true;
             _stopProgram = false;
             //Call user initialization code
@@ -55,7 +53,9 @@ namespace TEngine
             _targetFrames_low_ms = (int)((double)_targetFramesPerSecond * .9);
             _targetFrames_high_ms = (int)((double)_targetFramesPerSecond * 1.1);
             //Create all of our threads
-            CreateThreads();
+            _inputHandlerInstance = new InputEngine.InputHandler();
+            _ = Task.Run(() => AsyncUpdate());
+            _ = Task.Run(() => Resolution.ScreenChangeHandler());
         }
         private async Task AsyncUpdate()
         {
@@ -208,13 +208,6 @@ namespace TEngine
             _statusFlag = false;
         }
 
-        private void CreateThreads()
-        {
-            Task updateHandler = Task.Run(() => AsyncUpdate());
-            Task keylogger = Task.Run(() => _inputHandlerInstance.KeyReader());
-            Task screenSizeHandler = Task.Run(() => Resolution.ScreenChangeHandler());
-        }
-
         private void Stop()
         {
             //Perform cleanup here
@@ -258,6 +251,8 @@ namespace TEngine
         {
             _statusFlag = true;
         }
+
+        protected bool KeyPressed(ConsoleKey key) { return _inputHandlerInstance.KeyPressed(key); }
 
         static async Task Main()
         {

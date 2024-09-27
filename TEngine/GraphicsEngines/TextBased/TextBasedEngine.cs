@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.GraphicsEngines.TextBased.ScreenElements;
+using TEngine.GraphicsEngines.TextBased.ScreenElements.ScreenBounds;
 using TEngine.Helpers;
 
 namespace TEngine.GraphicsEngines.TextBased
@@ -70,7 +70,7 @@ namespace TEngine.GraphicsEngines.TextBased
             {
                 MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound","Set boundary does not exist!!");
             }
-            Tuple<int,int,int,int> boundary = _bounds.GetBound(boundaryIndex);
+            Bound boundary = _bounds.GetBound(boundaryIndex);
 
 
 

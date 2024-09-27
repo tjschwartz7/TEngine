@@ -110,6 +110,11 @@ namespace TEngine
 
         public void ToggleDebug() { _showDebug = !_showDebug; }
 
+        protected virtual void OnStart()
+        {
+
+        }
+
         protected virtual void OnFrame()
         {
 
