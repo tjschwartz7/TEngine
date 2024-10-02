@@ -17,8 +17,8 @@ namespace TEngine.GraphicsEngines.TextBased.ScreenElements.ScreenBounds
         {
             _topLeftCoords = new Tuple<int, int>(topLeftRow, topLeftCol);
             _bottomRightCoords = new Tuple<int, int>(bottomRightRow, bottomRightCol);
-            _numCols = bottomRightCol - topLeftCol; //High - low
-            _numRows = bottomRightRow - topLeftRow; //High - low
+            _numCols = bottomRightCol - topLeftCol + 1; //High - low + 1
+            _numRows = bottomRightRow - topLeftRow + 1; //High - low + 1
             _numPixels = _numRows * _numCols; //Just the area of the surface
         }
 
@@ -46,11 +46,11 @@ namespace TEngine.GraphicsEngines.TextBased.ScreenElements.ScreenBounds
         /// <summary>
         /// Get the number of columns in the surface bound.
         /// </summary>
-        public int GetNumCols() { return _numRows; }    
+        public int GetNumCols() { return _numCols; }    
         /// <summary>
         /// Get the number of rows in the surface bound
         /// </summary>
-        public int GetNumRows() { return _numCols; }
+        public int GetNumRows() { return _numRows; }
 
         /// <summary>
         /// Get the number of pixels in the entire surface.

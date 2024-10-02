@@ -4,7 +4,8 @@
 	<setting name="ScreenHeight" value="100"/>
 	<setting name="NumScreenSections" value="10"/> <!-- Required for TextBased engines. Defines how many sections your screen will be divided into. -->
 	<setting name="TargetFPS" value="3"/>
-	<setting name="GraphicsEngine" value="TextBased"/>
-	<!--<setting name="GraphicsEngine" value="G_2D"/>  The tag for loading a 2D graphics engine -->
+	<setting name="TargetUPS" value="3"/>
+	<!--<setting name="GraphicsEngine" value="TextBased"/> -->
+	<setting name="GraphicsEngine" value="G_2D"/> <!--The tag for loading a 2D graphics engine-->
 	<!--<setting name="GraphicsEngine" value="G_3D"/>  Load a 3D engine -->
 </settings>

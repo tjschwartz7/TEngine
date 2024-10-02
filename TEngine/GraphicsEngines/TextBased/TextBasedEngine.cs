@@ -15,36 +15,12 @@ namespace TEngine.GraphicsEngines.TextBased
         private ScreenRenderer _renderer;
         private Boundaries _bounds;
 
-        public TextBasedEngine(int screenWidth, int screenHeight) : base(Style.TextBased, screenWidth, screenHeight)
+        public TextBasedEngine(int screenWidth, int screenHeight, int targetFPS) : base(Style.TextBased, screenWidth, screenHeight, targetFPS)
         {
             _renderer = new ScreenRenderer(screenWidth, screenHeight);
             _bounds = new Boundaries();
             OnStart();
-        }
-
-        public async Task Print()
-        {
-            while(Application.IsRunning())
-            {
-                Console.Clear();
-                OnFrame();
-
-                //This is what controls our framerate
-                await Task.Delay(Application.GetTargetLatency());
-
-                if (PauseUI)
-                {
-                    ResumeUI = false;
-                    PauseUI = false;
-                    IsUIPaused = true;
-                    //Busy sleep
-                    while (!ResumeUI)
-                    {
-                        //Clear up this thread for a second while we're waiting
-                        await Task.Delay(1000);
-                    }
-                }
-            }
+            _ = AsyncFrame();
         }
 
         /// <summary>
@@ -65,25 +41,67 @@ namespace TEngine.GraphicsEngines.TextBased
 
         public void SetScreenOnBound(int boundaryIndex, string[] partition)
         {
-
-            if(boundaryIndex < 0 || boundaryIndex >= _bounds.Count())
+            if (boundaryIndex < 0 || boundaryIndex >= _bounds.Count())
             {
                 MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound","Set boundary does not exist!!");
             }
             Bound boundary = _bounds.GetBound(boundaryIndex);
-            if(partition.Length < boundary.GetNumRows())
+            if(partition.Length != boundary.GetNumRows())
             {
-                MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound", "Incorrect number of rows provided!!");
+                MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound", $"Incorrect number of rows provided ({partition.Length} != {boundary.GetNumRows()}) !!");
             }
-            
+
+
             int row = boundary.GetTopLeftRow();
             int startCol = boundary.GetTopLeftCol();
             int stopCol = boundary.GetBottomRightCol();
             int width = boundary.GetNumCols();
-            foreach(string scanline in partition)
+            for(int i = 0; i < partition.Length; i++)
             {
-                _renderer.UpdateScreenRow(scanline.PadRight(width).ToCharArray(), row, startCol, stopCol);
+                Console.WriteLine($"{i}");
+                try
+                {
+                    if (partition[i] == null) partition[i] = "";
+                    _renderer.UpdateScreenRow(partition[i].PadRight(width).ToCharArray(), row, startCol, stopCol);
+                }
+                catch(Exception e) { MessageUtils.TerminateWithError("TextBasedEngine", "SetScreenOnBound", $"Error occurred: {e.Message}"); }
+                
             }
+        }
+
+        public void UpdatePixel(char pixel, int row, int col)
+        {
+            _renderer.UpdatePixel(pixel, row, col);
+        }
+
+        protected async void BlockThreadFor(int numMillis)
+        {
+            await Task.Delay(numMillis);
+        }
+
+        protected override void OnFrame()
+        {
+            base.OnFrame();
+            _renderer.Latency = UpdateDelay_ms;
+            if (PauseUI)
+            {
+                ResumeUI = false;
+                PauseUI = false;
+                IsUIPaused = true;
+                //Busy sleep
+                while (!ResumeUI)
+                {
+                    //Clear up this thread for a second while we're waiting
+                    BlockThreadFor(1000);
+                }
+            }
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
+            
+            _renderer.Stop();
         }
     }
 }

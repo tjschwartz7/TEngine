@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Common;
 using System.Drawing.Drawing2D;
 using System.Drawing.Interop;
 using System.Linq;
@@ -24,16 +25,18 @@ namespace TEngine.GraphicsEngines.TextBased
         private int _latency;
         private int _width;
         private int _height;
-        private bool _stop;
+        private bool _isRunning;
         private int _numPixels;
 
+        public int Latency { get => _latency; set => _latency = value; }
 
         public ScreenRenderer(int width, int height)
         {
+
+            _isRunning = true;
             _width = width;
             _height = height;
-
-            _stop = false;
+            _latency = 100;
             _numPixels = height * width;
             //We use 1D arrays for a quick speed boost
             //Screen declaration
@@ -56,10 +59,9 @@ namespace TEngine.GraphicsEngines.TextBased
             //Assuming one thread can easily handle 400 rows
             int maxNeededThreads = (_height / 400); //I.E. 5 threads for 2000 rows, 4 for 1600
             if (numThreads > maxNeededThreads) numThreads = maxNeededThreads;
-
-            if (numThreads == 1) //In this case we should really only need one thread
+            if (numThreads <= 1) //In this case we should really only need one thread
             {
-               _ = Task.Run(() => RenderScreen(0, _height-1));
+                _ = Task.Run(() => RenderScreen(0, _height-1));
             }
             else
             {
@@ -100,10 +102,10 @@ namespace TEngine.GraphicsEngines.TextBased
 
             //If these were null here it would be really bad...
             //TERMINATE!
-            if (_screen == null) { Application.TerminateApplication(); }
-            if (_screenHasChanged == null) { Application.TerminateApplication(); }
+            if (_screen == null) { MessageUtils.TerminateWithError("ScreenRenderer", "RenderScreen", "Screen was null!!"); }
+            if (_screenHasChanged == null) { MessageUtils.TerminateWithError("ScreenRenderer", "RenderScreen", "Screen booleans were null!!"); }
             //This thread will end when Stop() is called
-            while (!_stop)
+            while (_isRunning)
             {
                 //We assume the arrays won't become null during operation. That's why they're private.
                 //We really don't wanna keep checking them in here...
@@ -117,9 +119,22 @@ namespace TEngine.GraphicsEngines.TextBased
                     //Replace character at this index
                     //But only if its changed
                     if (_screenHasChanged[i])
-                        Console.Write($"\033[{row};{col}H{_screen[i]}");
+                    {
+                        try
+                        {
+                            Console.SetCursorPosition(row, col);
+                            Console.Write($"{_screen[i]}");
+                        }
+                        catch (ArgumentOutOfRangeException e)
+                        {
+                            Console.Clear();
+                            Console.WriteLine(e.Message);
+                        }
+                        //Console.Out.Flush();
+                    }
+                        
                 }
-                await Task.Delay(Application.GetTargetLatency()); //Clear up a thread in the pool
+                await Task.Delay(_latency); //Clear up a thread in the pool
             }
         }
 
@@ -131,25 +146,24 @@ namespace TEngine.GraphicsEngines.TextBased
         /// <param name="bound">The actual boundary of our screen to be written over.</param>
         public void UpdateScreenRow(char[] charArray, int row, int startCol, int stopCol)
         {
-
             //Just in case
-            if (_screen == null) { return; }
-            if (_screenHasChanged == null) { return; }
+            if (_screen == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreenRow", "Screen was null!!"); }
+            if (_screenHasChanged == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreenRow", "Screen booleans were null!!"); }
 
 
 
             //Invalid selection
             if(startCol < 0 || startCol > _width)
             {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid starting column coordinate!!");
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", $"Invalid starting column coordinate (startCol, width) = ({startCol}, {_width}) !!");
             }
             else if(stopCol < 0 || stopCol > _width)
             {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid stopping column coordinate!!");
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", $"Invalid stopping column coordinate (stopCol, width) = ({stopCol}, {_width}) !!");
             }
             else if(row < 0 || row > _height)
             {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Invalid row coordinate!!");
+                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", $"Invalid row coordinate (row, height) = ({row}, {_height}) !!");
             }
 
             //Iterate over each character in the selection
@@ -172,7 +186,7 @@ namespace TEngine.GraphicsEngines.TextBased
 
                 //Check if the pixels are different.
                 //We only need to write to _screen if they are.
-                if (_screen[index] != charArray[index]) { _screenHasChanged[index] = true; _screen[index] = charArray[index]; }
+                if (_screen[index] != charArray[index]) { _screenHasChanged[index] = true; _screen[index] = charArray[index]; Console.WriteLine(charArray[index]); }
             }
         }
 
@@ -185,12 +199,17 @@ namespace TEngine.GraphicsEngines.TextBased
         public void UpdatePixel(char pixel, int row, int col)
         {
             //Just in case
-            if (_screen == null) { return; }
-            if(_screenHasChanged == null) { return; }
+            if (_screen == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdatePixel", "Screen was null!!"); }
+            if(_screenHasChanged == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdatePixel", "Screen booleans were null!!"); }
 
             int index = row * _height + col;
             //If new pixel is different than old one, the screen needs updated
             if (_screen[index] != pixel) { _screenHasChanged[index] = true; _screen[index] = pixel; }
+        }
+
+        public void Stop()
+        {
+            _isRunning = false;
         }
     }
 }

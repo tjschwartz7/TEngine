@@ -29,7 +29,6 @@ namespace TEngine.GraphicsEngines.TextBased.ScreenElements.ScreenBounds
         public int AddBoundary(int topLeftRow, int topLeftCol, int bottomRightRow, int bottomRightCol)
         {
             _boundaries.Add(new Bound(topLeftRow, topLeftCol, bottomRightRow, bottomRightCol));
-            
             //This will always be the index of the most recently inserted boundary
             return _boundaries.Count() - 1;
         }
@@ -44,12 +43,12 @@ namespace TEngine.GraphicsEngines.TextBased.ScreenElements.ScreenBounds
             return _boundaries.Count();
         }
 
-        public int getNumRows(int index)
+        public int GetNumRows(int index)
         {
             return _boundaries[index].GetNumRows();
         }
 
-        public int getNumCols(int index)
+        public int GetNumCols(int index)
         {
             return _boundaries[index].GetNumCols();
         }

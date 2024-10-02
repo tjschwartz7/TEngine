@@ -10,13 +10,15 @@ namespace TEngine.Project.Graphics
 {
     internal class TextBased : TextBasedEngine
     {
-        public TextBased(int screenHeight, int screenWidth) : base(screenHeight, screenWidth) { }
+        public TextBased(int screenHeight, int screenWidth, int targetFPS) : base(screenHeight, screenWidth, targetFPS) { }
 
         protected override void OnStart()
         {
             base.OnStart();
-            AddBoundary(0, 0, 3, 99);
-            AddBoundary(4, 0, 99, 99);
+            int bound1 = AddBoundary(0, 0, 2, 99);
+            int bound2 = AddBoundary(3, 0, 99, 99);
+
+            
         }
 
         /// <summary>
@@ -24,9 +26,15 @@ namespace TEngine.Project.Graphics
         /// </summary>
         protected override void OnFrame()
         {
-            base.OnFrame();
-            SetScreenOnBound(0, [Resolution.TerminalWidthLine, $"FPS: {Application.GetFPS()}", Resolution.TerminalWidthLine]);
-            
+            base.OnFrame(); //The parent OnFrame handles UI blocking when the UI is paused
+
+            SetScreenOnBound(0, [Resolution.TerminalWidthLine, $"FPS: {FramesPerSecond}", Resolution.TerminalWidthLine]);
+
+            Random rand = new Random();
+            int row = rand.Next(3, 99);
+            int col = rand.Next(0, 99);
+            char pixel = (char)rand.Next(((int)'a'), ((int)'z'));
+            UpdatePixel(pixel, row, col);
 
         }
     }

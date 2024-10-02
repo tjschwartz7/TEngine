@@ -16,15 +16,26 @@ namespace TEngine
     internal class Application
     {
         private static Application _applicationInstance;
+        //Engine stuff
         private static GraphicsEngine _graphicsEngineInstance;
+        private GraphicsEngine.Style _engine;
+        private int _screenWidth;
+        private int _screenHeight;
+        //Inputs
         private static InputEngine.InputHandler _inputHandlerInstance;
-        private double _framesPerSecond;
-        private double _targetFramesPerSecond;
+
+        //UPS stuff
+        private double _updatesPerSecond;
+        private double _targetUpdatesPerSecond;
         private int _updateDelay_ms;
-        private int _targetFrames_low_ms;
-        private int _targetFrames_high_ms;
+        private int _targetUpdates_low_ms;
+        private int _targetUpdates_high_ms;
+
+
+        //Program stuff
         private bool _stopProgram;
         private bool _isRunning;
+        
 
         //Result handler
         private string _errorMessage;
@@ -49,9 +60,9 @@ namespace TEngine
             //Call user initialization code
             InitializeSettings();
             //Set important variables
-            _updateDelay_ms =(int)(1000 / (double)_targetFramesPerSecond); //Assume starting out that update loop takes 0 seconds
-            _targetFrames_low_ms = (int)((double)_targetFramesPerSecond * .9);
-            _targetFrames_high_ms = (int)((double)_targetFramesPerSecond * 1.1);
+            _updateDelay_ms =(int)(1000 / (double)_targetUpdatesPerSecond); //Assume starting out that update loop takes 0 seconds
+            _targetUpdates_low_ms = (int)((double)_targetUpdatesPerSecond * .9);
+            _targetUpdates_high_ms = (int)((double)_targetUpdatesPerSecond * 1.1);
             OnStart();
 
             //Create all of our threads
@@ -61,48 +72,48 @@ namespace TEngine
         }
         private async Task AsyncUpdate()
         {
-            Stopwatch frameTimer = new Stopwatch();
+            Stopwatch updateTimer = new Stopwatch();
             Stopwatch temp = new Stopwatch();
             double elapsedSeconds = 0;
-            int frames = 0;
-            frameTimer.Start();
+            int updates = 0;
+            updateTimer.Start();
             while (_isRunning) 
             {
                 Task updateTask;
                 updateTask = Task.Run(() => OnUpdate());
                 if(_errorFlag) await Task.Run(() => OnNewError()); 
                 if (_statusFlag) await Task.Run(() => OnNewStatus());
-                await updateTask;
-                elapsedSeconds = frameTimer.Elapsed.TotalSeconds;
-                frames++;
+                await updateTask; //Let the other threads start before we await.
+                elapsedSeconds = updateTimer.Elapsed.TotalSeconds;
+                updates++;
 
                 //One second has passed
                 if(elapsedSeconds > 1.0)
                 {
-                    // Calculate FPS as the number of frames rendered in the last second
-                    _framesPerSecond = ((double)frames / elapsedSeconds);
-                    frames = 0;
+                    // Calculate UPS as the number of updates rendered in the last second
+                    _updatesPerSecond = ((double)updates / elapsedSeconds);
+                    updates = 0;
 
                     //PID Loop for frames
 
                     //Not quite enough frames
-                    if(_framesPerSecond < _targetFrames_low_ms)
+                    if(_updatesPerSecond < _targetUpdates_low_ms)
                     {
                         //Decrease delay time
                         if(_updateDelay_ms > 0)
                             _updateDelay_ms--;
                     }
                     //Too many frames
-                    else if(_framesPerSecond > _targetFrames_high_ms)
+                    else if(_updatesPerSecond > _targetUpdates_high_ms)
                     {
                         //Increase delay time
                         _updateDelay_ms++;
                     }
-                    frameTimer.Restart();
+                    updateTimer.Restart();
                 }
                 await Task.Delay(_updateDelay_ms);
             }
-            frameTimer.Stop();
+            updateTimer.Stop();
         }
 
         private void InitializeSettings()
@@ -114,7 +125,8 @@ namespace TEngine
             int screenWidth = -1;
             int screenHeight = -1;
             int targetFPS = -1;
-            GraphicsEngine.Style engine = GraphicsEngine.Style.NoneSelected;
+            int targetUPS = -1;
+            _engine = GraphicsEngine.Style.NoneSelected;
             foreach(var setting in settings) 
             {
 
@@ -138,20 +150,22 @@ namespace TEngine
                     case "TargetFPS":
                         targetFPS = int.Parse(value);
                         break;
+                    case "TargetUPS":
+                        targetUPS = int.Parse(value);
+                        break;
                     case "GraphicsEngine":
                         switch (value)
                         {
                             case "TextBased":
-                                engine = GraphicsEngine.Style.TextBased;
+                                _engine = GraphicsEngine.Style.TextBased;
                                 break;
                             case "G_2D":
-                                engine = GraphicsEngine.Style.G_2D;
+                                _engine = GraphicsEngine.Style.G_2D;
                                 break;
                             case "G_3D":
-                                engine = GraphicsEngine.Style.G_3D;
+                                _engine = GraphicsEngine.Style.G_3D;
                                 break;
                         }
-
                         break;
 
                 }
@@ -172,16 +186,24 @@ namespace TEngine
                 {
                     MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file missing parameter 'TargetFPS'!!");
                 }
-                else if(engine == GraphicsEngine.Style.NoneSelected)
+                else if (targetUPS < 0)
+                {
+                    MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file missing parameter 'TargetUPS'!!");
+                }
+                else if(_engine == GraphicsEngine.Style.NoneSelected)
                 {
                     MessageUtils.TerminateWithError("Application", "InitializeSettings", "Config file missing parameter 'GraphicsEngine'!!");
                 }
+                
             }
 
-            switch (engine)
+            _screenHeight = screenHeight;
+            _screenWidth = screenWidth; 
+
+            switch (_engine)
             {
                 case GraphicsEngine.Style.TextBased:
-                    _graphicsEngineInstance = new TextBased(screenHeight, screenWidth);
+                    _graphicsEngineInstance = new TextBased(_screenHeight, _screenWidth, targetFPS);
                     break;
                 case GraphicsEngine.Style.G_2D:
                     break;
@@ -189,7 +211,7 @@ namespace TEngine
                     break;
             }
 
-            SetTargetFPS(targetFPS); //Set your target FPS here (can be changed dynamically later)
+            SetTargetUPS(targetUPS);
         }
 
         protected virtual void OnStart()
@@ -213,6 +235,7 @@ namespace TEngine
         private void Stop()
         {
             //Perform cleanup here
+            GraphicsEngineInstance.Stop();
         }
 
         public static bool IsRunning() { return Application.ApplicationInstance._isRunning; }
@@ -228,14 +251,14 @@ namespace TEngine
             return Application._applicationInstance._updateDelay_ms;
         }
 
-        protected void SetTargetFPS(double fps)
+        protected void SetTargetUPS(double fps)
         {
-            _targetFramesPerSecond = fps;
+            _targetUpdatesPerSecond = fps;
         }
 
-        public static double GetFPS()
+        public static double GetUPS()
         {
-            return _applicationInstance._framesPerSecond;
+            return _applicationInstance._updatesPerSecond;
         }
 
         /// <summary>

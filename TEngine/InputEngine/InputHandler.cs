@@ -17,10 +17,14 @@ namespace TEngine.InputEngine
         const int KEY_HELD_DOWN = 0x8000;
         const int KEY_NEWLY_PRESSED = 0x0001;
 
+        //Application stuff
+        private bool _isRunning;
+
         public Dictionary<ConsoleKey,Tuple<ConsoleKeyInfo, bool>> CurrentlyPressedKeys { get => _currentlyPressedKeys; }
 
         public InputHandler() 
         {
+            _isRunning = true;
             _currentlyPressedKeys = new Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>>();
             _keyboardLayout = GetKeyboardLayout(0);
             _ = Task.Run(() => KeyReader());
@@ -40,7 +44,7 @@ namespace TEngine.InputEngine
         {
             
             // Loop to keep the application running
-            while (Application.IsRunning())
+            while (_isRunning)
             {
                 // Wait for a key press
                 ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true); // intercept: true to not show the key in the console((
@@ -53,11 +57,10 @@ namespace TEngine.InputEngine
 
         public async Task KeyChecker()
         {
-            while(Application.IsRunning())
+            while(_isRunning)
             {
-                Console.WriteLine(_currentlyPressedKeys.Count);
                 CheckIfKeysStillPressed();
-                await Task.Delay(Application.GetTargetLatency());
+                await Task.Delay(50);
             }
         }
 
@@ -84,6 +87,11 @@ namespace TEngine.InputEngine
         public bool KeyPressed(ConsoleKey key)
         {
             return _currentlyPressedKeys.ContainsKey(key);
+        }
+
+        public void Stop()
+        {
+            _isRunning = false;
         }
     }
 }
