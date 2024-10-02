@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace TEngine.InputEngine
 {
-    internal class InputHandler
+    public class InputHandler
     {
         IntPtr _keyboardLayout;
         private Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>> _currentlyPressedKeys;

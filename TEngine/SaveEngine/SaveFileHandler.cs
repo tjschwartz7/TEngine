@@ -63,7 +63,7 @@ namespace TEngine.SaveEngine
 
         public static void SaveCurrentFile()
         {
-            if(_filePath == null) { _filePath = Directory.GetCurrentDirectory() + "../../../../SaveEngine/Saves/"; }
+            if(_filePath == null) { MessageUtils.SetErrorMessage("SaveFileHandler", "SaveCurrentFile", "Attempted to save file without setting a path!!"); }
             _filePath = _filePath + _currentSave.FileName + ".json";
             try
             {
@@ -72,9 +72,7 @@ namespace TEngine.SaveEngine
 
                 // Write the JSON string to the file
                 File.WriteAllText(_filePath, jsonString);
-
-                Console.WriteLine("Save file created successfully.");
-
+                MessageUtils.SetStatusMessage("SaveFileHandler", "SaveCurrentFile", "Save file created successfully.");
             }
             catch (Exception ex)
             {

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.GraphicsEngines.TextBased;
 
 namespace TEngine.Helpers
 {
-    internal static class MessageUtils
+    public static class MessageUtils
     {
         /// <summary>
         /// Prints to stderr and terminates the program.
@@ -14,10 +15,11 @@ namespace TEngine.Helpers
         /// <param name="error">The error message.</param>
         public static void TerminateWithError(string errorClass, string errorMethod, string message)
         {
-            Application.ApplicationInstance.SetErrorFlag();
+            Application.SetErrorFlag();
             TextWriter errorWriter = Console.Error;
             errorWriter.WriteLine($"{errorClass} -> {errorMethod}: {message}");
             Application.TerminateApplication();
+            TextBasedEngine.TerminateWindow();
         }
 
         /// <summary>
@@ -26,8 +28,8 @@ namespace TEngine.Helpers
         /// <param name="message">The error message.</param>
         public static void SetErrorMessage(string errorClass, string errorMethod, string message)
         {
-            Application.ApplicationInstance.SetErrorFlag();
-            Application.ApplicationInstance.ErrorMessage = $"{errorClass} -> {errorMethod}: {message}";
+            Application.SetErrorFlag();
+            Application.ErrorMessage = $"{errorClass} -> {errorMethod}: {message}";
         }
 
         /// <summary>
@@ -36,8 +38,8 @@ namespace TEngine.Helpers
         /// <param name="message">The status message.</param>
         public static void SetStatusMessage(string statusClass, string statusMethod, string message)
         {
-            Application.ApplicationInstance.SetStatusFlag();
-            Application.ApplicationInstance.StatusMessage = $"{statusClass} -> {statusMethod}: {message}";
+            Application.SetStatusFlag();
+            Application.StatusMessage = $"{statusClass} -> {statusMethod}: {message}";
         }
     }
 }

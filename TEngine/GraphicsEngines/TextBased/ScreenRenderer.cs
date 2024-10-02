@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,197 +20,222 @@ namespace TEngine.GraphicsEngines.TextBased
     /// </summary>
     internal class ScreenRenderer
     {
-        public const int MAX_THREADS = 4;
-        private char[]? _screen;
-        private bool[]? _screenHasChanged;
+        //For waiting
         private int _latency;
-        private int _width;
-        private int _height;
+        //Are we still running?
         private bool _isRunning;
-        private int _numPixels;
+
+        //Our display strings
+        private static string _standardHeader;
+        private static string _battleHeader;
+        private static string _foreground;
+        private static string _background;
+        private static string _footer;
+        private static List<string> _options;
+        private static List<string> _battleOptionsMenu = ["Attack", "Magic", "Skills", "Item", "Observe", "Escape"];
+
+        //For options (user input)
+        private static int _currentSelection;
+
+        //Other
+        private bool _pauseUI;
+        private bool _resumeUI;
+        private bool _isUIPaused;
+        private static bool _needsRefresh;
+
+        public static string StandardHeader 
+        { 
+            get => _standardHeader; 
+            set
+            {
+                _standardHeader = value;
+                _needsRefresh = true;
+            } 
+        }
+        public static string BattleHeader 
+        { 
+            get => _battleHeader;
+            set
+            {
+                _battleHeader = value;
+                _needsRefresh = true;
+            }
+        }
+        public static string Foreground 
+        { 
+            get => _foreground;
+            set
+            {
+                _foreground = value;
+                _needsRefresh = true;
+            }
+        }
+        public static string Background 
+        { 
+            get => _background;
+            set
+            {
+                _background = value;
+                _needsRefresh = true;
+            }
+        }
+        public static string Footer 
+        { 
+            get => _footer;
+            set 
+            { 
+                _footer = value; 
+                _needsRefresh = true;
+            }
+        }
+        public static List<string> Options 
+        { 
+            get => _options;
+            set
+            { 
+                _options = value; 
+                _needsRefresh = true;
+            }
+        }
+
+        public static List<string> BattleOptionsMenu
+        {
+            get => _battleOptionsMenu;
+            set
+            {
+                _battleOptionsMenu = value;
+                _needsRefresh = true;
+            }
+        }
+
+        public static int CurrentSelection { get => _currentSelection;  set { _currentSelection = value; _needsRefresh = true; } }
 
         public int Latency { get => _latency; set => _latency = value; }
 
-        public ScreenRenderer(int width, int height)
+        public bool PauseUI { get => _pauseUI; set => _pauseUI = value; }
+        public bool ResumeUI { get => _resumeUI; set => _resumeUI = value; }
+        public bool IsUIPaused { get => _isUIPaused; set => _isUIPaused = value; }
+
+        public ScreenRenderer()
         {
 
             _isRunning = true;
-            _width = width;
-            _height = height;
             _latency = 100;
-            _numPixels = height * width;
             //We use 1D arrays for a quick speed boost
-            //Screen declaration
-            _screen = new char[_numPixels];
-            //Screen change array declaration
-            _screenHasChanged = new bool[_numPixels];
 
             //Create our screen rendering threads
-            CreateScreenRenderer();
+            _ = Task.Run(() => RenderScreen());
         }
-
-        /// <summary>
-        /// Starts our screen render threads.
-        /// </summary>
-        private void CreateScreenRenderer()
-        {
-            int slice = _height / MAX_THREADS;
-
-            int numThreads = MAX_THREADS;
-            //Assuming one thread can easily handle 400 rows
-            int maxNeededThreads = (_height / 400); //I.E. 5 threads for 2000 rows, 4 for 1600
-            if (numThreads > maxNeededThreads) numThreads = maxNeededThreads;
-            if (numThreads <= 1) //In this case we should really only need one thread
-            {
-                _ = Task.Run(() => RenderScreen(0, _height-1));
-            }
-            else
-            {
-                //Create multiple threads for screen rendering
-                for (int i = _height; i > 0; i -= slice)
-                {
-                    int rowStart = i;
-                    int rowStop = _height;
-
-                    //If this is the last iteration of the loop
-                    if (i - slice <= 0)
-                    {
-                        //The final bound is just 0
-                        rowStop = 0;
-                    }
-                    else
-                    {
-                        //It's one above i - slice
-                        rowStop = i - slice + 1;
-                    }
-
-                    // Create a thread and pass a function and its arguments
-                    _ = Task.Run(() => RenderScreen(rowStart, rowStop));
-                }
-            }
-
-        }
-
-
 
         /// <summary>
         /// Print out the screen.
         /// </summary>
         /// <param name="startIndex">The starting index of where to handle screen printing.</param>
         /// <param name="stopIndex">The final (included) index of where to handle screen printing.</param>
-        private async void RenderScreen(int startIndex, int stopIndex)
+        private async void RenderScreen()
         {
-
-            //If these were null here it would be really bad...
-            //TERMINATE!
-            if (_screen == null) { MessageUtils.TerminateWithError("ScreenRenderer", "RenderScreen", "Screen was null!!"); }
-            if (_screenHasChanged == null) { MessageUtils.TerminateWithError("ScreenRenderer", "RenderScreen", "Screen booleans were null!!"); }
             //This thread will end when Stop() is called
             while (_isRunning)
             {
-                //We assume the arrays won't become null during operation. That's why they're private.
-                //We really don't wanna keep checking them in here...
-
-                for (int i = startIndex; i < stopIndex; i++)
+                if(!_needsRefresh)
                 {
+                    Console.Clear();
 
-                    int row = i / _height;
-                    int col = i % _width;
-                    //$"\033[{i};0H{_screen[row, col]}"
-                    //Replace character at this index
-                    //But only if its changed
-                    if (_screenHasChanged[i])
+                    Console.Write(Resolution.TerminalWidthLine);
+                    Console.WriteLine($"{StandardHeader}".PadRight(Console.WindowWidth - 2) + "#");
+                    Console.WriteLine($"{BattleHeader}".PadRight(Console.WindowWidth - 2) + "#");
+                    Console.WriteLine($"{Background}".PadRight(Console.WindowWidth - 2) + "#");
+                    Console.WriteLine($"{Foreground}".PadRight(Console.WindowWidth - 2) + "#");
+                    Console.Write(Resolution.TerminalWidthLine);
+                    if (Options != null)
                     {
-                        try
+                        for (int i = 0; i < Options.Count; i++)
                         {
-                            Console.SetCursorPosition(row, col);
-                            Console.Write($"{_screen[i]}");
+                            string option = Options[i];
+                            if (i == CurrentSelection)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.BackgroundColor = ConsoleColor.White;
+                            }
+                            Console.WriteLine($"#{option}".PadRight(Console.WindowWidth - 2) + "#");
+                            Console.ResetColor();
                         }
-                        catch (ArgumentOutOfRangeException e)
-                        {
-                            Console.Clear();
-                            Console.WriteLine(e.Message);
-                        }
-                        //Console.Out.Flush();
+                        Console.Write(Resolution.TerminalWidthLine);
                     }
-                        
+                    Console.WriteLine($"{Footer}".PadRight(Console.WindowWidth - 2) + "#");
+                    Console.Write(Resolution.TerminalWidthLine);
+                }
+
+                if (PauseUI)
+                {
+                    ResumeUI = false;
+                    PauseUI = false;
+                    IsUIPaused = true;
+                    //Busy sleep
+                    while (!ResumeUI)
+                    {
+                        //Clear up this thread for a while while we're waiting
+                        BlockThreadFor(500);
+                    }
                 }
                 await Task.Delay(_latency); //Clear up a thread in the pool
             }
         }
 
-
-        /// <summary>
-        /// Updates the screen in a rectangular fashion from the top left coordinate to the bottom right coordinate.
-        /// </summary>
-        /// <param name="charArray">The char array to write over the local screen bound.</param>
-        /// <param name="bound">The actual boundary of our screen to be written over.</param>
-        public void UpdateScreenRow(char[] charArray, int row, int startCol, int stopCol)
-        {
-            //Just in case
-            if (_screen == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreenRow", "Screen was null!!"); }
-            if (_screenHasChanged == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreenRow", "Screen booleans were null!!"); }
-
-
-
-            //Invalid selection
-            if(startCol < 0 || startCol > _width)
-            {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", $"Invalid starting column coordinate (startCol, width) = ({startCol}, {_width}) !!");
-            }
-            else if(stopCol < 0 || stopCol > _width)
-            {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", $"Invalid stopping column coordinate (stopCol, width) = ({stopCol}, {_width}) !!");
-            }
-            else if(row < 0 || row > _height)
-            {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", $"Invalid row coordinate (row, height) = ({row}, {_height}) !!");
-            }
-
-            //Iterate over each character in the selection
-            int rowIndex = row * _width;
-            int startIndex = rowIndex + startCol;
-            int stopIndex = startIndex + stopCol;
-            if(startIndex > _numPixels)
-            {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Start index out of bounds!!");
-            }
-            else if(stopIndex > _numPixels) 
-            {
-                MessageUtils.TerminateWithError("ScreenRenderer", "UpdateScreen", "Stop index out of bounds!!");
-            }
-
-            for (int index = startIndex; index <= stopIndex; index++)
-            {
-                //Note: We COULD call UpdateSinglePixel here, for clarity, but we won't.
-                //The reason is, the function call would make this loop take longer than it needs to. No reason when the code is already so short.
-
-                //Check if the pixels are different.
-                //We only need to write to _screen if they are.
-                if (_screen[index] != charArray[index]) { _screenHasChanged[index] = true; _screen[index] = charArray[index]; Console.WriteLine(charArray[index]); }
-            }
-        }
-
-        /// <summary>
-        /// Updates a specific pixel on the screen.
-        /// </summary>
-        /// <param name="pixel">The new pixel to overwrite the previous one.</param>
-        /// <param name="row">The row of the new pixel.</param>
-        /// <param name="col">The column of the new pixel. </param>
-        public void UpdatePixel(char pixel, int row, int col)
-        {
-            //Just in case
-            if (_screen == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdatePixel", "Screen was null!!"); }
-            if(_screenHasChanged == null) { MessageUtils.TerminateWithError("ScreenRenderer", "UpdatePixel", "Screen booleans were null!!"); }
-
-            int index = row * _height + col;
-            //If new pixel is different than old one, the screen needs updated
-            if (_screen[index] != pixel) { _screenHasChanged[index] = true; _screen[index] = pixel; }
-        }
-
         public void Stop()
         {
             _isRunning = false;
+        }
+
+        protected async void BlockThreadFor(int numMillis)
+        {
+            await Task.Delay(numMillis);
+        }
+
+
+        /// <summary>
+        /// Pauses the UI thread for some given number of milliseconds.
+        /// CAUTION: If you use a millisecond timer that is around the time of the UI delay period,
+        /// there is a risk that a race condition will leave the UI paused without resuming it.
+        /// This occurs when you set both the Pause condition and Resume condition before the UI gets a chance to run
+        /// once, which prevents it from entering its waiting state. In this situation, the UI will resume waiting
+        /// until the Resume condition is set again.
+        /// </summary>
+        /// <param name="numMillis">The number of milliseconds to pause the UI for.</param>
+        public void SetTimeDelay(int numMillis)
+        {
+            //Begin the function call then trash the result
+            _ = HandleTimeDelay(numMillis);
+        }
+
+        /// <summary>
+        /// The actual async handler for pausing the UI. System level only.
+        /// </summary>
+        /// <param name="numMillis">The number of milliseconds to pause the UI for.</param>
+        /// <returns>A task for if you chose to await this for some reason.</returns>
+        private async Task HandleTimeDelay(int numMillis)
+        {
+            _pauseUI = true;
+            await Task.Delay(numMillis);
+            _resumeUI = true;
+        }
+
+        /// <summary>
+        /// Pause the UI. Must be paired with a SetResumeUI to resume the UI.
+        /// </summary>
+        public void SetPauseUI()
+        {
+            _pauseUI = true;
+        }
+
+        /// <summary>
+        /// Resume the UI after it's been paused.
+        /// Only resumes if the UI is currently paused.
+        /// </summary>
+        public void SetResumeUI()
+        {
+            if (_isUIPaused)
+                _resumeUI = true;
         }
     }
 }

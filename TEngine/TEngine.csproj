@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Folder Include="GraphicsEngines\G_2D\" />
-    <Folder Include="SaveEngine\Saves\" />
+    <Folder Include="GraphicsEngines\TextBased\ScreenElements\" />
   </ItemGroup>
 
 </Project>
