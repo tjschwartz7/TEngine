@@ -8,21 +8,15 @@ using System.Text.Json;
 
 namespace TEngine.SaveEngine
 {
-    internal class SaveFile
+    public class SaveFile
     {
-        private int _id;
         private string _fileName;
 
         private Dictionary<string, string> _saveData;
 
-        public SaveFile(int id, string fileName) 
+        public SaveFile() 
         {
-            this._id = id;
-            this._fileName = fileName;
-            _saveData = new Dictionary<string, string>();
         }
-
-        public int Id { get => _id; set => _id = value; }
         public string FileName { get => _fileName; set => _fileName = value; }
         public Dictionary<string, string> SaveData { get => _saveData; set => _saveData = value; }
         /// <summary>
@@ -34,6 +28,7 @@ namespace TEngine.SaveEngine
         /// <param name="value"></param>
         public void AddSaveData(string key, string value)
         {
+            if (_saveData == null) _saveData = new Dictionary<string, string>();
             //Attempt to remove key (just in case it exists)
             _saveData.Remove(key);
             _saveData.Add(key, value);
@@ -41,10 +36,17 @@ namespace TEngine.SaveEngine
 
         public void RemoveSaveData(string key)
         {
+            if (_saveData == null) _saveData = new Dictionary<string, string>();
             _saveData.Remove(key);
         }
 
-        public string GetSaveData(string key) { return _saveData[key]; }
+        public string GetSaveData(string key) 
+        {
+            if (_saveData == null) _saveData = new Dictionary<string, string>();
+            if (_saveData.ContainsKey(key))
+                return _saveData[key];
+            else return "";
+        }
 
     }
 }

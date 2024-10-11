@@ -10,68 +10,49 @@ using TEngine.Helpers;
 
 namespace TEngine.SaveEngine
 {
-    internal class SaveFileHandler
+    public class SaveFileHandler
     {
         private static SaveFile _currentSave;
-        private static List<SaveFile> _saves;
         private static string _filePath;
+        private static string _fileName;
 
-        public static SaveFile CurrentSave
+        public SaveFileHandler(string path, string filename)
         {
-            get => _currentSave;
-            set => _currentSave = value;
+            _filePath = path;
+            _fileName = filename;
+            _currentSave = new SaveFile();
+            _currentSave.FileName = filename;
         }
 
-        public static List<SaveFile> Saves
-        {
-            get => _saves;
-        }
-        public static string FilePath { get => _filePath; set => _filePath = value; }
 
-        public static void SetCurrentSave(int index)
-        {
-            _currentSave = _saves.ElementAt(index);
-        }
-
-        /// <summary>
-        /// Creates a new file and returns the file name.
-        /// </summary>
-        /// <returns>The name of the newly created file.</returns>
-        public static string CreateNewSave()
-        {
-            if(_saves == null) { _saves = new List<SaveFile>(); }
-            int id = _saves.Count;
-            string fileName = "save" + id;
-            _currentSave = new SaveFile(id, fileName);
-            _saves.Add(_currentSave);
-            return fileName;
-        }
-
-        public static void AddSaveData(string key, string value)
+        public void AddSaveData(string key, string value)
         {
             _currentSave.AddSaveData(key, value);
         }
-        public static void RemoveSaveData(string key)
+        public void RemoveSaveData(string key)
         {
             _currentSave.RemoveSaveData(key);
         }
 
-        public static string GetSaveData(string key)
+        /// <summary>
+        /// Attempts to retrieve the save data. Returns empty string if not found.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public string GetSaveData(string key)
         {
             return _currentSave.GetSaveData(key);
         }
 
-        public static void SaveCurrentFile()
+        public void SaveCurrentFile()
         {
-            if(_filePath == null) { MessageUtils.SetErrorMessage("SaveFileHandler", "SaveCurrentFile", "Attempted to save file without setting a path!!"); }
-            _filePath = _filePath + _currentSave.FileName + ".json";
             try
             {
                 // Serialize the object to JSON
                 string jsonString = JsonSerializer.Serialize(_currentSave);
 
                 // Write the JSON string to the file
-                File.WriteAllText(_filePath, jsonString);
+                File.WriteAllText(_filePath+_fileName, jsonString);
                 MessageUtils.SetStatusMessage("SaveFileHandler", "SaveCurrentFile", "Save file created successfully.");
             }
             catch (Exception ex)
@@ -82,12 +63,12 @@ namespace TEngine.SaveEngine
         }
 
 
-        public static SaveFile ReadFile(string filePath)
+        private SaveFile ReadFile()
         {
             try
             {
                 // Read the JSON file content
-                string jsonString = File.ReadAllText(filePath);
+                string jsonString = File.ReadAllText(_filePath+_fileName);
 
                 // Deserialize the JSON string to a Person object
                 SaveFile save = JsonSerializer.Deserialize<SaveFile>(jsonString);
@@ -102,17 +83,18 @@ namespace TEngine.SaveEngine
             }
         }
 
-        public static void InitializeSaveFiles()
+        public void InitializeSaveFiles()
         {
-            if (_filePath == null) { _filePath = Directory.GetCurrentDirectory() + "../../../../SaveEngine/Saves/"; }
-            _saves = new List<SaveFile>();
             try
             {
-                // Get all files in the specified directory
-                foreach (string filePath in Directory.EnumerateFiles(_filePath))
+                _currentSave = ReadFile();
+                if (_currentSave == null)
                 {
-                    _saves.Add(ReadFile(filePath));
+                    _currentSave = new SaveFile();
+                    _currentSave.FileName = _fileName;
                 }
+                   
+                SaveCurrentFile();
             }
             catch (Exception ex)
             {
@@ -121,10 +103,10 @@ namespace TEngine.SaveEngine
             }
         }
 
-        public static string GetSaveString()
+        public string GetSaveString()
         {
             string sout = "";
-            sout += $"{_currentSave.Id} - {_currentSave.FileName}\n";
+            sout += $"{_currentSave.FileName}\n";
 #if DEBUG
             foreach (var data in _currentSave.SaveData)
             {

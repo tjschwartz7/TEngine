@@ -14,6 +14,7 @@ namespace TEngine.InputEngine
     {
         IntPtr _keyboardLayout;
         private Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>> _currentlyPressedKeys;
+        private Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>> _keysHaveBeenPressed;
         const int KEY_HELD_DOWN = 0x8000;
         const int KEY_NEWLY_PRESSED = 0x0001;
 
@@ -26,6 +27,7 @@ namespace TEngine.InputEngine
         {
             _isRunning = true;
             _currentlyPressedKeys = new Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>>();
+            _keysHaveBeenPressed = new Dictionary<ConsoleKey, Tuple<ConsoleKeyInfo, bool>>();
             _keyboardLayout = GetKeyboardLayout(0);
             _ = Task.Run(() => KeyReader());
             _ = Task.Run(() => KeyChecker());
@@ -51,6 +53,9 @@ namespace TEngine.InputEngine
                 if(!_currentlyPressedKeys.ContainsKey(keyInfo.Key))
                     _currentlyPressedKeys.Add(keyInfo.Key, new Tuple<ConsoleKeyInfo,bool>(keyInfo, true));
                 
+                if(!_keysHaveBeenPressed.ContainsKey(keyInfo.Key))
+                    _keysHaveBeenPressed.Add(keyInfo.Key, new Tuple<ConsoleKeyInfo, bool>(keyInfo, true));
+
                 await Task.Delay(25); //Let the key reader be a fast thread
             }
         }
@@ -84,9 +89,26 @@ namespace TEngine.InputEngine
             }
         }
 
+        /// <summary>
+        /// Checks if a key is actively being pressed.
+        /// </summary>
+        /// <param name="key">The key in question.</param>
+        /// <returns>Whether the key is being pressed.</returns>
         public bool KeyPressed(ConsoleKey key)
         {
             return _currentlyPressedKeys.ContainsKey(key);
+        }
+
+        /// <summary>
+        /// Returns whether or not a key HAS been pressed. This basically saves the button state until its been referenced.
+        /// </summary>
+        /// <param name="key">The key in question.</param>
+        /// <returns>Whether or not the key has been pressed.</returns>
+        public bool KeyHasBeenPressed(ConsoleKey key)
+        {
+            bool ret = _keysHaveBeenPressed.ContainsKey(key);
+            if(ret) _keysHaveBeenPressed.Remove(key);
+            return ret;
         }
 
         public void Stop()

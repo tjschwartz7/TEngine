@@ -155,6 +155,9 @@ namespace TEngine
         protected void SetTargetUPS(double fps)
         {
             _targetUpdatesPerSecond = fps;
+            _updateDelay_ms = (int)(1000 / (double)_targetUpdatesPerSecond); //Assume starting out that update loop takes 0 seconds
+            _targetUpdates_low_ms = (int)((double)_targetUpdatesPerSecond * .9);
+            _targetUpdates_high_ms = (int)((double)_targetUpdatesPerSecond * 1.1);
         }
 
         public static double GetUPS()
@@ -179,5 +182,7 @@ namespace TEngine
         }
 
         protected bool KeyPressed(ConsoleKey key) { return _inputHandlerInstance.KeyPressed(key); }
+
+        protected bool KeyHasBeenPressed(ConsoleKey key) { return _inputHandlerInstance.KeyHasBeenPressed(key); }
     }
 }

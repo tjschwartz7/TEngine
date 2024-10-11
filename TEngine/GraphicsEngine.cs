@@ -30,7 +30,7 @@ namespace TEngine
         private int _targetFPS;
         private double _framesPerSecond;
         private double _targetFramesPerSecond;
-        private int _updateDelay_ms;
+        private int _frameDelay_ms;
         private int _targetFrames_low_ms;
         private int _targetFrames_high_ms;
 
@@ -41,10 +41,10 @@ namespace TEngine
         public bool ShowDebug { get => _showDebug; set { _showDebug = value; } }
         public int ScreenWidth { get => _screenWidth; }
         public int ScreenHeight { get => _screenHeight;  }
-        public int TargetFPS { get => _targetFPS; set => _targetFPS = value; }
-        public double FramesPerSecond { get => _framesPerSecond; set => _framesPerSecond = value; }
-        public double TargetFramesPerSecond { get => _targetFramesPerSecond; set => _targetFramesPerSecond = value; }
-        public int UpdateDelay_ms { get => _updateDelay_ms; set => _updateDelay_ms = value; }
+        public int TargetFPS { get => _targetFPS; }
+        public double FramesPerSecond { get => _framesPerSecond; }
+        public double TargetFramesPerSecond { get => _targetFramesPerSecond;  }
+        public int FrameDelay_ms { get => _frameDelay_ms; }
         public bool IsRunning { get => _isRunning; set => _isRunning = value; }
 
 
@@ -59,6 +59,7 @@ namespace TEngine
             _screenHeight = screenHeight;
             _screenWidth = screenWidth;
             _debugInfo = "";
+            SetTargetFPS(targetFPS);
 
         }
         public enum Style
@@ -103,18 +104,18 @@ namespace TEngine
                     if (_framesPerSecond < _targetFrames_low_ms)
                     {
                         //Decrease delay time
-                        if (_updateDelay_ms > 0)
-                            _updateDelay_ms--;
+                        if (_frameDelay_ms > 0)
+                            _frameDelay_ms--;
                     }
                     //Too many frames
                     else if (_framesPerSecond > _targetFrames_high_ms)
                     {
                         //Increase delay time
-                        _updateDelay_ms++;
+                        _frameDelay_ms++;
                     }
                     frameTimer.Restart();
                 }
-                await Task.Delay(_updateDelay_ms);
+                await Task.Delay(_frameDelay_ms);
             }
             frameTimer.Stop();
         }
@@ -132,6 +133,14 @@ namespace TEngine
         protected virtual void OnFrame()
         {
 
+        }
+
+        protected void SetTargetFPS(int targetFPS)
+        {
+            _targetFPS = targetFPS;
+            _frameDelay_ms = (int)(1000 / (double)_targetFPS); //Assume starting out that update loop takes 0 seconds
+            _targetFrames_low_ms = (int)((double)_targetFPS * .9);
+            _targetFrames_high_ms = (int)((double)_targetFPS * 1.1);
         }
 
     }
