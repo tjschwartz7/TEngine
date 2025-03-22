@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TEngine
 {
-    public class GameEvent : ScriptableObject
+    public class GameEvent
     {
         private event Action listeners;
 

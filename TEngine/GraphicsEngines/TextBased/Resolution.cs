@@ -28,7 +28,7 @@ namespace TEngine.GraphicsEngines.TextBased
 
         public static async Task ScreenChangeHandler()
         {
-            while (Application.IsRunning())
+            while (oldApplication.IsRunning())
             {
                 // Create a background task
                 Task backgroundTask = Task.Run(() => HandleScreenSizeChanges());

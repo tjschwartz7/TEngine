@@ -11,3 +11,12 @@ C:\Users\tjsch\source\repos\TEngine\TEngine\obj\Debug\net8.0\TEngine.dll
 C:\Users\tjsch\source\repos\TEngine\TEngine\obj\Debug\net8.0\refint\TEngine.dll
 C:\Users\tjsch\source\repos\TEngine\TEngine\obj\Debug\net8.0\TEngine.pdb
 C:\Users\tjsch\source\repos\TEngine\TEngine\obj\Debug\net8.0\ref\TEngine.dll
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.csproj.AssemblyReference.cache
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.AssemblyInfoInputs.cache
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.AssemblyInfo.cs
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.csproj.CoreCompileInputs.cache
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.sourcelink.json
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.dll
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\refint\TEngine.dll
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.pdb

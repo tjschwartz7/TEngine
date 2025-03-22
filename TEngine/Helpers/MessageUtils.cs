@@ -15,10 +15,10 @@ namespace TEngine.Helpers
         /// <param name="error">The error message.</param>
         public static void TerminateWithError(string errorClass, string errorMethod, string message)
         {
-            Application.SetErrorFlag();
+            oldApplication.SetErrorFlag();
             TextWriter errorWriter = Console.Error;
             errorWriter.WriteLine($"{errorClass} -> {errorMethod}: {message}");
-            Application.TerminateApplication();
+            oldApplication.TerminateApplication();
             TextBasedEngine.TerminateWindow();
         }
 
@@ -28,8 +28,8 @@ namespace TEngine.Helpers
         /// <param name="message">The error message.</param>
         public static void SetErrorMessage(string errorClass, string errorMethod, string message)
         {
-            Application.SetErrorFlag();
-            Application.ErrorMessage = $"{errorClass} -> {errorMethod}: {message}";
+            oldApplication.SetErrorFlag();
+            oldApplication.ErrorMessage = $"{errorClass} -> {errorMethod}: {message}";
         }
 
         /// <summary>
@@ -38,8 +38,8 @@ namespace TEngine.Helpers
         /// <param name="message">The status message.</param>
         public static void SetStatusMessage(string statusClass, string statusMethod, string message)
         {
-            Application.SetStatusFlag();
-            Application.StatusMessage = $"{statusClass} -> {statusMethod}: {message}";
+            oldApplication.SetStatusFlag();
+            oldApplication.StatusMessage = $"{statusClass} -> {statusMethod}: {message}";
         }
     }
 }
