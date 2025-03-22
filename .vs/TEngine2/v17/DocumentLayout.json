@@ -73,7 +73,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -85,45 +85,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ScriptableObject.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\ScriptableObject\\ScriptableObject.cs",
-              "RelativeDocumentMoniker": "TEngine\\ScriptableObject\\ScriptableObject.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\ScriptableObject\\ScriptableObject.cs",
-              "RelativeToolTip": "TEngine\\ScriptableObject\\ScriptableObject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T23:33:47.614Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameEvent.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GameEvent.cs",
-              "RelativeDocumentMoniker": "TEngine\\GameEvent.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GameEvent.cs",
-              "RelativeToolTip": "TEngine\\GameEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T23:30:06.435Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TEngine.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.cs",
-              "RelativeDocumentMoniker": "TEngine\\TEngine.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.cs",
-              "RelativeToolTip": "TEngine\\TEngine.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T22:49:42.673Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 8,
               "Title": "AudioEngine.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\AudioEngine\\AudioEngine.cs",
@@ -132,8 +93,7 @@
               "RelativeToolTip": "TEngine\\AudioEngine\\AudioEngine.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T11:49:17.605Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T11:49:17.605Z"
             },
             {
               "$type": "Document",
@@ -157,8 +117,7 @@
               "RelativeToolTip": "TEngine\\InputEngine\\InputHandler.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAwwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T14:08:25.637Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-24T14:08:25.637Z"
             },
             {
               "$type": "Document",
@@ -170,8 +129,7 @@
               "RelativeToolTip": "TEngine\\Application.cs",
               "ViewState": "AgIAAB8AAAAAAAAAAAAuwEMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-22T15:37:54.355Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T15:37:54.355Z"
             },
             {
               "$type": "Document",
@@ -183,8 +141,7 @@
               "RelativeToolTip": "TEngine\\GraphicsEngines\\TextBased\\TextBasedEngine.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAmwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-22T15:49:07.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T15:49:07.297Z"
             },
             {
               "$type": "Document",
@@ -194,10 +151,46 @@
               "RelativeDocumentMoniker": "TEngine\\Behavior\\Monobehavior.cs",
               "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Behavior\\Monobehavior.cs",
               "RelativeToolTip": "TEngine\\Behavior\\Monobehavior.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-21T22:38:05.559Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TEngine.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.cs",
+              "RelativeDocumentMoniker": "TEngine\\TEngine.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.cs",
+              "RelativeToolTip": "TEngine\\TEngine.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T22:49:42.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameEvent.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GameEvent.cs",
+              "RelativeDocumentMoniker": "TEngine\\GameEvent.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GameEvent.cs",
+              "RelativeToolTip": "TEngine\\GameEvent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T23:30:06.435Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ScriptableObject.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\ScriptableObject\\ScriptableObject.cs",
+              "RelativeDocumentMoniker": "TEngine\\ScriptableObject\\ScriptableObject.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\ScriptableObject\\ScriptableObject.cs",
+              "RelativeToolTip": "TEngine\\ScriptableObject\\ScriptableObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-21T23:33:47.614Z"
             },
             {
               "$type": "Document",
@@ -221,8 +214,7 @@
               "RelativeToolTip": "TEngine\\GraphicsEngines\\TextBased\\Resolution.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAQwB4AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-22T16:03:40.404Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-22T16:03:40.404Z"
             },
             {
               "$type": "Document",
