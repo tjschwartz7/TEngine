@@ -3087,11 +3087,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\TEngine.csproj",
+      "projectUniqueName": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj",
       "projectName": "TEngine",
-      "projectPath": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\TEngine.csproj",
+      "projectPath": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj",
       "packagesPath": "C:\\Users\\tjsch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tjsch\\source\\repos\\TEngine\\TEngine\\obj\\",
+      "outputPath": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3124,7 +3124,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -3151,7 +3152,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

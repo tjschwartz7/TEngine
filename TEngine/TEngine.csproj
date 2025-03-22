@@ -8,12 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.8" />
+    <Compile Remove="GraphicsEngines\G_2D\**" />
+    <Compile Remove="GraphicsEngines\TextBased\ScreenElements\**" />
+    <EmbeddedResource Remove="GraphicsEngines\G_2D\**" />
+    <EmbeddedResource Remove="GraphicsEngines\TextBased\ScreenElements\**" />
+    <None Remove="GraphicsEngines\G_2D\**" />
+    <None Remove="GraphicsEngines\TextBased\ScreenElements\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GraphicsEngines\G_2D\" />
-    <Folder Include="GraphicsEngines\TextBased\ScreenElements\" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.8" />
   </ItemGroup>
 
 </Project>

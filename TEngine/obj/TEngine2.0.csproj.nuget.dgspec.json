@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj": {}
+    "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine2.0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj": {
+    "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine2.0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj",
-        "projectName": "TEngine",
-        "projectPath": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj",
+        "projectUniqueName": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine2.0.csproj",
+        "projectName": "TEngine2.0",
+        "projectPath": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine2.0.csproj",
         "packagesPath": "C:\\Users\\tjsch\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\obj\\",
         "projectStyle": "PackageReference",
