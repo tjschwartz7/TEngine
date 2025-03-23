@@ -54,7 +54,7 @@ namespace TEngine.Rendering
 
         private TextRenderer()
         {
-            if(Instance != null)
+            if (Instance != null)
             {
                 throw new Exception("TextRenderer is a singleton and should not be instantiated multiple times.");
             }
@@ -71,7 +71,7 @@ namespace TEngine.Rendering
         public ConsoleColor BorderColor { get; set; } = ConsoleColor.White;
         public ConsoleColor BackgroundColor { get; set; } = ConsoleColor.Black;
         public ConsoleColor TextColor { get; set; } = ConsoleColor.White;
-        
+
 
         public void RegisterLayer(string layer, int order, int height)
         {
@@ -128,17 +128,33 @@ namespace TEngine.Rendering
 
             foreach (var layer in sortedLayers)
             {
-                foreach (string line in layer.GetFormattedContent())
+                for (int i = 0; i < layer.Height; i++)
                 {
                     if (DisplayBorders)
                     {
                         output.Append(BorderCharacter);
-                        output.Append(line.PadRight(WindowWidth - 2)); // Ensure text fits inside the border
+                        if (i <= layer.GetFormattedContent().Count)
+                        {
+                            string line = layer.GetFormattedContent()[i];
+                            output.Append(line.PadRight(WindowWidth - 2)); // Ensure text fits inside the border
+                        }
+                        else
+                        {
+                            output.Append(new string(' ', WindowWidth - 2)); // Empty line if no content
+                        }
                         output.AppendLine(BorderCharacter.ToString());
                     }
                     else
                     {
-                        output.AppendLine(line);
+                        if (i <= layer.GetFormattedContent().Count)
+                        {
+                            string line = layer.GetFormattedContent()[i];
+                            output.Append(line.PadRight(WindowWidth - 2)); // Ensure text fits inside the border
+                        }
+                        else
+                        {
+                            output.Append(new string(' ', WindowWidth - 2)); // Empty line if no content
+                        }
                     }
                 }
             }
@@ -151,7 +167,6 @@ namespace TEngine.Rendering
 
             // Convert output to string
             string screenContent = output.ToString();
-
             // Compute hash
             string newHash = ComputeHash(screenContent);
 

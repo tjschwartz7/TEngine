@@ -14,7 +14,7 @@ namespace TEngine
 
         public static Engine Instance { get; private set; } = new Engine();
 
-        
+
 
         private float targetFps = 60f; // Target FPS    
         private float targetUps = 60f; // Target UPS
@@ -48,7 +48,7 @@ namespace TEngine
             lastFpsUpdateTime = 0f;
             lastUpsUpdateTime = 0f;
 
-            fixedUpdateTimeStep = 1/targetFps; // Calculate the fixed update time step based on target UPS
+            fixedUpdateTimeStep = 1 / targetFps; // Calculate the fixed update time step based on target UPS
             fpsStepTarget = 1f / targetFps; // Calculate the time step for FPS tracking
             upsStepTarget = 1f / targetUps; // Calculate the time step for UPS tracking
 
@@ -56,7 +56,7 @@ namespace TEngine
             {
                 throw new Exception("Engine instance already exists.");
             }
-            else 
+            else
             {
                 Instance = this;
             }
@@ -67,19 +67,8 @@ namespace TEngine
 
         public void Register(Monobehavior behavior)
         {
+            behavior.Start();
             behaviors.Add(behavior);
-        }
-
-        public void Start()
-        {
-            Console.WriteLine("Engine Starting...");
-
-            // Call Start() on all registered behaviors
-            foreach (var behavior in behaviors)
-            {
-                behavior.Start();
-            }
-
         }
 
         public void Update()
@@ -121,10 +110,8 @@ namespace TEngine
             {
                 Time.Update(); // Update the time system
                 Time.UpdateFixed(); // Update the fixed time system
-
                 // Call Update, FixedUpdate, and LateUpdate
                 Update();
-
                 // Handle fixed updates with the fixed time step
                 fixedUpdateAccumulator += Time.fixedDeltaTime;
                 while (fixedUpdateAccumulator >= fixedUpdateTimeStep)
@@ -133,12 +120,9 @@ namespace TEngine
                     fixedUpdateAccumulator -= fixedUpdateTimeStep;
                 }
 
-
                 // Handle FPS and UPS tracking
                 CalculatePerformanceMetrics();
-
                 LateUpdate();
-
                 Render();
 
                 TextRenderer.Instance.Render(); // Render text using the TextRenderer
@@ -159,7 +143,7 @@ namespace TEngine
             }
 
             // UPS Calculation
-            upsAccumulator += Time.deltaTime;          
+            upsAccumulator += Time.deltaTime;
             if (Time.time - lastUpsUpdateTime >= upsStepTarget) // Update UPS based on fixed time step
             {
                 ups = (int)(upsAccumulator / (upsStepTarget));
@@ -178,17 +162,17 @@ namespace TEngine
         public int FPS => fps;
         public int UPS => ups;
         public float TargetFps => targetFps;
-        public float TargetUps => targetUps;    
+        public float TargetUps => targetUps;
         public void SetTargetUps(float targetUps)
         {
-            this.targetUps = targetUps; 
-            fpsStepTarget = 1f / targetFps; 
-            fixedUpdateTimeStep = 1 / targetFps; 
+            this.targetUps = targetUps;
+            fpsStepTarget = 1f / targetFps;
+            fixedUpdateTimeStep = 1 / targetFps;
         }
-        public void SetTargetFps(float targetFps) 
-        { 
-            this.targetFps = targetFps; 
-            upsStepTarget = 1f / targetUps; 
+        public void SetTargetFps(float targetFps)
+        {
+            this.targetFps = targetFps;
+            upsStepTarget = 1f / targetUps;
         }
 
     }

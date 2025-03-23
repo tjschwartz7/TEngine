@@ -8,15 +8,20 @@ namespace TEngine
 {
     public abstract class Game
     {
-        private bool isRunning = true;  
+        private bool isRunning = true;
 
         public void Start()
         {
-          
+
             EventManager.Instance.Subscribe("QUIT", OnQuit);
 
             Initialize(); // Let the developer register their behaviors
 
+            _ = Task.Run(() => Run()); // Start the main loop in a separate task
+        }
+
+        private void Run()
+        {
             while (isRunning)
             {
                 Update(); // Call the update method
