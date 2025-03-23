@@ -12,7 +12,7 @@ namespace TEngine2.Behavior
     {
         protected Monobehavior()
         {
-            Engine.Register(this);
+            Engine.Instance.Register(this);
             Awake();
         }
 

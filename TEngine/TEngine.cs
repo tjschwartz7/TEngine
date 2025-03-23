@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.Rendering;
 using TEngine2.Behavior;
 
 namespace TEngine
@@ -12,7 +13,6 @@ namespace TEngine
         private List<Monobehavior> behaviors = new();
 
         public static Engine Instance { get; private set; } = new Engine();
-        private static EventManager eventManager = EventManager.Instance;
 
         
 
@@ -37,7 +37,7 @@ namespace TEngine
 
         Engine()
         {
-            eventManager.Subscribe("QUIT", OnQuit);
+            EventManager.Instance.Subscribe("QUIT", OnQuit);
 
             // Initialize time tracking variables
             fixedUpdateAccumulator = 0f;
@@ -140,6 +140,8 @@ namespace TEngine
                 LateUpdate();
 
                 Render();
+
+                TextRenderer.Instance.Render(); // Render text using the TextRenderer
             }
         }
 
@@ -160,7 +162,7 @@ namespace TEngine
             upsAccumulator += Time.deltaTime;          
             if (Time.time - lastUpsUpdateTime >= upsStepTarget) // Update UPS based on fixed time step
             {
-                ups = (int)(upsAccumulator / upsStepTarget);
+                ups = (int)(upsAccumulator / (upsStepTarget));
                 upsAccumulator = 0f;
                 lastUpsUpdateTime = Time.time;
                 Console.WriteLine($"UPS: {ups}");

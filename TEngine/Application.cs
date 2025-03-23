@@ -10,10 +10,9 @@ namespace TEngine
     {
         private static Engine engine;
 
-        static void Main()
+        static void Start()
         {
             engine = Engine.Instance;
-            EventManager.Instance.Subscribe("QUIT", OnQuit);
 
             // Start the main loop
             Run();
@@ -23,16 +22,13 @@ namespace TEngine
         private static void Run()
         {
             engine.Start();
-
             engine.Run();
         }
 
 
         public static void Quit()
         {
-            isRunning = false;
             EventManager.Instance.Trigger("QUIT");
         }
     }
-
 }
