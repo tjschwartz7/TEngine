@@ -10,7 +10,8 @@ namespace TEngine.GoneMedieval
     {
         protected override void Initialize()
         {
-           
+            EventManager.Instance.Subscribe("QUIT", () => { Environment.Exit(0); });
+            Engine.Instance.Register(new UI.UI());
         }
 
         protected override void Update()
@@ -20,9 +21,20 @@ namespace TEngine.GoneMedieval
 
         static void Main()
         {
+            
+            Application.Start();
             GoneMedieval game = new GoneMedieval();
             game.Start();
-            Application.Start();
+
+            while(true)
+            {
+                wait_for(2000);
+            }
+        }
+
+        private static async void wait_for(int millis)
+        {
+            await Task.Delay(millis);
         }
     }
 }

@@ -14,15 +14,8 @@ namespace TEngine
         {
             engine = Engine.Instance;
 
-            // Start the main loop
-            Run();
+            _ = Task.Run(() => engine.Run());
 
-        }
-
-        private static void Run()
-        {
-            engine.Start();
-            engine.Run();
         }
 
 

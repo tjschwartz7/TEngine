@@ -67,19 +67,8 @@ namespace TEngine
 
         public void Register(Monobehavior behavior)
         {
+            behavior.Start();
             behaviors.Add(behavior);
-        }
-
-        public void Start()
-        {
-            Console.WriteLine("Engine Starting...");
-
-            // Call Start() on all registered behaviors
-            foreach (var behavior in behaviors)
-            {
-                behavior.Start();
-            }
-
         }
 
         public void Update()
@@ -121,10 +110,8 @@ namespace TEngine
             {
                 Time.Update(); // Update the time system
                 Time.UpdateFixed(); // Update the fixed time system
-
                 // Call Update, FixedUpdate, and LateUpdate
                 Update();
-
                 // Handle fixed updates with the fixed time step
                 fixedUpdateAccumulator += Time.fixedDeltaTime;
                 while (fixedUpdateAccumulator >= fixedUpdateTimeStep)
@@ -133,12 +120,9 @@ namespace TEngine
                     fixedUpdateAccumulator -= fixedUpdateTimeStep;
                 }
 
-
                 // Handle FPS and UPS tracking
                 CalculatePerformanceMetrics();
-
                 LateUpdate();
-
                 Render();
 
                 TextRenderer.Instance.Render(); // Render text using the TextRenderer

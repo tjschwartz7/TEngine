@@ -17,6 +17,11 @@ namespace TEngine
 
             Initialize(); // Let the developer register their behaviors
 
+            _ = Task.Run(() => Run()); // Start the main loop in a separate task
+        }
+
+        private void Run()
+        {
             while (isRunning)
             {
                 Update(); // Call the update method
