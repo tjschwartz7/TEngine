@@ -10,7 +10,7 @@ namespace TEngine
     {
         private static Engine engine;
 
-        static void Start()
+        public static void Start()
         {
             engine = Engine.Instance;
 
