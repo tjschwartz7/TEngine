@@ -8,9 +8,14 @@ namespace TEngine.GoneMedieval
 {
     internal class GoneMedieval : Game
     {
-        public override void Initialize()
+        protected override void Initialize()
         {
            
+        }
+
+        protected override void Update()
+        {
+
         }
 
         static void Main()
