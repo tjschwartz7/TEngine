@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using TEngine.Rendering;
 using TEngine2.Behavior;
 
@@ -10,14 +10,14 @@ namespace TEngine
 {
     public class Engine
     {
-        private List<Monobehavior> behaviors = new();
-
+        private List<Monobehavior> behaviors = new List<Monobehavior>();
+         
         public static Engine Instance { get; private set; } = new Engine();
 
         
 
-        private float targetFps = 60f; // Target FPS    
-        private float targetUps = 60f; // Target UPS
+        private float targetFps = 5f; // Target FPS    
+        private float targetUps = 5f; // Target UPS
 
         private float fpsStepTarget;
         private float upsStepTarget;
@@ -48,9 +48,9 @@ namespace TEngine
             lastFpsUpdateTime = 0f;
             lastUpsUpdateTime = 0f;
 
-            fixedUpdateTimeStep = 1/targetFps; // Calculate the fixed update time step based on target UPS
-            fpsStepTarget = 1f / targetFps; // Calculate the time step for FPS tracking
-            upsStepTarget = 1f / targetUps; // Calculate the time step for UPS tracking
+            fixedUpdateTimeStep = 1000/targetFps; // Calculate the fixed update time step based on target UPS
+            fpsStepTarget = 1000f / targetFps; // Calculate the time step for FPS tracking
+            upsStepTarget = 1000f / targetUps; // Calculate the time step for UPS tracking
 
             if (Instance != null)
             {
@@ -73,9 +73,9 @@ namespace TEngine
 
         public void Update()
         {
-            foreach (var behavior in behaviors)
+            for (int i = 0; i < behaviors.Count; i++)
             {
-                behavior.Update();
+                behaviors[i].Update();
             }
         }
 
@@ -110,6 +110,17 @@ namespace TEngine
             {
                 Time.Update(); // Update the time system
                 Time.UpdateFixed(); // Update the fixed time system
+
+                float time = Time.time;
+
+                if (Time.deltaTime < fpsStepTarget)
+                {
+                    // Sleep for the remaining time
+                    int sleepTime = (int)(fpsStepTarget - Time.time);
+                    if (sleepTime > 0)
+                        Thread.Sleep(sleepTime);
+                }
+
                 // Call Update, FixedUpdate, and LateUpdate
                 Update();
                 // Handle fixed updates with the fixed time step
@@ -119,12 +130,10 @@ namespace TEngine
                     FixedUpdate();
                     fixedUpdateAccumulator -= fixedUpdateTimeStep;
                 }
-
                 // Handle FPS and UPS tracking
                 CalculatePerformanceMetrics();
                 LateUpdate();
                 Render();
-
                 TextRenderer.Instance.Render(); // Render text using the TextRenderer
             }
         }

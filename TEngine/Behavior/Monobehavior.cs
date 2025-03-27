@@ -23,7 +23,7 @@ namespace TEngine2.Behavior
         }
 
         // Virtual methods for users to override
-        protected virtual void Awake() { } // Initialization that needs to happen before Start
+        public virtual void Awake() { } // Initialization that needs to happen before Start
         public virtual void Start() { } // Called when the game starts
         public virtual void Update() { } // Called every frame
         public virtual void OnEnable() { } // Logic to initialize or subscribe to events
@@ -33,7 +33,7 @@ namespace TEngine2.Behavior
         public virtual void LateUpdate() { } // Logic that depends on other updates in the frame
         public virtual void OnApplicationQuit() { } // Called when the application is about to quit
         public virtual void OnGUI() { } // Logic for rendering GUI elements
-        protected virtual void OnDestroy() { } // Called when the object is destroyed
+        public virtual void OnDestroy() { } // Called when the object is destroyed
 
         //Physics
         //!TODO: Add collision and trigger methods

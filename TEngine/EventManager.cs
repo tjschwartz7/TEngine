@@ -1,46 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TEngine
+﻿public class EventManager
 {
-    public class EventManager
+    private Dictionary<string, Action<object>> oneArgeventDictionary = new Dictionary<string, Action<object>>();
+    private Dictionary<string, Action> noArgeventDictionary = new Dictionary<string, Action>();
+
+    public static EventManager Instance { get; private set; } = new EventManager();
+
+    // Subscribe to events
+    public void Subscribe(string eventName, Action<object> listener)
     {
-        private Dictionary<string, Action> eventDictionary = new Dictionary<string, Action>();
-        public static EventManager Instance { get; private set; } = new EventManager();
-        public void Subscribe(string eventName, Action listener)
+        if (!oneArgeventDictionary.ContainsKey(eventName))
         {
-            if (!eventDictionary.ContainsKey(eventName))
-            {
-                eventDictionary[eventName] = listener;
-            }
-            else
-            {
-                eventDictionary[eventName] += listener;
-            }
+            oneArgeventDictionary[eventName] = listener;
         }
-
-        public void Unsubscribe(string eventName, Action listener)
+        else
         {
-            if (eventDictionary.ContainsKey(eventName))
-            {
-                eventDictionary[eventName] -= listener;
-                if (eventDictionary[eventName] == null)
-                {
-                    eventDictionary.Remove(eventName);
-                }
-            }
+            oneArgeventDictionary[eventName] += listener;
         }
+    }
 
-        public void Trigger(string eventName)
+    // Unsubscribe from events
+    public void Unsubscribe(string eventName, Action<object> listener)
+    {
+        if (oneArgeventDictionary.ContainsKey(eventName))
         {
-            if (eventDictionary.ContainsKey(eventName))
+            oneArgeventDictionary[eventName] -= listener;
+            if (oneArgeventDictionary[eventName] == null)
             {
-                eventDictionary[eventName]?.Invoke();
+                oneArgeventDictionary.Remove(eventName);
             }
         }
     }
 
+
+    // Subscribe to events
+    public void Subscribe(string eventName, Action listener)
+    {
+        if (!noArgeventDictionary.ContainsKey(eventName))
+        {
+            noArgeventDictionary[eventName] = listener;
+        }
+        else
+        {
+            noArgeventDictionary[eventName] += listener;
+        }
+    }
+
+    // Unsubscribe from events
+    public void Unsubscribe(string eventName, Action listener)
+    {
+        if (noArgeventDictionary.ContainsKey(eventName))
+        {
+            noArgeventDictionary[eventName] -= listener;
+            if (noArgeventDictionary[eventName] == null)
+            {
+                noArgeventDictionary.Remove(eventName);
+            }
+        }
+    }
+
+    // Trigger an event with arguments (supports passing null)
+    public void Trigger(string eventName, object args)
+    {
+        if (oneArgeventDictionary.ContainsKey(eventName))
+        {
+            oneArgeventDictionary[eventName]?.Invoke(args);
+        }
+    }
+
+    // Overload the Trigger method to trigger without arguments
+    public void Trigger(string eventName)
+    {
+        if (noArgeventDictionary.ContainsKey(eventName))
+        {
+            noArgeventDictionary[eventName]?.Invoke();
+        }
+    }
 }

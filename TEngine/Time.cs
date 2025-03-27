@@ -24,7 +24,7 @@ namespace TEngine
         {
             lastTime = GetTime();
             lastFixedTime = GetTime();
-            fixedDeltaTime = 1f/60f; // Default to 60 updates per second (or 0.01 seconds per update)
+            fixedDeltaTime = 1000f/60f; // Default to 60 updates per second (or 0.01 seconds per update)
         }
 
         // Update time based on real time
@@ -60,7 +60,7 @@ namespace TEngine
         // Get the current time in seconds (you can use System.Time or any other system to measure time)
         private static float GetTime()
         {
-            return (float)DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
+            return (float)DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
         }
     }
 }
