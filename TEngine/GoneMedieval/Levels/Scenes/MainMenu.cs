@@ -15,10 +15,7 @@ namespace TEngine.GoneMedieval.Levels.Scenes
 
         public override void Run()
         {
-            //Run any level code here. Nice.
-            Console.WriteLine("Welcome to Gone Medieval!");
-            Console.WriteLine("Press any key to start.");
-            Console.ReadKey();
+            EventManager.Instance.Trigger("UPDATE_MENU", new string[] { "New Game", "Load Game", "Options", "Quit" });
         }
     }
 }

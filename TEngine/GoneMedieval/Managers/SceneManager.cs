@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.GoneMedieval.Scenes;
+using TEngine.GoneMedieval.Levels;
+using TEngine.GoneMedieval.Levels.Scenes;
 using TEngine2.Behavior;
 
 namespace TEngine.GoneMedieval.Managers
@@ -11,8 +12,8 @@ namespace TEngine.GoneMedieval.Managers
     public class SceneManager : Monobehavior
     {
         public static SceneManager Instance { get; private set; } = new SceneManager();
-        int scene = 1;
-        private List<Scene> scenes;
+        int scene = 0;
+        private Dictionary<string, Scene> scenes;
         public override void Awake()
         {
             if (Instance != null)
@@ -23,17 +24,17 @@ namespace TEngine.GoneMedieval.Managers
             {
                 Instance = this;
             }
-            scenes = new List<Scene>();
+            scenes = new Dictionary<string, Scene>();
         }
 
-        public override void Start()
+        public void Register(string name, Scene scene)
         {
-
+            scenes.Add(name, scene);
         }
 
-        public void Register(Scene scene)
+        public void LoadScene(string name)
         {
-            scenes.Add(scene);
+            scenes[name].Run();
         }
 
     }

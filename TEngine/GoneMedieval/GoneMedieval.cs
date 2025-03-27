@@ -14,7 +14,8 @@ namespace TEngine.GoneMedieval
         {
             Engine.Instance.Register(new UI.UI());
 
-            SceneManager.Instance.Register(new MainMenu("Main Menu", "The titular title to the GoneMedieval Franchise."));
+            SceneManager.Instance.Register("Main Menu", new MainMenu("Main Menu", "The titular title to the GoneMedieval Franchise."));
+            SceneManager.Instance.LoadScene("Main Menu");
         }
 
         public override void OnKeyPressed(ConsoleKey key)
@@ -23,6 +24,12 @@ namespace TEngine.GoneMedieval
             {
                 case ConsoleKey.Escape:
                     EventManager.Instance.Trigger("QUIT");
+                    break;
+                case ConsoleKey.W:
+                    EventManager.Instance.Trigger("KEY_W");
+                    break;
+                case ConsoleKey.S:
+                    EventManager.Instance.Trigger("KEY_S");
                     break;
             }
 
