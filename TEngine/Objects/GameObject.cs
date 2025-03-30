@@ -3,6 +3,8 @@ using TEngine.Rendering;
 using TEngine.Components;
 using TEngine.Components.Behavior;
 using TEngine.Components.Transform;
+using TEngine.Components.Physics;
+using TEngine.Components.Colliders;
 
 public abstract class GameObject
 {
@@ -11,8 +13,10 @@ public abstract class GameObject
     public char Symbol { get; set; }
     
     private bool _paused;
-    public Transform Transform { get; private set; } = new Transform();
-    public List<Monobehavior> Monobehaviors { get; private set; } = new List<Monobehavior>();
+    public Transform transform { get; private set; } = new Transform();
+    public Rigidbody? rigidbody { get; set; }
+    public Collider? collider { get; set; }
+    public List<Monobehavior> monobehaviors { get; private set; } = new List<Monobehavior>();
 
 
     public GameObject(int x, int y, char symbol)
@@ -20,13 +24,15 @@ public abstract class GameObject
         X = x;
         Y = y;
         Symbol = symbol;
-        TextRenderer.Instance.RegisterGameObject(this);
         EventManager.Instance.Subscribe("PAUSE", OnPause);
     }
 
     public void Register(Component component)
     {
-        
+        if (component is Transform) { transform = (Transform)component; }
+        else if (component is Rigidbody) { rigidbody = (Rigidbody)component; }
+        else if (component is Collider) { collider = (Collider)component; }
+        else if (component is Monobehavior) { monobehaviors.Add((Monobehavior)component); }
     }
 
 
@@ -39,6 +45,10 @@ public abstract class GameObject
     private void OnPause()
     {
         _paused = !_paused;
+        for(int i = 0; i < monobehaviors.Count; i++)
+        {
+            monobehaviors[i].isActiveAndEnabled = monobehaviors[i].enabled && _paused;
+        }
     }
 
    

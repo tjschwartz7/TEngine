@@ -11,7 +11,7 @@ namespace TEngine.Scenes
     public class SceneManager : Monobehavior
     {
         public static SceneManager Instance { get; private set; } = new SceneManager();
-        int scene = 0;
+        string activeScene;
         private Dictionary<string, Scene> scenes;
         public override void Awake()
         {
@@ -33,8 +33,8 @@ namespace TEngine.Scenes
 
         public void LoadScene(string name)
         {
+            activeScene = name;
             scenes[name].Run();
         }
-
     }
 }

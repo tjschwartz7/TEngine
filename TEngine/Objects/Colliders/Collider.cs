@@ -8,7 +8,7 @@ using TEngine.TMath;
 
 namespace TEngine.Components.Colliders
 {
-    public class Collider
+    public class Collider : Component
     {
         public bool isTrigger { get; set; } = false;    
         public List<int> bounds { get; set; } = new List<int>();

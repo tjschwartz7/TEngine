@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Behavior
 {
-    public class Behavior : Component
+    public abstract class Behavior : Component
     {
         public bool enabled { get; set; } = true;
         public bool isActiveAndEnabled { get; set; } = true;

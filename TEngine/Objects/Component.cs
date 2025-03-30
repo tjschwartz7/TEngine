@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components
 {
-    public class Component
+    public abstract class Component
     {
 
         public GameObject GameObject;

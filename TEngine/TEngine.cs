@@ -11,7 +11,7 @@ namespace TEngine
 {
     public class Engine
     {
-        private List<Component> components = new List<Component>();
+        private List<GameObject> gameObjects = new List<GameObject>();
          
         public static Engine Instance { get; private set; } = new Engine();
 
@@ -66,9 +66,9 @@ namespace TEngine
             Time.Initialize();
         }
 
-        public void Register(Component component)
+        public void Register(GameObject gameObject)
         {
-            components.Add(component);
+            gameObjects.Add(gameObject);
         }
 
         public void Update()

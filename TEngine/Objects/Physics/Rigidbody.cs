@@ -10,9 +10,8 @@ namespace TEngine.Components.Physics
     using System;
     using System.Diagnostics;
     using TEngine.Utils;
-    using UnityEngine;
 
-    public class MyRigidbody
+    public class Rigidbody : Component
     {
         // Basic properties for 2D Rigidbody
         public Vector2 position;
@@ -25,7 +24,7 @@ namespace TEngine.Components.Physics
         public float drag;
 
         // Constructor to initialize the Rigidbody
-        public MyRigidbody()
+        public Rigidbody()
         {
             position = Vector2.zero;
             velocity = Vector2.zero;
