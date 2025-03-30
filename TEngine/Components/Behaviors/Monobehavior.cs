@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using TEngine
 ;
 
-namespace TEngine2.Behavior
+namespace TEngine.Components.Behavior
 {
-    public abstract class Monobehavior : IDisposable
+    public abstract class Monobehavior : Behavior, IDisposable
     {
         protected Monobehavior()
         {

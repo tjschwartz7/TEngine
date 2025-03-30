@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.Scenes;
 
 namespace TEngine.GoneMedieval.Levels.Scenes
 {
@@ -13,6 +14,10 @@ namespace TEngine.GoneMedieval.Levels.Scenes
 
         }
 
+        public override void OnLoad()
+        {
+            
+        }
         public override void Run()
         {
             EventManager.Instance.Trigger("UPDATE_MENU", new string[] { "New Game", "Load Game", "Options", "Quit" });

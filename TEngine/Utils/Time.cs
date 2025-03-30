@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEngine
+namespace TEngine.Utils
 {
     public static class Time
     {

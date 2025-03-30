@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.GoneMedieval.Levels
+namespace TEngine.Scenes
 {
     public class Scene
     {
@@ -18,6 +18,7 @@ namespace TEngine.GoneMedieval.Levels
             this.description = description;
         }
 
+        public virtual void OnLoad() { }
         public virtual void Run() { }
     }
 }

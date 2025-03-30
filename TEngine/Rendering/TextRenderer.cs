@@ -16,24 +16,54 @@ namespace TEngine.Rendering
             public int Height { get; }
             public List<string> Content { get; }
 
-            public Layer(int order, int height)
+            //World layer data
+            public bool isWorldLayer { get; private set; } = false;
+            public List<GameObject>? RegisteredGameObject { get; private set; } = null; //List of game objects registered to this layer
+
+            public Layer(int order, int height, bool isWorldLayer = false)
             {
                 Order = order;
                 Height = height;
+                
+                //World layers are treated differently than other layers.
+                //They can have objects registered to them, 
+                //which are then rendered.
+                this.isWorldLayer = isWorldLayer;
+                if (this.isWorldLayer)
+                {
+                    RegisteredGameObject = new List<GameObject>();
+                }
                 Content = new List<string>();
+                
             }
 
             public void AddLine(string line)
             {
-                if (Content.Count < Height)
+                if(!isWorldLayer && Content != null)
                 {
-                    Content.Add(line);
+                    if (Content.Count < Height)
+                    {
+                        Content.Add(line);
+                    }
+                } 
+            }
+
+            public void RegisterGameObject(GameObject obj)
+            {
+                if (isWorldLayer && RegisteredGameObject != null)
+                {
+                    RegisteredGameObject.Add(obj);
                 }
             }
 
             public void Clear()
             {
-                Content.Clear();
+                if (isWorldLayer)
+                {
+                    RegisteredGameObject?.Clear();
+                }
+               
+                Content.Clear();      
             }
 
             public List<string> GetFormattedContent()
@@ -45,6 +75,35 @@ namespace TEngine.Rendering
                 if (formattedContent.Count > Height) formattedContent = formattedContent.Take(Height).ToList(); // Trim excess
 
                 return formattedContent;
+            }
+
+            public List<string> GetWorld()
+            {
+                
+                if (isWorldLayer)
+                {
+                    List<string> formattedWorld = new List<string>(Content);
+
+                    if (RegisteredGameObject == null) return formattedWorld;
+                    // Iterate through the registered game objects and add their symbols to the map
+                    foreach (GameObject obj in RegisteredGameObject)
+                    {
+                        int x = obj.X;
+                        int y = obj.Y;
+                        //Assume boundary logic is handled elsewhere
+                        if (y < formattedWorld.Count && x < formattedWorld[y].Length)
+                        {
+                            char[] row = formattedWorld[y].ToCharArray();
+                            row[x] = obj.Symbol; // Place the game object's symbol in the map
+                            formattedWorld[y] = new string(row);
+                        }
+                    }
+                    return formattedWorld;
+                }
+                else
+                {
+                    throw new Exception("This layer is not a world layer.");
+                }
             }
         }
 
@@ -82,6 +141,17 @@ namespace TEngine.Rendering
             {
                 layers[layer] = new Layer(order, height);
                 SortedLayers = layers.Values.OrderBy(layer => layer.Order);
+            }
+        }
+
+        public void RegisterGameObject(GameObject obj)
+        {
+            for(int i = 0; i < obj.Layer; i++)
+            {
+                if (!layers.ElementAt(i).Value.isWorldLayer)
+                {
+                    layers.ElementAt(i).Value.RegisterGameObject();
+                }
             }
         }
 

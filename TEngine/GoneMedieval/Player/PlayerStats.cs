@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.GoneMedieval
+namespace TEngine.GoneMedieval.Player
 {
-    public class Player
+    public class PlayerStats
     {
         public string Name { get; set; } = "Red";
         public int Health { get; set; } = 10;
@@ -23,7 +23,7 @@ namespace TEngine.GoneMedieval
         public int Vitality { get; private set; } = 1; // Health increase per level
         public int Mana { get; private set; } = 0; // Mana pool for spell usage
 
-        public Player()
+        public PlayerStats()
         {
 
         }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.Components.Behavior;
 using TEngine.GoneMedieval.Managers;
 using TEngine.Rendering;
-using TEngine2.Behavior;
 
 namespace TEngine.GoneMedieval.UI
 {
@@ -16,6 +16,7 @@ namespace TEngine.GoneMedieval.UI
         private bool displayText = false;
         private string dialogue = "";
         private int menuCursorIndex = 0;
+        private int playerLocationIndex;
         
         public override void Start()
         {

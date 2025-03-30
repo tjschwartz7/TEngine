@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.GoneMedieval.Levels;
+using TEngine.Components.Behavior;
 using TEngine.GoneMedieval.Levels.Scenes;
-using TEngine2.Behavior;
 
-namespace TEngine.GoneMedieval.Managers
+namespace TEngine.Scenes
 {
     public class SceneManager : Monobehavior
     {

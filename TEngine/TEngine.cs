@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using TEngine.Rendering;
-using TEngine2.Behavior;
+using TEngine.Utils;
+
+using TEngine.Components;
 
 namespace TEngine
 {
     public class Engine
     {
-        private List<Monobehavior> behaviors = new List<Monobehavior>();
+        private List<Component> components = new List<Component>();
          
         public static Engine Instance { get; private set; } = new Engine();
 
@@ -65,42 +66,29 @@ namespace TEngine
             Time.Initialize();
         }
 
-        public void Register(Monobehavior behavior)
+        public void Register(Component component)
         {
-            behavior.Start();
-            behaviors.Add(behavior);
+            components.Add(component);
         }
 
         public void Update()
         {
-            for (int i = 0; i < behaviors.Count; i++)
-            {
-                behaviors[i].Update();
-            }
+
         }
 
         public void FixedUpdate()
         {
-            foreach (var behavior in behaviors)
-            {
-                behavior.FixedUpdate();
-            }
+            
         }
 
         public void LateUpdate()
         {
-            foreach (var behavior in behaviors)
-            {
-                behavior.LateUpdate();
-            }
+
         }
 
         public void Render()
         {
-            foreach (var behavior in behaviors)
-            {
-                behavior.OnGUI();
-            }
+
         }
 
         public void Run()

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine2.Behavior;
+using TEngine.Components.Behavior;
+using TEngine.GoneMedieval.Player;
 
 namespace TEngine.GoneMedieval.Managers
 {
     public class GameManager : Monobehavior
     {
-        public Player Player { get; private set; } = new Player();
+        public PlayerStats Player { get; private set; } = new PlayerStats();
         public static GameManager Instance { get; private set; } = new GameManager();
 
         public GameManager() 

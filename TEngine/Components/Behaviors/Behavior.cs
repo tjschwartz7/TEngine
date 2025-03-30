@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TEngine.Components.Behavior
+{
+    public class Behavior : Component
+    {
+        public bool enabled { get; set; } = true;
+        public bool isActiveAndEnabled { get; set; } = true;
+    }
+}
