@@ -11,6 +11,7 @@ namespace TEngine.Scenes
         string name;
         string description;
 
+        public List<GameObject> gameObjects = new List<GameObject>();
 
         public Scene(string name, string description)
         {

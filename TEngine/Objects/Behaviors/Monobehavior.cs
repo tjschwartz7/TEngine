@@ -8,11 +8,10 @@ using TEngine
 
 namespace TEngine.Components.Behavior
 {
-    public abstract class Monobehavior : Behavior, IDisposable
+    public abstract class MonoBehavior : Behavior, IDisposable
     {
-        protected Monobehavior()
+        protected MonoBehavior()
         {
-            Engine.Instance.Register(this);
             Awake();
         }
 

@@ -8,7 +8,7 @@ using TEngine.GoneMedieval.Player;
 
 namespace TEngine.GoneMedieval.Managers
 {
-    public class GameManager : Monobehavior
+    public class GameManager : MonoBehavior
     {
         public PlayerStats Player { get; private set; } = new PlayerStats();
         public static GameManager Instance { get; private set; } = new GameManager();

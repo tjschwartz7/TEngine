@@ -8,12 +8,12 @@ using TEngine.GoneMedieval.Levels.Scenes;
 
 namespace TEngine.Scenes
 {
-    public class SceneManager : Monobehavior
+    public class SceneManager
     {
         public static SceneManager Instance { get; private set; } = new SceneManager();
         string activeScene;
         private Dictionary<string, Scene> scenes;
-        public override void Awake()
+        private SceneManager()
         {
             if (Instance != null)
             {
@@ -24,6 +24,7 @@ namespace TEngine.Scenes
                 Instance = this;
             }
             scenes = new Dictionary<string, Scene>();
+            activeScene = "";
         }
 
         public void Register(string name, Scene scene)
@@ -35,6 +36,11 @@ namespace TEngine.Scenes
         {
             activeScene = name;
             scenes[name].Run();
+        }
+
+        public Scene GetActiveScene()
+        {
+            return scenes[activeScene];
         }
     }
 }

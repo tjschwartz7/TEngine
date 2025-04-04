@@ -16,7 +16,7 @@ public abstract class GameObject
     public Transform transform { get; private set; } = new Transform();
     public Rigidbody? rigidbody { get; set; }
     public Collider? collider { get; set; }
-    public List<Monobehavior> monobehaviors { get; private set; } = new List<Monobehavior>();
+    public List<MonoBehavior> monobehaviors { get; private set; } = new List<MonoBehavior>();
 
 
     public GameObject(int x, int y, char symbol)
@@ -27,20 +27,19 @@ public abstract class GameObject
         EventManager.Instance.Subscribe("PAUSE", OnPause);
     }
 
-    public void Register(Component component)
+    public void AddComponent<T>() where T : Component, new()
     {
-        if (component is Transform) { transform = (Transform)component; }
-        else if (component is Rigidbody) { rigidbody = (Rigidbody)component; }
+        if (typeof(T) == typeof(Rigidbody)) { rigidbody = new Rigidbody(); }
+        else if (typeof(T) == typeof(Collider)) { collider = new Collider(); }
+    }
+
+    public void AddComponent(Component component)
+    {
+        if (component is Rigidbody) { rigidbody = (Rigidbody)component; }
         else if (component is Collider) { collider = (Collider)component; }
-        else if (component is Monobehavior) { monobehaviors.Add((Monobehavior)component); }
+        else if (component is MonoBehavior) { monobehaviors.Add((MonoBehavior)component); }
     }
 
-
-
-    public bool CanMove(int newX, int newY)
-    {
-        return !CollisionHandler.Instance.IsColliding(newX, newY);
-    }
 
     private void OnPause()
     {

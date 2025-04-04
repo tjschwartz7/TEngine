@@ -9,7 +9,7 @@ using TEngine.Rendering;
 
 namespace TEngine.GoneMedieval.UI
 {
-    public class UI : Monobehavior
+    public class UI : MonoBehavior
     {
 
         private string[] ?MenuOptions;
