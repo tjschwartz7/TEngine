@@ -167,7 +167,7 @@
               "RelativeDocumentMoniker": "TEngine\\GameObjects\\GameObject.cs",
               "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GameObjects\\GameObject.cs",
               "RelativeToolTip": "TEngine\\GameObjects\\GameObject.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAwwDAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA5wBIAAABdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-29T12:25:13.576Z",
               "EditorCaption": ""
@@ -182,8 +182,7 @@
               "RelativeToolTip": "TEngine\\TEngine.cs",
               "ViewState": "AgIAAFQAAAAAAAAAAAAmwCUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T22:49:42.673Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-21T22:49:42.673Z"
             },
             {
               "$type": "Document",
@@ -219,8 +218,7 @@
               "RelativeToolTip": "TEngine\\Scenes\\SceneManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T01:18:14.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T01:18:14.281Z"
             },
             {
               "$type": "Document",
@@ -232,8 +230,7 @@
               "RelativeToolTip": "TEngine\\Scenes\\Scene.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T01:20:41.007Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T01:20:41.007Z"
             },
             {
               "$type": "Document",
@@ -269,8 +266,7 @@
               "RelativeToolTip": "TEngine\\Objects\\Behaviors\\MonoBehavior.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAA5wA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T22:38:05.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-21T22:38:05.559Z"
             },
             {
               "$type": "Document",
@@ -462,8 +458,7 @@
               "RelativeToolTip": "TEngine\\GoneMedieval\\UI\\UI.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T19:28:09.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T19:28:09.107Z"
             },
             {
               "$type": "Document",
@@ -475,8 +470,7 @@
               "RelativeToolTip": "TEngine\\GoneMedieval\\Managers\\GameManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-24T23:53:03.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-24T23:53:03.742Z"
             },
             {
               "$type": "Document",
