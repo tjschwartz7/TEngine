@@ -26,9 +26,5 @@ namespace TEngine
             EventManager.Instance.Trigger("QUIT");
         }
 
-        public static void TogglePause()
-        {
-            EventManager.Instance.Trigger("PAUSE");
-        }
     }
 }

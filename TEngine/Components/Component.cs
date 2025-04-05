@@ -9,11 +9,10 @@ namespace TEngine.Components
     public abstract class Component
     {
 
-        public GameObject GameObject;
-        public Component()
-        {
+        public GameObject? Owner { get; internal set; };
 
-        }
+
+        public void Register(GameObject gameObject) { Owner = gameObject; }
 
         public Component GetComponent<T>()
         {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Behavior;
 using TEngine.GoneMedieval.Managers;
-using TEngine.Rendering;
+using TEngine.Rendering.Text;
 
 namespace TEngine.GoneMedieval.UI
 {

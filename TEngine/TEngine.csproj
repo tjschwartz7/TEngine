@@ -12,8 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\Audio\" />
-    <Folder Include="Components\Input\" />
     <Folder Include="GoneMedieval\GameObjects\" />
   </ItemGroup>
 

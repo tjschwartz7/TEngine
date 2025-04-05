@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TEngine.Rendering;
 using TEngine.Utils;
 
 using TEngine.Components;
+using TEngine.Rendering.Text;
 
 namespace TEngine
 {
@@ -109,6 +109,8 @@ namespace TEngine
                         Thread.Sleep(sleepTime);
                 }
 
+                InputManager.Instance.UpdateInput(); // Update input system
+
                 // Call Update, FixedUpdate, and LateUpdate
                 Update();
                 // Handle fixed updates with the fixed time step
@@ -122,7 +124,6 @@ namespace TEngine
                 CalculatePerformanceMetrics();
                 LateUpdate();
                 Render();
-                TextRenderer.Instance.Render(); // Render text using the TextRenderer
             }
         }
 

@@ -20,6 +20,7 @@ namespace TEngine.TMath
 
         // Static property for the zero vector (0,0)
         public static Vector2 zero = new Vector2(0, 0);
+        public static Vector2 one = new Vector2(1, 1);
 
         // Addition of two vectors
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
