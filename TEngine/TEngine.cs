@@ -11,7 +11,7 @@ namespace TEngine
 {
     public class Engine
     {
-        private List<GameObject> gameObjects = new List<GameObject>();
+        
          
         public static Engine Instance { get; private set; } = new Engine();
 

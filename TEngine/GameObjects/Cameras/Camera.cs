@@ -32,7 +32,7 @@ namespace TEngine.GameObjects.Cameras
             ObjectTag = new Tag("MainCamera");
 
             Projection = new ProjectionSettings(ProjectionType.Perspective, FieldOfViewAxis.Vertical, 60f, 0.1f, false);
-            Rendering = new RenderingSettings(Renderer.Default, true, false, false, true, 0, false);
+            Rendering = new RenderingSettings(RenderingEngine.Default, true, false, false, true, 0, false);
             Stack = new StackSettings(new List<Camera>());
             Environment = new EnvironmentSettings(BackgroundType.SolidColor, ConsoleColor.Black);
             Volumes = new VolumeSettings(VolumeUpdateMode.EveryFrame, 0, null);
@@ -45,7 +45,7 @@ namespace TEngine.GameObjects.Cameras
 
         public record OutputSettings(int TargetDisplay, TargetEye TargetEye, Rect ViewportRect, bool HDRRendering, bool MSAA, bool URPDynamicResolution);
 
-        public record RenderingSettings(Renderer Renderer, bool PostProcessing, bool Glow, bool Dithering, bool RenderShadows, int Priority, bool OpaqueTexture);
+        public record RenderingSettings(RenderingEngine Renderer, bool PostProcessing, bool Glow, bool Dithering, bool RenderShadows, int Priority, bool OpaqueTexture);
         public record StackSettings(List<Camera> Cameras);
         public record VolumeSettings(VolumeUpdateMode UpdateMode, int VolumeMask, object VolumeTrigger);
     }

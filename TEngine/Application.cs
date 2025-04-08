@@ -8,11 +8,11 @@ namespace TEngine
 {
     static class Application
     {
-        private static Engine engine;
+        private static Engine engine = Engine.Instance;
 
         public static void Start()
         {
-            engine = Engine.Instance;
+
         }
 
         public static void Run()

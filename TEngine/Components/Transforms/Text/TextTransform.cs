@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using TEngine.TMath;
 
-namespace TEngine.Components
+namespace TEngine.Components.Transforms.Text
 {
-    public class Transform : Component
+    public class TextTransform : Transform
     {
         public Vector2Int Position { get; set; }
 
         // Constructor
-        public Transform()
+        public TextTransform()
         {
             Position = Vector2Int.zero;
         }

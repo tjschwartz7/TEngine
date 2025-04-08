@@ -26,34 +26,34 @@ namespace TEngine.GoneMedieval.UI
             EventManager.Instance.Subscribe("CURSOR_UP", OnCursorUp);
             EventManager.Instance.Subscribe("CURSOR_DOWN", OnCursorDown);
 
-            TextRenderer.Instance.RegisterLayer("DEBUG", 0, 3);
-            TextRenderer.Instance.RegisterLayer("HUD", 1, 3);
-            TextRenderer.Instance.RegisterLayer("BACKGROUND", 2, 20);
-            TextRenderer.Instance.RegisterLayer("DIALOGUE", 3, 10);
-            TextRenderer.Instance.RegisterLayer("MENU", 4, 10);
+            TextRenderingEngine.Instance.RegisterLayer("DEBUG", 0, 3);
+            TextRenderingEngine.Instance.RegisterLayer("HUD", 1, 3);
+            TextRenderingEngine.Instance.RegisterLayer("BACKGROUND", 2, 20);
+            TextRenderingEngine.Instance.RegisterLayer("DIALOGUE", 3, 10);
+            TextRenderingEngine.Instance.RegisterLayer("MENU", 4, 10);
         }
 
         public override void Update()
         {
-            TextRenderer.Instance.ClearLayer("DEBUG");
-            TextRenderer.Instance.ClearLayer("HUD");
-            TextRenderer.Instance.ClearLayer("BACKGROUND");
-            TextRenderer.Instance.ClearLayer("MENU");
+            TextRenderingEngine.Instance.ClearLayer("DEBUG");
+            TextRenderingEngine.Instance.ClearLayer("HUD");
+            TextRenderingEngine.Instance.ClearLayer("BACKGROUND");
+            TextRenderingEngine.Instance.ClearLayer("MENU");
 
-            TextRenderer.Instance.AddText("DEBUG", "");
-            TextRenderer.Instance.AddText("DEBUG", "FPS: " + Engine.Instance.FPS);
-            TextRenderer.Instance.AddText("DEBUG", "");
+            TextRenderingEngine.Instance.AddText("DEBUG", "");
+            TextRenderingEngine.Instance.AddText("DEBUG", "FPS: " + Engine.Instance.FPS);
+            TextRenderingEngine.Instance.AddText("DEBUG", "");
 
             string hudText = String.Format("Name: {0}    Health: {1}    Mana: {2}", GameManager.Instance.Player.Name, GameManager.Instance.Player.Health, GameManager.Instance.Player.Mana);
-            TextRenderer.Instance.AddText("HUD", "");
-            TextRenderer.Instance.AddText("HUD", hudText);
-            TextRenderer.Instance.AddText("HUD", "");
+            TextRenderingEngine.Instance.AddText("HUD", "");
+            TextRenderingEngine.Instance.AddText("HUD", hudText);
+            TextRenderingEngine.Instance.AddText("HUD", "");
 
-            TextRenderer.Instance.AddText("BACKGROUND", "");
+            TextRenderingEngine.Instance.AddText("BACKGROUND", "");
 
             if(displayText)
             {
-                TextRenderer.Instance.AddText("DIALOGUE", dialogue);
+                TextRenderingEngine.Instance.AddText("DIALOGUE", dialogue);
             }
             else if (MenuOptions != null)
             {
@@ -61,11 +61,11 @@ namespace TEngine.GoneMedieval.UI
                 {
                     if (i == menuCursorIndex)
                     {
-                        TextRenderer.Instance.AddText("MENU", "> " + MenuOptions[i]);
+                        TextRenderingEngine.Instance.AddText("MENU", "> " + MenuOptions[i]);
                     }
                     else
                     {
-                        TextRenderer.Instance.AddText("MENU", MenuOptions[i]);
+                        TextRenderingEngine.Instance.AddText("MENU", MenuOptions[i]);
                     }
                 }
             }

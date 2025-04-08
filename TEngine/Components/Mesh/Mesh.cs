@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.Rendering
+namespace TEngine.Components.Mesh
 {
-    public abstract class Renderer
+    public abstract class Mesh : Component
     {
-        public abstract void Render();
+
     }
 }

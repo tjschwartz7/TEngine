@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.GameObjects;
 
-namespace TEngine.Rendering
+namespace TEngine.Components.Renderers
 {
-    public class StackSettings
+    public abstract class Renderer : Component
     {
-        public List<Camera> Cameras = new();
     }
 }

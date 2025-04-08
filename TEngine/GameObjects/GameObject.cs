@@ -3,6 +3,7 @@ using TEngine.Components.Behavior;
 using TEngine.Components.Colliders;
 using TEngine.Components.Inputs;
 using TEngine.Components.Physics;
+using TEngine.Components.Transforms;
 using TEngine.TMath;
 using TEngine.Utils;
 
