@@ -3,7 +3,7 @@ using TEngine.Components.Behavior;
 using TEngine.Components.Colliders;
 using TEngine.Components.Inputs;
 using TEngine.Components.Physics;
-using TEngine.Components.Transforms;
+using TEngine.Components.Transforms.Text;
 using TEngine.TMath;
 using TEngine.Utils;
 
@@ -16,11 +16,15 @@ public abstract class GameObject
     public Tag ObjectTag { get; set; } = new("Default");
     public Layer ObjectLayer { get; set; } = new(0, "Default");
 
+    // Optional reference to a parent object
+    public GameObject? Parent { get; set; } = null;
+    public List<GameObject> Children { get; set; } = new();
+
 
     public GameObject()
     {
         EventManager.Instance.Subscribe("PAUSE", OnPause);
-        _components[typeof(Transform)] = new Transform();
+        _components[typeof(TextTransform)] = new TextTransform();
     }
 
     public T AddComponent<T>() where T : Component, new()
@@ -84,8 +88,44 @@ public abstract class GameObject
     // Move the GameObject by updating its Transform position
     public void MoveTo(Vector2Int newPosition)
     {
-        if(HasComponent<Transform>())
-            GetComponent<Transform>()?.MoveTo(newPosition);
+        if(HasComponent<TextTransform>())
+            GetComponent<TextTransform>()?.MoveTo(newPosition);
+    }
+
+    public void SetParent(GameObject newParent)
+    {
+        // Remove from current parent
+        Parent?.Children.Remove(this);
+
+        // Set new parent
+        Parent = newParent;
+
+        // Add to new parent's children list
+        Parent?.Children.Add(this);
+    }
+
+    public void AddChild(GameObject child)
+    {
+        child.SetParent(this);
+    }
+
+    public void RemoveChild(GameObject child)
+    {
+        if (Children.Contains(child))
+        {
+            child.Parent = null;
+            Children.Remove(child);
+        }
+    }
+
+    public IEnumerable<GameObject> GetHierarchy()
+    {
+        yield return this;
+        foreach (var child in Children)
+        {
+            foreach (var desc in child.GetHierarchy())
+                yield return desc;
+        }
     }
 
 }
