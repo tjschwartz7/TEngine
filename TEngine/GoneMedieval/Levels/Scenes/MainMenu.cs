@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.Scenes;
+using TEngine.EngineManagement.Scenes;
 
 namespace TEngine.GoneMedieval.Levels.Scenes
 {

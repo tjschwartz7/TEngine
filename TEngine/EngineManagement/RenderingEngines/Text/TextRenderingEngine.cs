@@ -8,8 +8,13 @@ using System.Diagnostics;
 using TEngine.TMath;
 using TEngine.Animations.Text;
 using TEngine.GameObjects.Cameras;
+using System.Drawing;
+using System.Reflection.Emit;
 
-namespace TEngine.Rendering.Text
+using System.Windows.Forms;
+using TEngine.EngineManagement.RenderingEngines;
+
+namespace TEngine.EngineManagement.RenderingEngines.Text
 {
     public class TextRenderingEngine : RenderingEngine
     {
@@ -23,12 +28,13 @@ namespace TEngine.Rendering.Text
             
         }
 
+
         public void SetCamera(Camera camera)
         {
             _camera = camera;
         }
 
-        public override void Render()
+        public override void Render(List<GameObject> renderableGameObjects)
         {
             Console.Clear();
 

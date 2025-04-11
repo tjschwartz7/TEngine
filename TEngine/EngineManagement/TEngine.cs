@@ -5,17 +5,20 @@ using System.Text;
 using TEngine.Utils;
 
 using TEngine.Components;
-using TEngine.Rendering.Text;
+using TEngine.Components.Renderers;
+using TEngine.EngineManagement.Scenes;
+using TEngine.EngineManagement.RenderingEngines;
 
-namespace TEngine
+namespace TEngine.EngineManagement
 {
     public class Engine
     {
         
          
         public static Engine Instance { get; private set; } = new Engine();
+        public static RenderingEngine Renderer { get; private set; } = RenderingEngine.Default;
+        public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
 
-        
 
         private float targetFps = 5f; // Target FPS    
         private float targetUps = 5f; // Target UPS
@@ -53,6 +56,7 @@ namespace TEngine
             fpsStepTarget = 1000f / targetFps; // Calculate the time step for FPS tracking
             upsStepTarget = 1000f / targetUps; // Calculate the time step for UPS tracking
 
+
             if (Instance != null)
             {
                 throw new Exception("Engine instance already exists.");
@@ -66,9 +70,9 @@ namespace TEngine
             Time.Initialize();
         }
 
-        public void Register(GameObject gameObject)
+        public void SetRenderer(RenderingEngine renderer)
         {
-            gameObjects.Add(gameObject);
+            Renderer = renderer; // Set the renderer that the engine will control
         }
 
         public void Update()
@@ -88,7 +92,12 @@ namespace TEngine
 
         public void Render()
         {
-
+            // Handle the rendering logic directly here
+            if (Renderer != null)
+            {
+                // Call the renderer form to display the current game state
+                Renderer.Render(SceneManager.GetRenderableGameObjects());  // Pass renderable GameObjects to the renderer
+            }
         }
 
         public void Run()
@@ -144,7 +153,7 @@ namespace TEngine
             upsAccumulator += Time.deltaTime;          
             if (Time.time - lastUpsUpdateTime >= upsStepTarget) // Update UPS based on fixed time step
             {
-                ups = (int)(upsAccumulator / (upsStepTarget));
+                ups = (int)(upsAccumulator / upsStepTarget);
                 upsAccumulator = 0f;
                 lastUpsUpdateTime = Time.time;
                 Console.WriteLine($"UPS: {ups}");
@@ -172,7 +181,5 @@ namespace TEngine
             this.targetFps = targetFps; 
             upsStepTarget = 1f / targetUps; 
         }
-
     }
-
 }

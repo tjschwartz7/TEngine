@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.EngineManagement;
+using TEngine.EngineManagement.RenderingEngines;
 
 namespace TEngine
 {
     static class Application
     {
-        private static Engine engine = Engine.Instance;
+        private static Engine _gameEngine = Engine.Instance;
 
         public static void Start()
         {
 
+            
         }
 
         public static void Run()
         {
-            engine.Run();
+            _gameEngine.Run();
         }
 
 

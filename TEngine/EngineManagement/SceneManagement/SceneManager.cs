@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Behavior;
+using TEngine.Components.Mesh;
 using TEngine.GoneMedieval.Levels.Scenes;
 
-namespace TEngine.Scenes
+namespace TEngine.EngineManagement.Scenes
 {
     public class SceneManager
     {
         public static SceneManager Instance { get; private set; } = new SceneManager();
         string activeScene;
-        private Dictionary<string, Scene> scenes;
+        internal Dictionary<string, Scene> scenes;
+
         private SceneManager()
         {
             if (Instance != null)
@@ -24,23 +26,40 @@ namespace TEngine.Scenes
                 Instance = this;
             }
             scenes = new Dictionary<string, Scene>();
-            activeScene = "";
+            string firstSceneName = "FirstScene";
+            scenes.Add(firstSceneName, new Scene(firstSceneName));
+            activeScene = firstSceneName;
         }
 
-        public void Register(string name, Scene scene)
+        public void Register(string name)
         {
-            scenes.Add(name, scene);
+            scenes.Add(name, new Scene(name));
         }
 
-        public void LoadScene(string name)
+        public void RegisterAndLoad(string name)
         {
+            scenes.Add(name, new Scene(name));
             activeScene = name;
-            scenes[name].Run();
         }
 
-        public Scene GetActiveScene()
+        public List<GameObject> GetRenderableGameObjects()
+        {
+            return scenes[activeScene].GetRenderableObjects();
+        }
+
+        internal Scene GetActiveScene()
         {
             return scenes[activeScene];
+        }
+
+        public string GetActiveSceneName()
+        {
+            return activeScene;
+        }
+
+        public void SetActiveScene(string name)
+        {
+            activeScene = name;
         }
     }
 }

@@ -18,7 +18,6 @@ namespace TEngine
 
 
             Application.Start();
-            inputManager.Start();
             Initialize(); // Let the developer register their behaviors
             Application.Run();
         }
