@@ -9,39 +9,45 @@ namespace TEngine.Components.Transforms.Text
 {
     public class TextTransform : Transform
     {
-        /// <summary>
-        /// LocalPosition represents the top-left corner of the object in text space.
-        /// (0,0) is the top-left of the screen.
-        /// Positive X moves right; positive Y moves down.
-        /// </summary>
-        public Vector2Int LocalPosition { get; private set; }
+        // Text-space coordinates: top-left (0, 0), y increases downward
+        public new Vector2Int LocalPosition { get; private set; } = Vector2Int.zero;
 
-        // Global position is calculated from local + parent's global
-        public Vector2Int GlobalPosition;
-
-
-        // Constructor
-        public TextTransform()
+        public override Vector3 GlobalPosition
         {
-            LocalPosition = Vector2Int.zero;
+            get
+            {
+                Vector2Int result = LocalPosition;
+                var current = Owner?.Parent;
+                var currentTransform = current?.Parent?.GetComponent<Transform>();
+                while (current != null)
+                {
+                    if (currentTransform != null && currentTransform is TextTransform parentText)
+                        result += parentText.LocalPosition;
+                    current = current.Parent;
+                }
+                return new Vector3(result.X, result.Y, 0);
+            }
         }
 
-        /// <summary>
-        /// Update the transform position
-        /// </summary>
-        /// <param name="newPosition">Sets local position to new position.</param>
         public void MoveTo(Vector2Int newPosition)
         {
             LocalPosition = newPosition;
         }
 
-        /// <summary>
-        /// Move by a delta (useful for nudging position)
-        /// </summary>
-        /// <param name="delta">The vector of movement.</param>
         public void Translate(Vector2Int delta)
         {
             LocalPosition += delta;
+        }
+
+        // Optionally override MoveTo(Vector3) for compatibility
+        public override void MoveTo(Vector3 newPosition)
+        {
+            LocalPosition = Vector2Int.FromVector3Floor(newPosition);
+        }
+
+        public override void Translate(Vector3 delta)
+        {
+            LocalPosition += Vector2Int.FromVector3Floor(delta);
         }
     }
 }

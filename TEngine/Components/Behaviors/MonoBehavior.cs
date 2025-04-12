@@ -24,10 +24,9 @@ namespace TEngine.Components.Behavior
         // Virtual methods for users to override
         public virtual void Awake() { } // Initialization that needs to happen before Start
         public virtual void Start() { } // Called when the game starts
-        public virtual void Update() { } // Called every frame
         public virtual void OnEnable() { } // Logic to initialize or subscribe to events
         public virtual void OnDisable() { } // Cleanup resources or unsubscribe from events
-
+        public virtual void Update() { }
         public virtual void FixedUpdate() { } // Called at fixed intervals, useful for physics calculations
         public virtual void LateUpdate() { } // Logic that depends on other updates in the frame
         public virtual void OnApplicationQuit() { } // Called when the application is about to quit

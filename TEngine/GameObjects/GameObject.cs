@@ -17,8 +17,10 @@ public abstract class GameObject
     public Layer ObjectLayer { get; set; } = new(0, "Default");
 
     // Optional reference to a parent object
-    public GameObject? Parent { get; set; } = null;
-    public List<GameObject> Children { get; set; } = new();
+    public GameObject? Parent { get; private set; } = null;
+    public List<GameObject> Children { get; private set; } = new();
+    public bool IsActive { get; private set; } = true;
+    public bool isActiveAndEnabled { get; private set; } = true;
 
 
     public GameObject()
@@ -79,10 +81,11 @@ public abstract class GameObject
     private void OnPause()
     {
         _paused = !_paused;
-        for(int i = 0; i < _monobehaviors.Count; i++)
-        {
-            _monobehaviors[i].isActiveAndEnabled = _monobehaviors[i].enabled && _paused;
-        }
+    }
+
+    public bool IsPaused()
+    {
+        return _paused;
     }
 
     // Move the GameObject by updating its Transform position
@@ -127,5 +130,38 @@ public abstract class GameObject
                 yield return desc;
         }
     }
+
+    public void Update()
+    {
+        
+        isActiveAndEnabled = IsActive;
+        if (Parent != null) { isActiveAndEnabled = isActiveAndEnabled && !Parent.IsPaused(); }
+
+        if (_paused || !IsActive) return;
+
+        foreach (var behavior in _monobehaviors)
+        {
+            if (behavior.isActiveAndEnabled)
+            {
+                behavior.Update();
+            }
+        }
+
+        foreach (var component in _components.Values)
+        {
+            if (component.enabled)
+            {
+                component.Update();
+            }
+        }
+
+        foreach (var child in Children)
+        {
+            child.Update();
+        }
+    }
+
+    // Optional: expose children/parent getters if needed
+    public IReadOnlyList<GameObject> GetChildren() => Children.AsReadOnly();
 
 }

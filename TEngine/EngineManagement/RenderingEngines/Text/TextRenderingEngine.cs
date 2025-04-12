@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-using System.Diagnostics;
-using TEngine.TMath;
-using TEngine.Animations.Text;
+﻿using TEngine.TMath;
 using TEngine.GameObjects.Cameras;
-using System.Drawing;
-using System.Reflection.Emit;
-
-using System.Windows.Forms;
-using TEngine.EngineManagement.RenderingEngines;
 
 namespace TEngine.EngineManagement.RenderingEngines.Text
 {

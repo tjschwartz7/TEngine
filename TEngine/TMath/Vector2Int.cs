@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TEngine.TMath
 {
@@ -20,77 +16,99 @@ namespace TEngine.TMath
 
         // Static property for the zero vector (0,0)
         public static Vector2Int zero = new Vector2Int(0, 0);
+        public static Vector2Int one = new Vector2Int(1, 1);
 
         // Addition of two vectors
-        public static Vector2Int operator +(Vector2Int v1, Vector2Int v2)
-        {
-            return new Vector2Int(v1.X + v2.X, v1.Y + v2.Y);
-        }
+        public static Vector2Int operator +(Vector2Int v1, Vector2Int v2) =>
+            new Vector2Int(v1.X + v2.X, v1.Y + v2.Y);
 
         // Subtraction of two vectors
-        public static Vector2Int operator -(Vector2Int v1, Vector2Int v2)
-        {
-            return new Vector2Int(v1.X - v2.X, v1.Y - v2.Y);
-        }
+        public static Vector2Int operator -(Vector2Int v1, Vector2Int v2) =>
+            new Vector2Int(v1.X - v2.X, v1.Y - v2.Y);
 
         // Scalar multiplication (multiplying vector by a scalar)
-        public static Vector2Int operator *(Vector2Int v, int scalar)
-        {
-            return new Vector2Int(v.X * scalar, v.Y * scalar);
-        }
+        public static Vector2Int operator *(Vector2Int v, int scalar) =>
+            new Vector2Int(v.X * scalar, v.Y * scalar);
 
         // Scalar division (dividing vector by a scalar)
-        public static Vector2Int operator /(Vector2Int v, int scalar)
-        {
-            return new Vector2Int(v.X / scalar, v.Y / scalar);
-        }
+        public static Vector2Int operator /(Vector2Int v, int scalar) =>
+            new Vector2Int(v.X / scalar, v.Y / scalar);
 
         // Dot product of two vectors
-        public static int Dot(Vector2Int v1, Vector2Int v2)
-        {
-            return v1.X * v2.X + v1.Y * v2.Y;
-        }
+        public static int Dot(Vector2Int v1, Vector2Int v2) =>
+            v1.X * v2.X + v1.Y * v2.Y;
 
         // Magnitude (length) of the vector
-        public int Magnitude()
+        public float Magnitude()
         {
-            return (int)Math.Sqrt(X * X + Y * Y);
+            return (float)Math.Sqrt(X * X + Y * Y);
         }
 
-        // Normalize the vector (unit vector)
+        // Normalize the vector (unit vector) (not practical for integer vectors, approximation)
         public Vector2Int Normalize()
         {
-            int magnitude = Magnitude();
+            float magnitude = Magnitude();
             if (magnitude > 0)
-                return new Vector2Int(X / magnitude, Y / magnitude);
-            return zero; // Return zero vector if magnitude is 0 to avoid division by zero
+                return new Vector2Int((int)(X / magnitude), (int)(Y / magnitude));
+            return zero;
         }
 
-        // Get the perpendicular vector (90 degrees rotation)
-        public Vector2Int Perpendicular()
+        // Clamping the vector between a min and max vector
+        public static Vector2Int Clamp(Vector2Int value, Vector2Int min, Vector2Int max)
         {
-            return new Vector2Int(-Y, X); // Counter-clockwise 90 degrees
+            return new Vector2Int(
+                Math.Clamp(value.X, min.X, max.X),
+                Math.Clamp(value.Y, min.Y, max.Y)
+            );
         }
 
-        // Angle between two vectors in radians
-        public static int AngleBetween(Vector2Int v1, Vector2Int v2)
+        // Linear interpolation (Lerp)
+        public static Vector2Int Lerp(Vector2Int start, Vector2Int end, float t)
         {
-            int dot = Dot(v1, v2);
-            int magnitudeProduct = v1.Magnitude() * v2.Magnitude();
-            if (magnitudeProduct == 0) return 0;
-            return (int)Math.Acos(dot / magnitudeProduct);
+            t = Math.Clamp(t, 0f, 1f);
+            return new Vector2Int(
+                (int)(start.X + (end.X - start.X) * t),
+                (int)(start.Y + (end.Y - start.Y) * t)
+            );
         }
+
+        // Spherical Linear interpolation (Slerp) (approximated by Lerp)
+        public static Vector2Int Slerp(Vector2Int start, Vector2Int end, float t)
+        {
+            t = Math.Clamp(t, 0f, 1f);
+            return Lerp(start, end, t); // Approximation with Lerp
+        }
+
+        // Convert Vector2 to Vector2Int (rounding)
+        public static Vector2Int FromVector2(Vector2 v) =>
+            new Vector2Int((int)Math.Round(v.X), (int)Math.Round(v.Y));
+
+        // Convert Vector2 to Vector2Int (flooring)
+        public static Vector2Int FromVector2Floor(Vector2 v) =>
+            new Vector2Int((int)Math.Floor(v.X), (int)Math.Floor(v.Y));
+
+        // Convert Vector2 to Vector2Int (ceiling)
+        public static Vector2Int FromVector2Ceiling(Vector2 v) =>
+            new Vector2Int((int)Math.Ceiling(v.X), (int)Math.Ceiling(v.Y));
+
+        // Convert Vector3 to Vector2Int (rounding)
+        public static Vector2Int FromVector3(Vector3 v) =>
+            new Vector2Int((int)Math.Round(v.X), (int)Math.Round(v.Y));
+
+        // Convert Vector3 to Vector2Int (flooring)
+        public static Vector2Int FromVector3Floor(Vector3 v) =>
+            new Vector2Int((int)Math.Floor(v.X), (int)Math.Floor(v.Y));
+
+        // Convert Vector3 to Vector2Int (ceiling)
+        public static Vector2Int FromVector3Ceiling(Vector3 v) =>
+            new Vector2Int((int)Math.Ceiling(v.X), (int)Math.Ceiling(v.Y));
 
         // Negate the vector
-        public static Vector2Int operator -(Vector2Int v)
-        {
-            return new Vector2Int(-v.X, -v.Y);
-        }
+        public static Vector2Int operator -(Vector2Int v) =>
+            new Vector2Int(-v.X, -v.Y);
 
         // ToString for easy debugging
-        public override string ToString()
-        {
-            return $"({X}, {Y})";
-        }
+        public override string ToString() =>
+            $"({X}, {Y})";
     }
 }

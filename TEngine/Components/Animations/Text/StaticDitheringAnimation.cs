@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.Animations.Text
+namespace TEngine.Components.Animations.Text
 {
-    public class DefaultTextAnimation : ITextAnimation
+    public class StaticDitheringAnimation : ITextAnimation
     {
         public string Apply(string input, int frame)
         {
-            return input;
+            return TextEffects.ApplyDithering(input, frame);
         }
     }
 }

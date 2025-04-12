@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.Animations.Text
+namespace TEngine.Components.Animations.Text
 {
     public interface ITextAnimation
     {

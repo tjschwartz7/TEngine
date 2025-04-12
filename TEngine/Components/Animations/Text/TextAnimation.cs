@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TEngine.Components;
+using TEngine.Components.Animations;
 
-namespace TEngine.Animations.Text
+namespace TEngine.Components.Animations.Text
 {
-    public class TextAnimation
+    public class TextAnimation : Animation<string>
     {
         public TextAnimationType AnimationType { get; private set; } = TextAnimationType.Default;
-        public int FrameCount { get; private set; } = 0;
         private ITextAnimation animation;
-
 
         public TextAnimation()
         {
@@ -24,19 +20,18 @@ namespace TEngine.Animations.Text
             animation = CreateAnimation(AnimationType);
         }
 
-        public void Tick()
+        public override string Apply(string target)
         {
-            FrameCount++;
-        }
-
-        public void SetFrame(int frame)
-        {
-            FrameCount = frame;
-        }
-
-        public string Apply(string input)
-        {
-            return animation.Apply(input, FrameCount);
+            if (target is string input)
+            {
+                return animation.Apply(input, FrameCount);
+ 
+            }
+            else
+            {
+                throw new ArgumentException("Invalid target for TextAnimation");
+            }
+            
         }
 
         public void SetAnimationType(TextAnimationType animationType)

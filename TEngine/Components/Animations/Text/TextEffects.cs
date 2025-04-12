@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.Animations.Text
+namespace TEngine.Components.Animations.Text
 {
     public static class TextEffects
     {
@@ -55,6 +55,7 @@ namespace TEngine.Animations.Text
         {
             var chars = new[] { '█', '▓', '▒', '░' };
             var output = new StringBuilder();
+            Random random = new Random(frame); // Seed with frame for reproducibility
 
             for (int i = 0; i < input.Length; i++)
             {

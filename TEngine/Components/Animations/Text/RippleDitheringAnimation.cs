@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEngine.Animations.Text
+namespace TEngine.Components.Animations.Text
 {
     public class RippleDitheringAnimation : ITextAnimation
     {
