@@ -3,11 +3,11 @@ using TEngine.EngineManagement.RenderingEngines.Text;
 
 namespace TEngine.EngineManagement.RenderingEngines
 {
-    public abstract class RenderingEngine
+    public abstract class RenderSystem
     {
         //Until there's multiple renderers, this is the default
-        public static RenderingEngine Default { get; } = new TextRenderingEngine();
-        public static RenderingEngine Text { get; } = new TextRenderingEngine();
+        public static RenderSystem Default { get; } = new TextRenderSystem();
+        public static RenderSystem Text { get; } = new TextRenderSystem();
         public abstract void Render(List<GameObject> renderableGameObjects);
     }
 }

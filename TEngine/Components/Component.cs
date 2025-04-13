@@ -7,19 +7,28 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components
 {
-    public abstract class Component
+    public abstract class Component : IDisposable
     {
 
+        public Component()
+        {
+
+        }
+
         public GameObject? Owner { get; internal set; } = null;
-        public bool enabled { get; set; } = true;
-        public bool isActiveAndEnabled { get; private set; } = true;
+        public bool Enabled { get; set; } = true;
+        public bool HasStarted = false;    
 
 
         public void Register(GameObject gameObject) { Owner = gameObject; }
 
-        public Component GetComponent<T>()
+        public T? GetComponent<T>() where T : Component
         {
-            return this;
+            if (Owner == null)
+            {
+                throw new InvalidOperationException("Component does not have an owner.");
+            }
+            return Owner.GetComponent<T>();
         }
 
         public bool HasComponent<T>() where T : Component
@@ -27,20 +36,33 @@ namespace TEngine.Components
             return Owner != null && Owner.HasComponent<T>();
         }
 
-        public virtual void Update()
+        // Dispose method for manual cleanup
+        public void Dispose()
         {
-            // Default update logic, can be overridden by derived classes
+            OnDestroy();
         }
 
-        public virtual void FixedUpdate()
+        public void TryStart()
         {
-            // Default fixed update logic, can be overridden by derived classes
+            if (!HasStarted)
+            {
+                HasStarted = true;
+                Start();
+            }
         }
 
-        public virtual void LateUpdate()
-        {
-            // Default late update logic, can be overridden by derived classes
-        }
+        // Virtual methods for users to override
+        public virtual void Awake() { } // Initialization that needs to happen before Start
+        public virtual void OnAttach() { }
+        public virtual void Start() { } // Called when the game starts
+        public virtual void OnEnable() { } // Logic to initialize or subscribe to events
+        public virtual void OnDisable() { } // Cleanup resources or unsubscribe from events
+        public virtual void Update() { }
+        public virtual void FixedUpdate() { } // Called at fixed intervals, useful for physics calculations
+        public virtual void LateUpdate() { } // Logic that depends on other updates in the frame
+        public virtual void OnApplicationQuit() { } // Called when the application is about to quit
+        public virtual void OnGUI() { } // Logic for rendering GUI elements
+        public virtual void OnDestroy() { } // Called when the object is destroyed
 
         public GameObject? GetOwner()
         {

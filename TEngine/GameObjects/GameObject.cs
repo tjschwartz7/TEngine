@@ -1,26 +1,48 @@
-﻿using TEngine.Components;
+﻿using System.ComponentModel.Composition;
+using TEngine.Components;
 using TEngine.Components.Behavior;
 using TEngine.Components.Colliders;
 using TEngine.Components.Inputs;
 using TEngine.Components.Physics;
 using TEngine.Components.Transforms.Text;
+using TEngine.GameObjects;
 using TEngine.TMath;
 using TEngine.Utils;
 
 public abstract class GameObject
 {
-    private bool _paused;
-    private List<MonoBehavior> _monobehaviors { get; set; } = new();
+    private static LifecycleManager LifecycleManagerInstance = LifecycleManager.Instance;
 
-    private Dictionary<Type, Component> _components = new();
+    private bool _paused = false;
+    internal bool Paused => _paused;
     public Tag ObjectTag { get; set; } = new("Default");
     public Layer ObjectLayer { get; set; } = new(0, "Default");
 
-    // Optional reference to a parent object
-    public GameObject? Parent { get; private set; } = null;
-    public List<GameObject> Children { get; private set; } = new();
-    public bool IsActive { get; private set; } = true;
-    public bool isActiveAndEnabled { get; private set; } = true;
+    private List<MonoBehavior> _monobehaviors = new List<MonoBehavior>();
+    private Dictionary<Type, Component> _components = new Dictionary<Type, Component>();
+    private List<GameObject> _children = new List<GameObject>();
+
+    internal List<MonoBehavior> MonoBehaviors => _monobehaviors;
+    internal Dictionary<Type, Component> Components => _components;
+    internal List<GameObject> Children => _children;
+
+    private GameObject? Parent { get; set; } = null;
+
+
+
+    public bool _isActive = true; // Default to active
+    public bool IsActive
+    {
+        get => _isActive;
+        set
+        {
+            if (_isActive != value)
+            {
+                _isActive = value;
+                PropagateActiveStatus(_isActive);
+            }
+        }
+    }
 
 
     public GameObject()
@@ -32,7 +54,9 @@ public abstract class GameObject
     public T AddComponent<T>() where T : Component, new()
     {
         var component = new T();
+        component.Awake();  
         component.Owner = this;
+        component.OnAttach();
         _components[typeof(T)] = component;
         return component;
     }
@@ -41,7 +65,9 @@ public abstract class GameObject
     public T AddMonoBehavior<T>() where T : MonoBehavior, new()
     {
         var behavior = new T();
+        behavior.Awake();
         behavior.Owner = this;
+        behavior.OnAttach();
         _monobehaviors.Add(behavior);
         return behavior;
     }
@@ -73,6 +99,11 @@ public abstract class GameObject
         
     }
 
+    // Methods to interact with the Lifecycle Manager
+    public void StartLifecycle() => LifecycleManagerInstance.StartGameObjectLifecycle(this);
+    public void UpdateLifecycle() => LifecycleManagerInstance.UpdateGameObjectLifecycle(this);
+    public void PropagateActiveStatus(bool isActive) => LifecycleManagerInstance.PropagateActiveStatusToChildren(this, _isActive);
+
 
     /// <summary>
     /// This function is used locally to manage game pausing. 
@@ -89,7 +120,7 @@ public abstract class GameObject
     }
 
     // Move the GameObject by updating its Transform position
-    public void MoveTo(Vector2Int newPosition)
+    public void MoveTo(Vector3 newPosition)
     {
         if(HasComponent<TextTransform>())
             GetComponent<TextTransform>()?.MoveTo(newPosition);
@@ -106,6 +137,8 @@ public abstract class GameObject
         // Add to new parent's children list
         Parent?.Children.Add(this);
     }
+
+    
 
     public void AddChild(GameObject child)
     {
@@ -131,35 +164,27 @@ public abstract class GameObject
         }
     }
 
-    public void Update()
+    public void Start()
     {
-        
-        isActiveAndEnabled = IsActive;
-        if (Parent != null) { isActiveAndEnabled = isActiveAndEnabled && !Parent.IsPaused(); }
-
-        if (_paused || !IsActive) return;
-
-        foreach (var behavior in _monobehaviors)
+        // Only call Start() once for behaviors that need it
+        foreach (var behavior in _monobehaviors.Where(b => !b.HasStarted))
         {
-            if (behavior.isActiveAndEnabled)
-            {
-                behavior.Update();
-            }
+            behavior.Start();
         }
 
-        foreach (var component in _components.Values)
+        foreach (var component in _components.Values.Where(c => !c.HasStarted))
         {
-            if (component.enabled)
-            {
-                component.Update();
-            }
+            component.Start();
         }
 
+        // Call Start() for children once, but keep track of which components have been started
         foreach (var child in Children)
         {
-            child.Update();
+            child.Start();
         }
     }
+
+    
 
     // Optional: expose children/parent getters if needed
     public IReadOnlyList<GameObject> GetChildren() => Children.AsReadOnly();

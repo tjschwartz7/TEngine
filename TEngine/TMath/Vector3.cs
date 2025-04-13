@@ -130,6 +130,26 @@ namespace TEngine.TMath
             return a * (float)Math.Cos(theta) + bTemp * (float)Math.Sin(theta);
         }
 
+        public static Vector2 ToVector2(Vector3 v)
+        {
+            return new Vector2(v.X, v.Y);
+        }
+
+        public static Vector3 FromVector2(Vector2 v, float z = 0)
+        {
+            return new Vector3(v.X, v.Y, z);
+        }
+
+        public static Vector2Int ToVector2Int(Vector3 v)
+        {
+            return new Vector2Int((int)v.X, (int)v.Y);
+        }
+
+        public static Vector3 FromVector2Int(Vector2Int v, float z = 0)
+        {
+            return new Vector3(v.X, v.Y, z);
+        }
+
         // ToString override
         public override string ToString() => $"({X}, {Y}, {Z})";
     }

@@ -8,6 +8,7 @@ namespace TEngine.Components.Behavior
 {
     public abstract class Behavior : Component
     {
-        
+        public bool Active { get; set; } = true;
+        public bool IsActiveAndEnabled  => Active && Enabled;
     }
 }

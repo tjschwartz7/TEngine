@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Renderers;
+using TEngine.GameObjects.Comparers;
 
 namespace TEngine.EngineManagement.Scenes
 {
@@ -12,6 +13,7 @@ namespace TEngine.EngineManagement.Scenes
         string name;
 
         private List<GameObject> gameObjects = new List<GameObject>();
+        private readonly GameObjectZIndexComparer comparer = new();
         public List<GameObject> GetRenderableObjects()
         {
             return gameObjects.Where(go => go.HasComponent<Renderer>()).ToList();
@@ -24,7 +26,9 @@ namespace TEngine.EngineManagement.Scenes
 
         public void AddGameObject(GameObject gameObject)
         {
-            gameObjects.Add(gameObject);
+            int index = gameObjects.BinarySearch(gameObject, comparer);
+            if (index < 0) index = ~index; // bitwise complement gives insert index
+            gameObjects.Insert(index, gameObject);
         }
 
         public void RemoveGameObject(GameObject gameObject)

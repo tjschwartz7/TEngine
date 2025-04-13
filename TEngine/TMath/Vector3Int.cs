@@ -90,6 +90,31 @@ namespace TEngine.TMath
             return Lerp(a, b, t); // Use Lerp as an approximation for Slerp in int space
         }
 
+        public static Vector2 ToVector2(Vector3Int v)
+        {
+            return new Vector2(v.X, v.Y);
+        }
+
+        public static Vector3Int FromVector2(Vector2 v, float z = 0)
+        {
+            return new Vector3Int((int)v.X, (int)v.Y, z);
+        }
+
+        public static Vector2Int ToVector2Int(Vector3Int v)
+        {
+            return new Vector2Int((int)v.X, (int)v.Y);
+        }
+
+        public static Vector3Int FromVector2Int(Vector2Int v, float z = 0)
+        {
+            return new Vector3Int((int)v.X, (int)v.Y, (int)z);
+        }
+
+        public static Vector3Int RoundToInt(Vector3 v)
+        {
+            return new Vector3Int((int)Math.Round(v.X), (int)Math.Round(v.Y), (int)Math.Round(v.Z));
+        }
+
         // ToString override
         public override string ToString() => $"({X}, {Y}, {Z})";
     }

@@ -16,7 +16,7 @@ namespace TEngine.EngineManagement
         
          
         public static Engine Instance { get; private set; } = new Engine();
-        public static RenderingEngine Renderer { get; private set; } = RenderingEngine.Default;
+        public static RenderSystem Renderer { get; private set; } = RenderSystem.Default;
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
 
 
@@ -70,9 +70,16 @@ namespace TEngine.EngineManagement
             Time.Initialize();
         }
 
-        public void SetRenderer(RenderingEngine renderer)
+        public void SetRenderer(RenderSystem renderer)
         {
             Renderer = renderer; // Set the renderer that the engine will control
+        }
+
+        public void Start(GameObject gameObject)
+        {
+
+            gameObject.Start();
+
         }
 
         public void Update()

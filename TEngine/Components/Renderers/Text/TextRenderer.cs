@@ -19,7 +19,16 @@ namespace TEngine.Components.Renderers.Text
 
         public string GetRenderedText()
         {
-            return HasComponent<TextAnimation>() ? ((TextAnimation)(GetComponent<TextAnimation>())).Apply(Text) : Text;
+            if(HasComponent<TextAnimation>())
+            {
+                var textAnimation = GetComponent<TextAnimation>();
+                if (textAnimation != null)
+                {
+                    return textAnimation.Apply(Text);
+                }
+            }
+            
+            return Text;
         }
     }
 

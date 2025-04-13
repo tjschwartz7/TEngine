@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.EngineManagement.RenderingEngines;
-using TEngine.Rendering.Text;
 using TEngine.TMath;
 using TEngine.Utils;
 
@@ -21,8 +20,16 @@ namespace TEngine.GameObjects.Cameras
         public VolumeSettings Volumes;
         public OutputSettings Output;
 
-        public Vector2Int Position = Vector2Int.zero; // Top-left world coordinate in view
-        public Vector2Int ViewSize = new(Console.WindowWidth, Console.WindowHeight);
+        public Vector3 Position = Vector3.zero; // Top-left world coordinate in view
+        public Vector2 ViewSize = new(Console.WindowWidth, Console.WindowHeight);
+
+        public float Zoom { get; set; } = 1f; // 1 = normal, >1 = zoom in, <1 = zoom out
+
+        // Method to get the scaled view size based on zoom
+        public Vector2 GetScaledViewSize()
+        {
+            return ViewSize / Zoom;
+        }
 
         public Layer Layer { get; set; } = new(0, "Default");
 
@@ -32,7 +39,7 @@ namespace TEngine.GameObjects.Cameras
             ObjectTag = new Tag("MainCamera");
 
             Projection = new ProjectionSettings(ProjectionType.Perspective, FieldOfViewAxis.Vertical, 60f, 0.1f, false);
-            Rendering = new RenderingSettings(RenderingEngine.Default, true, false, false, true, 0, false);
+            Rendering = new RenderingSettings(RenderSystem.Default, true, false, false, true, 0, false);
             Stack = new StackSettings(new List<Camera>());
             Environment = new EnvironmentSettings(BackgroundType.SolidColor, ConsoleColor.Black);
             Volumes = new VolumeSettings(VolumeUpdateMode.EveryFrame, 0, null);
@@ -40,12 +47,21 @@ namespace TEngine.GameObjects.Cameras
 
         }
 
+        public bool IsVisible(Vector3 position)
+        {
+            // Get the scaled view size based on zoom
+            var scaledViewSize = GetScaledViewSize();
+
+            return position.X >= Position.X && position.X <= Position.X + scaledViewSize.X &&
+                   position.Y >= Position.Y && position.Y <= Position.Y + scaledViewSize.Y;
+        }
+
         public record ProjectionSettings(ProjectionType ProjectionType, FieldOfViewAxis FOVAxis, float FieldOfView, float NearClipPlane, bool PhysicalCamera);
         public record EnvironmentSettings(BackgroundType BackgroundType, ConsoleColor BackgroundColor);
 
         public record OutputSettings(int TargetDisplay, TargetEye TargetEye, Rect ViewportRect, bool HDRRendering, bool MSAA, bool URPDynamicResolution);
 
-        public record RenderingSettings(RenderingEngine Renderer, bool PostProcessing, bool Glow, bool Dithering, bool RenderShadows, int Priority, bool OpaqueTexture);
+        public record RenderingSettings(RenderSystem Renderer, bool PostProcessing, bool Glow, bool Dithering, bool RenderShadows, int Priority, bool OpaqueTexture);
         public record StackSettings(List<Camera> Cameras);
         public record VolumeSettings(VolumeUpdateMode UpdateMode, int VolumeMask, object VolumeTrigger);
     }
@@ -71,6 +87,5 @@ namespace TEngine.GameObjects.Cameras
     }
 
     public enum VolumeUpdateMode { EveryFrame, OnTriggerEnter, Manual }
-
 
 }
