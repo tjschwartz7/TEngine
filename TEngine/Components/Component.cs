@@ -31,6 +31,17 @@ namespace TEngine.Components
             return Owner.GetComponent<T>();
         }
 
+        // Adding GetComponents<T> to your GameObject class
+        public IEnumerable<T> GetComponents<T>() where T : Component
+        {
+            if (Owner == null)
+            {
+                throw new InvalidOperationException("Component does not have an owner.");
+            }
+            return Owner.GetComponents<T>();
+        }
+
+
         public bool HasComponent<T>() where T : Component
         {
             return Owner != null && Owner.HasComponent<T>();
@@ -68,5 +79,15 @@ namespace TEngine.Components
         {
             return Owner;
         }
+
+        public UpdateTag UpdateTag {get; set;} = UpdateTag.Update; // Default to Update, can be changed to FixedUpdate, LateUpdate, or OnGUI
+    }
+
+    public enum UpdateTag
+    {
+        Update,
+        FixedUpdate,
+        LateUpdate,
+        OnGUI
     }
 }

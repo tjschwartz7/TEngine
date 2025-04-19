@@ -14,7 +14,7 @@ namespace TEngine.GameObjects.Cameras.Text
         {
             ObjectTag = new Tag("CameraText");
             Projection = new ProjectionSettings(ProjectionType.Orthographic, FieldOfViewAxis.Vertical, 60f, 0.1f, false);
-            Rendering = new RenderingSettings(RenderSystem.Text, true, false, false, true, 0, false);
+            Rendering = new RenderingSettings(RenderSystem.Text, true, false, false, false, 0, false);
             Stack = new StackSettings(new List<Camera>());
             Environment = new EnvironmentSettings(BackgroundType.SolidColor, ConsoleColor.Black);
             Volumes = new VolumeSettings(VolumeUpdateMode.EveryFrame, 0, null);

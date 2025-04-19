@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="GoneMedieval\GameObjects\" />
+    <Folder Include="GoneMedieval\Levels\Scenes\" />
     <Folder Include="temp\" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using TEngine.TMath;
+using TEngine.GameObjects.Cameras.Text;
 using TEngine.GameObjects.Cameras;
 using TEngine.Components.Renderers.Text;
 using TEngine.Components.Transforms;
@@ -9,7 +10,7 @@ namespace TEngine.EngineManagement.RenderingEngines.Text
 {
     public class TextRenderSystem : RenderSystem
     {
-        private Camera? _camera;
+        private CameraText? _camera;
 
         //!TODO: Renderer deals in GameObjects instead of raw text. 
         //Idea: Add render function to GameObject and have it return something the renderer can use?
@@ -19,10 +20,16 @@ namespace TEngine.EngineManagement.RenderingEngines.Text
             
         }
 
-
-        public void SetCamera(Camera camera)
+        public override void SetCamera(Camera camera)
         {
-            _camera = camera;
+            if (camera is CameraText cameraText)
+            {
+                _camera = cameraText;
+            }
+            else
+            {
+                throw new ArgumentException("Camera must be of type CameraText.");
+            }
         }
 
         public override void Render(List<GameObject> renderableGameObjects)
@@ -50,19 +57,10 @@ namespace TEngine.EngineManagement.RenderingEngines.Text
                 if (!viewBounds.Contains(screenPos.X, screenPos.Y))
                     continue;
 
-                string text = renderer.GetRenderedText();
-
-                // Apply effects
-                if (ditheringEnabled)
-                    text = TextEffects.ApplyDithering(text);
-
-                if (glowEnabled)
-                    text = TextEffects.ApplyGlow(text);
+                string text = renderer.GetRenderedData();
 
                 TerminalDriver.DrawText(text, screenPos);
             }
         }
-
     }
-}
 }

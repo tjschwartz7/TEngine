@@ -97,7 +97,7 @@ namespace TEngine.TMath
 
         public static Vector3Int FromVector2(Vector2 v, float z = 0)
         {
-            return new Vector3Int((int)v.X, (int)v.Y, z);
+            return new Vector3Int((int)v.X, (int)v.Y, (int)z);
         }
 
         public static Vector2Int ToVector2Int(Vector3Int v)

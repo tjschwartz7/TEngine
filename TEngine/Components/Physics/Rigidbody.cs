@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.TMath;
+using TEngine.Components;
 
 namespace TEngine.Components.Physics
 {
-    using System;
-    using System.Diagnostics;
-    using TEngine.Utils;
 
     public class Rigidbody : Component
     {
@@ -34,6 +32,7 @@ namespace TEngine.Components.Physics
             useGravity = true;
             isKinematic = false;
             drag = 0.1f;
+            UpdateTag = UpdateTag.FixedUpdate;
         }
 
         // Applies force to the Rigidbody, influencing velocity/acceleration
@@ -76,7 +75,7 @@ namespace TEngine.Components.Physics
         }
 
         // For simplicity, collision detection isn't handled here, but you can extend this
-        public bool CheckCollision(MyRigidbody other)
+        public bool CheckCollision(Rigidbody other)
         {
             // Simple collision check: compare positions (in a real engine, this would involve complex logic)
             return position == other.position;
@@ -86,6 +85,11 @@ namespace TEngine.Components.Physics
         public void DebugInfo()
         {
             //Debug.Log($"Position: {position}, Velocity: {velocity}, Force: {force}, Acceleration: {acceleration}");
+        }
+
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
         }
     }
 

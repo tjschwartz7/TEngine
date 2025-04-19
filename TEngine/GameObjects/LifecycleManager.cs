@@ -1,12 +1,14 @@
 ﻿
 using TEngine.Components.Behavior;
 using TEngine.Components;
+using TEngine.Components.Physics;
+using TEngine.Components.Colliders;
 
 namespace TEngine.GameObjects
 {
     public class LifecycleManager
     {
-        public static LifecycleManager Instance { get; private set; } = new()
+        public static LifecycleManager Instance { get; private set; } = new();
 
         private LifecycleManager() { }
 
@@ -60,12 +62,90 @@ namespace TEngine.GameObjects
                     behavior.Update();
                 }
 
-                foreach (var component in go.Components.Values.Where(c => c.Enabled))
+                foreach (var component in go.Components.Values.Where(c => c.Enabled && c.UpdateTag == UpdateTag.Update))
                 {
                     component.Update();
                 }
 
                 // Enqueue children for processing
+                foreach (var child in go.Children)
+                {
+                    gameObjectQueue.Enqueue(child);
+                }
+            }
+        }
+
+        // Separate function for physics update
+        public void FixedUpdateLifecycle(GameObject root)
+        {
+            if (root.Paused || !root.IsActive) return;
+
+            Queue<GameObject> gameObjectQueue = new Queue<GameObject>();
+            gameObjectQueue.Enqueue(root);
+
+            while (gameObjectQueue.Count > 0)
+            {
+                var go = gameObjectQueue.Dequeue();
+
+                // Update physics components for the current gameObject
+                foreach (var component in go.Components.Values.Where(c => c.Enabled && c.UpdateTag == UpdateTag.FixedUpdate))
+                {
+                    component.FixedUpdate();
+                }
+
+                // Enqueue children for physics update
+                foreach (var child in go.Children)
+                {
+                    gameObjectQueue.Enqueue(child);
+                }
+            }
+        }
+
+        // Separate function for physics update
+        public void LateUpdateLifecycle(GameObject root)
+        {
+            if (root.Paused || !root.IsActive) return;
+
+            Queue<GameObject> gameObjectQueue = new Queue<GameObject>();
+            gameObjectQueue.Enqueue(root);
+
+            while (gameObjectQueue.Count > 0)
+            {
+                var go = gameObjectQueue.Dequeue();
+
+                // Update physics components for the current gameObject
+                foreach (var component in go.Components.Values.Where(c => c.Enabled && c.UpdateTag == UpdateTag.LateUpdate))
+                {
+                    component.LateUpdate();
+                }
+
+                // Enqueue children for physics update
+                foreach (var child in go.Children)
+                {
+                    gameObjectQueue.Enqueue(child);
+                }
+            }
+        }
+
+        // Separate function for physics update
+        public void GUILifecycle(GameObject root)
+        {
+            if (root.Paused || !root.IsActive) return;
+
+            Queue<GameObject> gameObjectQueue = new Queue<GameObject>();
+            gameObjectQueue.Enqueue(root);
+
+            while (gameObjectQueue.Count > 0)
+            {
+                var go = gameObjectQueue.Dequeue();
+
+                // Update physics components for the current gameObject
+                foreach (var component in go.Components.Values.Where(c => c.Enabled && c.UpdateTag == UpdateTag.OnGUI))
+                {
+                    component.OnGUI();
+                }
+
+                // Enqueue children for physics update
                 foreach (var child in go.Children)
                 {
                     gameObjectQueue.Enqueue(child);

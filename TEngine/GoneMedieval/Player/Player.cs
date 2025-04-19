@@ -8,14 +8,9 @@ namespace TEngine.GoneMedieval.Player
 {
     public class Player : GameObject
     {
-        public Player(int x, int y, char symbol) : base(x, y, symbol, true)
+        public Player(int x, int y, char symbol)
         {
             
-        }
-
-        public override void Update()
-        {
-
         }
     }
 }

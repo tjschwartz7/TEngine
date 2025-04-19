@@ -8,6 +8,7 @@ using TEngine.Components.Transforms.Text;
 using TEngine.GameObjects;
 using TEngine.TMath;
 using TEngine.Utils;
+using TEngine.EngineManagement;
 
 public abstract class GameObject
 {
@@ -26,7 +27,7 @@ public abstract class GameObject
     internal Dictionary<Type, Component> Components => _components;
     internal List<GameObject> Children => _children;
 
-    private GameObject? Parent { get; set; } = null;
+    public GameObject? Parent { get; set; } = null;
 
 
 
@@ -48,7 +49,8 @@ public abstract class GameObject
     public GameObject()
     {
         EventManager.Instance.Subscribe("PAUSE", OnPause);
-        _components[typeof(TextTransform)] = new TextTransform();
+        if (Engine.RenderType == RenderType.Text )
+            _components[typeof(TextTransform)] = new TextTransform();
     }
 
     public T AddComponent<T>() where T : Component, new()
@@ -83,6 +85,20 @@ public abstract class GameObject
         return _components.TryGetValue(typeof(T), out var comp) ? comp as T : null;
     }
 
+    // Adding GetComponents<T> to your GameObject class
+    public IEnumerable<T> GetComponents<T>() where T : Component
+    {
+        // Loop through all components and yield those of type T
+        foreach (var component in _components.Values)
+        {
+            if (component is T tComponent)
+            {
+                yield return tComponent;
+            }
+        }
+    }
+
+
     public bool HasComponent<T>() where T : Component
     {
         return _components.ContainsKey(typeof(T));
@@ -102,6 +118,10 @@ public abstract class GameObject
     // Methods to interact with the Lifecycle Manager
     public void StartLifecycle() => LifecycleManagerInstance.StartGameObjectLifecycle(this);
     public void UpdateLifecycle() => LifecycleManagerInstance.UpdateGameObjectLifecycle(this);
+    public void FixedUpdateLifecycle() => LifecycleManagerInstance.FixedUpdateLifecycle(this);
+    public void LateUpdateLifecycle() => LifecycleManagerInstance.LateUpdateLifecycle(this);
+    public void OnGuiLifecycle() => LifecycleManagerInstance.GUILifecycle(this);
+
     public void PropagateActiveStatus(bool isActive) => LifecycleManagerInstance.PropagateActiveStatusToChildren(this, _isActive);
 
 
@@ -163,28 +183,6 @@ public abstract class GameObject
                 yield return desc;
         }
     }
-
-    public void Start()
-    {
-        // Only call Start() once for behaviors that need it
-        foreach (var behavior in _monobehaviors.Where(b => !b.HasStarted))
-        {
-            behavior.Start();
-        }
-
-        foreach (var component in _components.Values.Where(c => !c.HasStarted))
-        {
-            component.Start();
-        }
-
-        // Call Start() for children once, but keep track of which components have been started
-        foreach (var child in Children)
-        {
-            child.Start();
-        }
-    }
-
-    
 
     // Optional: expose children/parent getters if needed
     public IReadOnlyList<GameObject> GetChildren() => Children.AsReadOnly();

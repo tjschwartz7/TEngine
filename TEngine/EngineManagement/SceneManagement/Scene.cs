@@ -19,6 +19,11 @@ namespace TEngine.EngineManagement.Scenes
             return gameObjects.Where(go => go.HasComponent<Renderer>()).ToList();
         }
 
+        public List<GameObject> GetAllObjects()
+        {
+            return gameObjects;
+        }
+
         public Scene(string name)
         {
             this.name = name;

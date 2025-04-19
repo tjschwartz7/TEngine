@@ -9,7 +9,7 @@ namespace TEngine.Components.Controllers
 
         public override void OnAttach()
         {
-            if (GameObject is not Camera)
+            if (Owner is not Camera)
                 throw new InvalidOperationException("CameraController can only be attached to a Camera GameObject.");
         }
 

@@ -16,6 +16,7 @@ namespace TEngine.EngineManagement
         
          
         public static Engine Instance { get; private set; } = new Engine();
+        public static RenderType RenderType { get; private set; } = RenderType.Text;
         public static RenderSystem Renderer { get; private set; } = RenderSystem.Default;
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
 
@@ -70,31 +71,55 @@ namespace TEngine.EngineManagement
             Time.Initialize();
         }
 
-        public void SetRenderer(RenderSystem renderer)
+        // Set the rendering type (Text, T2D, or T3D)
+        public void SetRenderer(RenderType type)
         {
-            Renderer = renderer; // Set the renderer that the engine will control
+            RenderType = type;
+            switch (type)
+            {
+                case RenderType.Text:
+                    Renderer = RenderSystem.Default; // Set the default renderer
+                    break;
+                case RenderType.T2D:
+                    // Add logic for 2D renderer
+                    break;
+                case RenderType.T3D:
+                    // Add logic for 3D renderer
+                    break;
+            }
         }
 
-        public void Start(GameObject gameObject)
+        public void Start()
         {
-
-            gameObject.Start();
-
+            // Loop over each GameObject in the scene and start their lifecycle
+            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            {
+                gameObject.StartLifecycle(); // Initialize each GameObject's lifecycle
+            }
         }
 
         public void Update()
         {
-
+            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            {
+                gameObject.UpdateLifecycle(); // Initialize each GameObject's lifecycle
+            }
         }
 
         public void FixedUpdate()
         {
-            
+            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            {
+                gameObject.FixedUpdateLifecycle(); // Initialize each GameObject's lifecycle
+            }
         }
 
         public void LateUpdate()
         {
-
+            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            {
+                gameObject.LateUpdateLifecycle(); // Initialize each GameObject's lifecycle
+            }
         }
 
         public void Render()
@@ -188,5 +213,11 @@ namespace TEngine.EngineManagement
             this.targetFps = targetFps; 
             upsStepTarget = 1f / targetUps; 
         }
+    }
+    public enum RenderType
+    {
+        Text,
+        T2D,
+        T3D
     }
 }

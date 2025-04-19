@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Animations.Text
 {
-    public class DefaultTextAnimation : ITextAnimation
+    public class Glow : Animation<string>
     {
-        public string Apply(string input, int frame)
+        public override string Apply(string target)
         {
-            return input;
+            return TextEffects.ApplyGlow(target, FrameCount);
         }
     }
 }

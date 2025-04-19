@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Animations.Text
 {
-    public class RandomDitheringAnimation : ITextAnimation
+    public class RandomDithering : Animation<string>
     {
         private Random random = new Random();
 
-        public string Apply(string input, int frame)
+        public override string Apply(string input)
         {
             var chars = new[] { '█', '▓', '▒', '░' };
             var output = new System.Text.StringBuilder();

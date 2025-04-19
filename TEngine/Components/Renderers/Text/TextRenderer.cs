@@ -1,34 +1,14 @@
-﻿using TEngine.Components.Animations.Text;
+﻿using TEngine.Components.Animations;
 
 namespace TEngine.Components.Renderers.Text
 {
-    public class TextRenderer : Component
+    public class TextRenderer : Renderer<string>
     {
-        public string Text { get; set; } = "";
 
         public TextRenderer()
         {
-
+            RenderData = "";
       
-        }
-
-        public override void Update()
-        {
-            GetComponent<TextAnimation>()?.Tick();
-        }
-
-        public string GetRenderedText()
-        {
-            if(HasComponent<TextAnimation>())
-            {
-                var textAnimation = GetComponent<TextAnimation>();
-                if (textAnimation != null)
-                {
-                    return textAnimation.Apply(Text);
-                }
-            }
-            
-            return Text;
         }
     }
 

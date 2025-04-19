@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Behavior;
 using TEngine.Components.Mesh;
-using TEngine.GoneMedieval.Levels.Scenes;
 
 namespace TEngine.EngineManagement.Scenes
 {
@@ -45,6 +44,11 @@ namespace TEngine.EngineManagement.Scenes
         public List<GameObject> GetRenderableGameObjects()
         {
             return scenes[activeScene].GetRenderableObjects();
+        }
+
+        public List<GameObject> GetAllGameObjects()
+        {
+            return scenes[activeScene].GetAllObjects();
         }
 
         internal Scene GetActiveScene()

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Animations.Text
 {
-    public interface ITextAnimation
+    public class RippleGlow : Animation<string>
     {
-        public string Apply(string input, int frame);
+        public override string Apply(string input)
+        {
+            return TextEffects.ApplyRippleGlow(input, FrameCount);
+        }
     }
 }

@@ -10,6 +10,10 @@ namespace TEngine.Components.Colliders
 {
     public class Collider : Component
     {
+        public Collider()
+        {
+            UpdateTag = UpdateTag.FixedUpdate;
+        }
         public bool isTrigger { get; set; } = false;    
         public List<int> bounds { get; set; } = new List<int>();
         public bool enabled { get; set; } = true;
@@ -22,6 +26,8 @@ namespace TEngine.Components.Colliders
 
         public bool Raycast(Ray ray, out RaycastHit hitInfo, float maxDistance)
         {
+            //! TODO
+            hitInfo = new RaycastHit();
             return false;
         }
 

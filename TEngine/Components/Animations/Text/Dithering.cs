@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Animations.Text
 {
-    public class StaticDitheringAnimation : ITextAnimation
+    public class Dithering : Animation<string>
     {
-        public string Apply(string input, int frame)
+        public override string Apply(string input)
         {
-            return TextEffects.ApplyDithering(input, frame);
+            return TextEffects.ApplyDithering(input, FrameCount);
         }
     }
 }

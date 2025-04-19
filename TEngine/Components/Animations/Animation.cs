@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.Components.Renderers;
 
 namespace TEngine.Components.Animations
 {
     public abstract class Animation<T> : Component
     {
-        public int FrameCount { get; protected set; } = 0;
+        public uint FrameCount { get; protected set; } = 0;
         public bool IsPlaying { get; private set; } = true;
         public bool Loop { get; set; } = true;
 
@@ -36,6 +37,20 @@ namespace TEngine.Components.Animations
         }
 
         public abstract T Apply(T target); // Or overload this depending on use-case
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (IsPlaying)
+            {
+                Tick();
+                if(HasComponent<Renderer<T>>())
+                {
+                    Apply(GetComponent<Renderer<T>>().RenderData); // Replace with actual target
+                }
+            }
+        }
     }
 
 }
