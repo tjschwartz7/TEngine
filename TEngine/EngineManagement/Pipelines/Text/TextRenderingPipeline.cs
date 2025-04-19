@@ -11,10 +11,10 @@ namespace TEngine.EngineManagement.Pipelines.Text
         // Implement the render function specific to text rendering
         public override void Render(List<GameObject> gameObjects)
         {
-            CullAndSort(gameObjects);
+            List<GameObject> culledGameObjects = CullAndSort(gameObjects);
 
             // Iterate through the game objects and render text
-            foreach (var gameObject in gameObjects)
+            foreach (var gameObject in culledGameObjects)
             {
                 if (gameObject.HasComponent<TextRenderer>())
                 {

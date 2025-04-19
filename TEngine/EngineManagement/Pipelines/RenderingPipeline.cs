@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using TEngine.EngineManagement.Scenes;
 using TEngine.GameObjects.Cameras;
+using TEngine.Components.Transforms;
 
 namespace TEngine.EngineManagement.Pipelines
 {
@@ -23,9 +20,13 @@ namespace TEngine.EngineManagement.Pipelines
         public abstract void Render(List<GameObject> gameObjects);
 
         // Add other shared logic like culling, sorting, etc.
-        protected void CullAndSort(List<GameObject> gameObjects)
+        protected List<GameObject> CullAndSort(List<GameObject> gameObjects)
         {
             // Cull objects outside the camera view, sort based on layer, etc.
+            return gameObjects
+                .Where(gameObject => _camera.IsVisible(gameObject.GetComponent<Transform>().GlobalPosition))
+                .OrderBy(gameObject => gameObject.ObjectLayer.number)
+                .ToList();
         }
     }
 
