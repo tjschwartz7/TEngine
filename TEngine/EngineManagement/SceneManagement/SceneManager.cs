@@ -43,7 +43,7 @@ namespace TEngine.EngineManagement.Scenes
 
         public List<GameObject> GetRenderableGameObjects()
         {
-            return scenes[activeScene].GetRenderableObjects();
+            return scenes[activeScene].GetRenderableGameObjects();
         }
 
         public List<GameObject> GetAllGameObjects()
@@ -51,7 +51,7 @@ namespace TEngine.EngineManagement.Scenes
             return scenes[activeScene].GetAllObjects();
         }
 
-        internal Scene GetActiveScene()
+        public Scene GetActiveScene()
         {
             return scenes[activeScene];
         }

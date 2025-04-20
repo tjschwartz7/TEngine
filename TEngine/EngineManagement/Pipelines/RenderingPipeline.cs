@@ -2,33 +2,45 @@
 using TEngine.EngineManagement.Scenes;
 using TEngine.GameObjects.Cameras;
 using TEngine.Components.Transforms;
+using TEngine.EngineManagement.Drivers;
+using TEngine.EngineManagement;
+using TEngine.EngineManagement.Pipelines.Text;
+using TEngine.EngineManagement.Pipelines.T2D;
+using TEngine.EngineManagement.Pipelines.T3D;
+
 
 namespace TEngine.EngineManagement.Pipelines
 {
+
     public abstract class RenderingPipeline
     {
-        // The Camera to use for rendering
-        protected Camera _camera;
-
-        // Set the camera for the pipeline
-        public void SetCamera(Camera camera)
+        public Driver Driver { get; set; } = null;
+        public static RenderingPipeline Default { get; private set; } = null;
+        public RenderingPipeline()
         {
-            _camera = camera;
-        }
+            switch (Engine.GraphicSystem)
+            {
+                case GraphicSystem.Text:
+                    Default = new TextRenderingPipeline();
+                    break;
+                case GraphicSystem.T2D:
+                    Default = new T2DRenderingPipeline();
+                    break;
+                case GraphicSystem.T3D:
+                    Default = new T3DRenderingPipeline();
+                    break;
+                default:
+                    throw new NotImplementedException("Graphic system not implemented");
+            }
 
-        // Abstract method to render the objects, will be overridden by child pipelines
-        public abstract void Render(List<GameObject> gameObjects);
-
-        // Add other shared logic like culling, sorting, etc.
-        protected List<GameObject> CullAndSort(List<GameObject> gameObjects)
-        {
-            // Cull objects outside the camera view, sort based on layer, etc.
-            return gameObjects
-                .Where(gameObject => _camera.IsVisible(gameObject.GetComponent<Transform>().GlobalPosition))
-                .OrderBy(gameObject => gameObject.ObjectLayer.number)
-                .ToList();
         }
+        public abstract void Render(Scene scene);
+
+        protected abstract List<GameObject> CullAndSort(Scene scene, Camera camera);
+        protected abstract void Preprocess(List<GameObject> gameObjects, Camera camera);
+        protected abstract void Draw(List<GameObject> gameObjects, Camera camera);
     }
+
 
 
 }

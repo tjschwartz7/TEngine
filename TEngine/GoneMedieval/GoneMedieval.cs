@@ -1,5 +1,4 @@
-﻿
-namespace TEngine.GoneMedieval
+﻿namespace TEngine.GoneMedieval
 {
     internal class GoneMedieval : Game
     {

@@ -49,7 +49,7 @@ public abstract class GameObject
     public GameObject()
     {
         EventManager.Instance.Subscribe("PAUSE", OnPause);
-        if (Engine.RenderType == RenderType.Text )
+        if (Engine.GraphicSystem == GraphicSystem.Text )
             _components[typeof(TextTransform)] = new TextTransform();
     }
 

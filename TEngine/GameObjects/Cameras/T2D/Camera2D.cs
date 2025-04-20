@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.Utils;
-using TEngine.EngineManagement;
 using TEngine.EngineManagement.RenderingEngines;
+using TEngine.GameObjects.Cameras;
+using TEngine.EngineManagement;
+using TEngine.Utils;
 
-namespace TEngine.GameObjects.Cameras.Text
+namespace TEngine.GameObjects.Cameras.T2D
 {
-    public class CameraText : Camera
+    public class Camera2D : Camera
     {
-        public CameraText()
+        public Camera2D()
         {
-            ObjectTag = new Tag("CameraText");
+            ObjectTag = new Tag("Camera2D");
             Projection = new ProjectionSettings(ProjectionType.Orthographic, FieldOfViewAxis.Vertical, 60f, 0.1f, false);
-            Rendering = new RenderingSettings(GraphicSystem.Text, true, false, false, false, 0, false);
+            Rendering = new RenderingSettings(GraphicSystem.T2D, true, false, false, true, 0, false);
             Stack = new StackSettings(new List<Camera>());
             Environment = new EnvironmentSettings(BackgroundType.SolidColor, ConsoleColor.Black);
             Volumes = new VolumeSettings(VolumeUpdateMode.EveryFrame, 0, null);

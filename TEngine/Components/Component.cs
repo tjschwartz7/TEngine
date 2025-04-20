@@ -9,7 +9,6 @@ namespace TEngine.Components
 {
     public abstract class Component : IDisposable
     {
-
         public Component()
         {
 

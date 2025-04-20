@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine
+namespace TEngine.Components.Colliders.Text
 {
-    public class CollisionHandler
+    public class TextCollider
     {
         private HashSet<char> boundaryCharacters = new HashSet<char> { '#' };
-        public static CollisionHandler Instance { get; private set; } = new CollisionHandler();
+        public static TextCollider Instance { get; private set; } = new TextCollider();
 
         public bool IsColliding(int x, int y)
         {

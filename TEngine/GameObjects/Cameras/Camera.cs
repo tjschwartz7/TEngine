@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.EngineManagement.RenderingEngines;
+using TEngine.GameObjects.Cameras.Text;
+using TEngine.GameObjects.Cameras.T2D;
+using TEngine.GameObjects.Cameras.T3D;
 using TEngine.TMath;
 using TEngine.Utils;
+using TEngine.EngineManagement;
 
 namespace TEngine.GameObjects.Cameras
 {
@@ -23,6 +27,8 @@ namespace TEngine.GameObjects.Cameras
         public Vector3 Position = Vector3.zero; // Top-left world coordinate in view
         public Vector2 ViewSize = new(Console.WindowWidth, Console.WindowHeight);
 
+        public static Camera Default { get; private set; } = new CameraText();
+
         public float Zoom { get; set; } = 1f; // 1 = normal, >1 = zoom in, <1 = zoom out
 
         // Method to get the scaled view size based on zoom
@@ -39,12 +45,24 @@ namespace TEngine.GameObjects.Cameras
             ObjectTag = new Tag("MainCamera");
 
             Projection = new ProjectionSettings(ProjectionType.Perspective, FieldOfViewAxis.Vertical, 60f, 0.1f, false);
-            Rendering = new RenderingSettings(RenderSystem.Default, true, false, false, true, 0, false);
+            Rendering = new RenderingSettings(GraphicSystem.Text, true, false, false, true, 0, false);
             Stack = new StackSettings(new List<Camera>());
             Environment = new EnvironmentSettings(BackgroundType.SolidColor, ConsoleColor.Black);
             Volumes = new VolumeSettings(VolumeUpdateMode.EveryFrame, 0, null);
             Output = new OutputSettings(0, TargetEye.Both, new Rect(0, 0, Console.WindowWidth, Console.WindowHeight), false, false, false);
 
+            switch (Engine.GraphicSystem)
+            {
+                case GraphicSystem.Text:
+                    Default = new CameraText();
+                    break;
+                case GraphicSystem.T2D:
+                    Default = new Camera2D();
+                    break;
+                case GraphicSystem.T3D:
+                    Default = new Camera3D();
+                    break;
+            }
         }
 
         public bool IsVisible(Vector3 position)
@@ -61,7 +79,7 @@ namespace TEngine.GameObjects.Cameras
 
         public record OutputSettings(int TargetDisplay, TargetEye TargetEye, Rect ViewportRect, bool HDRRendering, bool MSAA, bool URPDynamicResolution);
 
-        public record RenderingSettings(RenderSystem Renderer, bool PostProcessing, bool Glow, bool Dithering, bool RenderShadows, int Priority, bool OpaqueTexture);
+        public record RenderingSettings(GraphicSystem Renderer, bool PostProcessing, bool Glow, bool Dithering, bool RenderShadows, int Priority, bool OpaqueTexture);
         public record StackSettings(List<Camera> Cameras);
         public record VolumeSettings(VolumeUpdateMode UpdateMode, int VolumeMask, object VolumeTrigger);
     }

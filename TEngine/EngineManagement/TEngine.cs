@@ -7,7 +7,7 @@ using TEngine.Utils;
 using TEngine.Components;
 using TEngine.Components.Renderers;
 using TEngine.EngineManagement.Scenes;
-using TEngine.EngineManagement.RenderingEngines;
+using TEngine.EngineManagement.Pipelines;
 
 namespace TEngine.EngineManagement
 {
@@ -16,9 +16,9 @@ namespace TEngine.EngineManagement
         
          
         public static Engine Instance { get; private set; } = new Engine();
-        public static RenderType RenderType { get; private set; } = RenderType.Text;
-        public static RenderSystem Renderer { get; private set; } = RenderSystem.Default;
+        public static GraphicSystem GraphicSystem { get; private set; } = GraphicSystem.Text;
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
+        public static RenderingPipeline Pipeline { get; private set; } = RenderingPipeline.Default;
 
 
         private float targetFps = 5f; // Target FPS    
@@ -72,21 +72,9 @@ namespace TEngine.EngineManagement
         }
 
         // Set the rendering type (Text, T2D, or T3D)
-        public void SetRenderer(RenderType type)
+        public void SetRenderer(GraphicSystem type)
         {
-            RenderType = type;
-            switch (type)
-            {
-                case RenderType.Text:
-                    Renderer = RenderSystem.Default; // Set the default renderer
-                    break;
-                case RenderType.T2D:
-                    // Add logic for 2D renderer
-                    break;
-                case RenderType.T3D:
-                    // Add logic for 3D renderer
-                    break;
-            }
+            GraphicSystem = type;
         }
 
         public void Start()
@@ -125,10 +113,10 @@ namespace TEngine.EngineManagement
         public void Render()
         {
             // Handle the rendering logic directly here
-            if (Renderer != null)
+            if (Pipeline != null)
             {
                 // Call the renderer form to display the current game state
-                Renderer.Render(SceneManager.GetRenderableGameObjects());  // Pass renderable GameObjects to the renderer
+                Pipeline.Render( /*O(1) retrieval*/SceneManager.GetActiveScene());  // Pass active scene to pipeline
             }
         }
 
@@ -214,7 +202,7 @@ namespace TEngine.EngineManagement
             upsStepTarget = 1f / targetUps; 
         }
     }
-    public enum RenderType
+    public enum GraphicSystem
     {
         Text,
         T2D,

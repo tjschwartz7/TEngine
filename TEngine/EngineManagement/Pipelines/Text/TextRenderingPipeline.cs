@@ -4,29 +4,71 @@ using TEngine.Components.Animations.Text;
 using TEngine.Components.Renderers.Text;
 using TEngine.EngineManagement.RenderingEngines.Text;
 
+using TEngine.GameObjects;
+using TEngine.EngineManagement.Drivers.Text;
+using TEngine.EngineManagement.Pipelines;
+using TEngine.EngineManagement.Scenes;
+using TEngine.GameObjects.Cameras.Text;
+using System.Drawing;
+using TEngine.GameObjects.Cameras;
+using TEngine.Components.Transforms;
+
 namespace TEngine.EngineManagement.Pipelines.Text
 {
     public class TextRenderingPipeline : RenderingPipeline
     {
-        // Implement the render function specific to text rendering
-        public override void Render(List<GameObject> gameObjects)
+        public TextRenderingPipeline()
         {
-            List<GameObject> culledGameObjects = CullAndSort(gameObjects);
+            Driver = new TerminalDriver();
+        }
+        public override void Render(Scene scene)
+        {
+            if (scene.MainCamera is not CameraText camera)
+                throw new InvalidOperationException("MainCamera is not CameraText");
 
-            // Iterate through the game objects and render text
-            foreach (var gameObject in culledGameObjects)
+            var gameObjects = CullAndSort(scene, camera);
+            Preprocess(gameObjects, camera);
+            Draw(gameObjects, camera);
+        }
+
+        protected override List<GameObject> CullAndSort(Scene scene, Camera camera)
+        {
+            var list = new List<GameObject>();
+            var viewBounds = new RectangleF(camera.Position.X, camera.Position.Y, camera.ViewSize.X, camera.ViewSize.Y);
+
+            foreach (var go in scene.GetRenderableGameObjects())
             {
-                if (gameObject.HasComponent<TextRenderer>())
-                {
-                    var textRenderer = gameObject.GetComponent<TextRenderer>();
-                    var transform = gameObject.GetComponent<TextTransform>();
+                if (!go.HasComponent<TextRenderer>() || !go.HasComponent<Transform>())
+                    continue;
 
-                    // Apply effects like dithering, glow, etc.
-                    string renderedText = TextEffects.CompositeEffect(textRenderer.GetRenderedData(), frame: 0/*TODO*/, new EffectConfig());
+                var transform = go.GetComponent<Transform>();
+                if (viewBounds.Contains(transform.GlobalPosition.X, transform.GlobalPosition.Y))
+                    list.Add(go);
 
-                    // Draw text on the screen
-                    TerminalDriver.DrawText(renderedText, transform.GlobalPosition);
-                }
+            }
+
+            //Gameobjects are already sorted by Z index, so no need to sort again.
+            return list;
+        }
+
+        protected override void Preprocess(List<GameObject> gameObjects, Camera camera)
+        {
+           //Preprocessing is handled mostly by the animation class already.
+           //For now, nothing to be done here.
+        }
+
+        protected override void Draw(List<GameObject> gameObjects, Camera camera)
+        {
+            //Render each gameobject
+            foreach (var go in gameObjects)
+            {
+                var renderer = go.GetComponent<TextRenderer>();
+                var transform = go.GetComponent<Transform>();
+
+                if (renderer == null || transform == null)
+                    continue;
+
+                Driver.Draw(renderer.GetRenderedData(), transform.GlobalPosition);
             }
         }
     }

@@ -1,13 +1,29 @@
 ﻿using TEngine.TMath;
+using TEngine.EngineManagement.Drivers;
 
 
 namespace TEngine.EngineManagement.RenderingEngines.Text
 {
-    internal class TerminalDriver
+    public class TerminalDriver : Driver<string>
     {
-        public static void DrawText(string text, Vector3 position)
+        public TerminalDriver Instance { get; private set; } = new TerminalDriver();
+        public override void Draw(string text, Vector3 position)
         {
+            // Convert position to screen coordinates (X, Y)
+            int x = (int)position.X;
+            int y = (int)position.Y;
 
+            // Save the current cursor position to restore later
+            var originalCursorPosition = Console.GetCursorPosition();
+
+            // Move the cursor to the specified position
+            Console.SetCursorPosition(x, y);
+
+            // Write the text at the specified position
+            Console.Write(text);
+
+            // Restore the original cursor position to avoid affecting the terminal's normal behavior
+            Console.SetCursorPosition(originalCursorPosition.Left, originalCursorPosition.Top);
         }
 
         // 🟩 Apply foreground color (text color)

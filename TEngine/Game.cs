@@ -9,7 +9,7 @@ namespace TEngine
     public abstract class Game
     {
         private bool isRunning = true;
-        private InputManager inputManager = new InputManager();
+        private InputManager inputManager = InputManager.Instance;
 
         public void Start()
         {
