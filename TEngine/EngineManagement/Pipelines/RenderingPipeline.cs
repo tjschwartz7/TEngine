@@ -3,43 +3,29 @@ using TEngine.EngineManagement.Scenes;
 using TEngine.GameObjects.Cameras;
 using TEngine.Components.Transforms;
 using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.Pipelines.Text;
-using TEngine.EngineManagement.Pipelines.T2D;
-using TEngine.EngineManagement.Pipelines.T3D;
-
+using TEngine.Services;
 
 namespace TEngine.EngineManagement.Pipelines
 {
+    public interface IRenderingPipeline
+    {
+        public void Render(Scene scene);
+
+        protected List<GameObject> CullAndSort(Scene scene, Camera camera);
+        protected void Preprocess(List<GameObject> gameObjects, Camera camera);
+        protected void Draw(List<GameObject> gameObjects, Camera camera);
+    }
 
     public abstract class RenderingPipeline
     {
-        public Driver Driver { get; set; } = null;
-        public static RenderingPipeline Default { get; private set; } = null;
-        public RenderingPipeline()
+        protected IDriverFactory DriverFactory { get; }
+
+        protected RenderingPipeline(IDriverFactory driverFactory)
         {
-            switch (Engine.GraphicSystem)
-            {
-                case GraphicSystem.Text:
-                    Default = new TextRenderingPipeline();
-                    break;
-                case GraphicSystem.T2D:
-                    Default = new T2DRenderingPipeline();
-                    break;
-                case GraphicSystem.T3D:
-                    Default = new T3DRenderingPipeline();
-                    break;
-                default:
-                    throw new NotImplementedException("Graphic system not implemented");
-            }
-
+            DriverFactory = driverFactory;
         }
-        public abstract void Render(Scene scene);
-
-        protected abstract List<GameObject> CullAndSort(Scene scene, Camera camera);
-        protected abstract void Preprocess(List<GameObject> gameObjects, Camera camera);
-        protected abstract void Draw(List<GameObject> gameObjects, Camera camera);
     }
+
 
 
 

@@ -10,7 +10,7 @@ using TEngine.TMath;
 using TEngine.Utils;
 using TEngine.EngineManagement;
 
-public abstract class GameObject
+public class GameObject
 {
     private static LifecycleManager LifecycleManagerInstance = LifecycleManager.Instance;
 
@@ -186,5 +186,10 @@ public abstract class GameObject
 
     // Optional: expose children/parent getters if needed
     public IReadOnlyList<GameObject> GetChildren() => Children.AsReadOnly();
+
+    public static GameObject Create()
+    {
+        return new GameObject();
+    }
 
 }

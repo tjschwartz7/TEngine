@@ -12,16 +12,20 @@ using TEngine.GameObjects.Cameras.Text;
 using System.Drawing;
 using TEngine.GameObjects.Cameras;
 using TEngine.Components.Transforms;
+using TEngine.EngineManagement.Drivers;
 
 namespace TEngine.EngineManagement.Pipelines.Text
 {
     public class TextRenderingPipeline : RenderingPipeline
     {
-        public TextRenderingPipeline()
+        private readonly IDriver<string> _driver;
+        public TextRenderingPipeline(IDriverFactory factory)
+        : base(factory)
         {
-            Driver = new TerminalDriver();
+            _driver = DriverFactory.Create<string>();
         }
-        public override void Render(Scene scene)
+
+        public void Render(Scene scene)
         {
             if (scene.MainCamera is not CameraText camera)
                 throw new InvalidOperationException("MainCamera is not CameraText");
@@ -31,7 +35,7 @@ namespace TEngine.EngineManagement.Pipelines.Text
             Draw(gameObjects, camera);
         }
 
-        protected override List<GameObject> CullAndSort(Scene scene, Camera camera)
+        protected List<GameObject> CullAndSort(Scene scene, Camera camera)
         {
             var list = new List<GameObject>();
             var viewBounds = new RectangleF(camera.Position.X, camera.Position.Y, camera.ViewSize.X, camera.ViewSize.Y);
@@ -51,13 +55,13 @@ namespace TEngine.EngineManagement.Pipelines.Text
             return list;
         }
 
-        protected override void Preprocess(List<GameObject> gameObjects, Camera camera)
+        protected void Preprocess(List<GameObject> gameObjects, Camera camera)
         {
            //Preprocessing is handled mostly by the animation class already.
            //For now, nothing to be done here.
         }
 
-        protected override void Draw(List<GameObject> gameObjects, Camera camera)
+        protected void Draw(List<GameObject> gameObjects, Camera camera)
         {
             //Render each gameobject
             foreach (var go in gameObjects)

@@ -16,7 +16,7 @@ namespace TEngine.EngineManagement.Scenes
         string name;
 
         private List<GameObject> gameObjects = new List<GameObject>();
-        public Camera MainCamera { get; set; } = null;
+        public Camera MainCamera { get; set; }
         private readonly GameObjectZIndexComparer comparer = new();
         public List<GameObject> GetRenderableGameObjects()
         {

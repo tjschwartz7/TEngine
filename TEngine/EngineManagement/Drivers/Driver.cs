@@ -6,31 +6,18 @@ using TEngine.EngineManagement.Drivers.T3D;
 
 namespace TEngine.EngineManagement.Drivers
 {
-    public abstract class Driver
+    public interface IDriver<T>
     {
-        public static Driver Default { get; private set; } = new TerminalDriver();
-
-        public Driver()
-        {
-            switch (Engine.GraphicSystem)
-            {
-                case GraphicSystem.Text:
-                    Default = new TerminalDriver();
-                    break;
-                case GraphicSystem.T2D:
-                    Default = new Driver2D();
-                    break;
-                case GraphicSystem.T3D:
-                    Default = new Driver3D();
-                    break;
-            }
-
-        }
+        void Draw(T drawable, Vector3 position);
     }
 
-    public abstract class Driver<T> : Driver
+    public abstract class DriverBase { }
+
+    public abstract class Driver<T> : DriverBase, IDriver<T>
     {
         public abstract void Draw(T drawable, Vector3 position);
 
     }
+
+
 }

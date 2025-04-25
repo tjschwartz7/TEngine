@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using TEngine.Utils;
 
-using TEngine.Components;
-using TEngine.Components.Renderers;
+using TEngine.Services;
 using TEngine.EngineManagement.Scenes;
 using TEngine.EngineManagement.Pipelines;
 
@@ -18,7 +17,7 @@ namespace TEngine.EngineManagement
         public static Engine Instance { get; private set; } = new Engine();
         public static GraphicSystem GraphicSystem { get; private set; } = GraphicSystem.Text;
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
-        public static RenderingPipeline Pipeline { get; private set; } = RenderingPipeline.Default;
+        public static IRenderingPipeline Pipeline { get; private set; } 
 
 
         private float targetFps = 5f; // Target FPS    
@@ -57,6 +56,8 @@ namespace TEngine.EngineManagement
             fpsStepTarget = 1000f / targetFps; // Calculate the time step for FPS tracking
             upsStepTarget = 1000f / targetUps; // Calculate the time step for UPS tracking
 
+            // Initialize the rendering pipeline
+            Pipeline = RenderingPipelineService.Get();
 
             if (Instance != null)
             {
