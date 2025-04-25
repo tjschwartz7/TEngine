@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using TEngine.Utils;
 
 using TEngine.Services;
 using TEngine.EngineManagement.Scenes;
 using TEngine.EngineManagement.Pipelines;
+using TEngine.Utils.Configurations;
 
 namespace TEngine.EngineManagement
 {
@@ -42,6 +40,10 @@ namespace TEngine.EngineManagement
         Engine()
         {
             EventManager.Instance.Subscribe("QUIT", OnQuit);
+
+            // Initialize the graphics system
+            GraphicSystem system = 
+            SetRenderer(GraphicSystem.Text); // Default to Text rendering system
 
             // Initialize time tracking variables
             fixedUpdateAccumulator = 0f;
@@ -202,11 +204,5 @@ namespace TEngine.EngineManagement
             this.targetFps = targetFps; 
             upsStepTarget = 1f / targetUps; 
         }
-    }
-    public enum GraphicSystem
-    {
-        Text,
-        T2D,
-        T3D
     }
 }

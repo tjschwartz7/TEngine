@@ -1,23 +1,30 @@
-﻿using TEngine.EngineManagement.Scenes;
+﻿using TEngine.EngineManagement.Drivers;
+using TEngine.EngineManagement.Scenes;
 using TEngine.GameObjects.Cameras;
 
 namespace TEngine.EngineManagement.Pipelines.T3D
 {
     public class T3DRenderingPipeline : RenderingPipeline
     {
-        public void Render(Scene scene)
+        private readonly IDriver<string> _driver;
+        public T3DRenderingPipeline(IDriverFactory factory)
+        : base(factory)
+        {
+            _driver = DriverFactory.Create<string>();
+        }
+        public override void Render(Scene scene)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }
-        protected List<GameObject> CullAndSort(Scene scene, Camera camera)
+        public override List<GameObject> CullAndSort(Scene scene, Camera camera)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }
-        protected void Preprocess(List<GameObject> gameObjects, Camera camera)
+        public override void Preprocess(List<GameObject> gameObjects, Camera camera)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }
-        protected void Draw(List<GameObject> gameObjects, Camera camera)
+        public override void Draw(List<GameObject> gameObjects, Camera camera)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }

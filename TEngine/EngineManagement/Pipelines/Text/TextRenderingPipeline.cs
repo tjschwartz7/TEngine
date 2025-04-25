@@ -25,7 +25,7 @@ namespace TEngine.EngineManagement.Pipelines.Text
             _driver = DriverFactory.Create<string>();
         }
 
-        public void Render(Scene scene)
+        public override void Render(Scene scene)
         {
             if (scene.MainCamera is not CameraText camera)
                 throw new InvalidOperationException("MainCamera is not CameraText");
@@ -35,7 +35,7 @@ namespace TEngine.EngineManagement.Pipelines.Text
             Draw(gameObjects, camera);
         }
 
-        protected List<GameObject> CullAndSort(Scene scene, Camera camera)
+        public override List<GameObject> CullAndSort(Scene scene, Camera camera)
         {
             var list = new List<GameObject>();
             var viewBounds = new RectangleF(camera.Position.X, camera.Position.Y, camera.ViewSize.X, camera.ViewSize.Y);
@@ -55,13 +55,13 @@ namespace TEngine.EngineManagement.Pipelines.Text
             return list;
         }
 
-        protected void Preprocess(List<GameObject> gameObjects, Camera camera)
+        public override void Preprocess(List<GameObject> gameObjects, Camera camera)
         {
            //Preprocessing is handled mostly by the animation class already.
            //For now, nothing to be done here.
         }
 
-        protected void Draw(List<GameObject> gameObjects, Camera camera)
+        public override void Draw(List<GameObject> gameObjects, Camera camera)
         {
             //Render each gameobject
             foreach (var go in gameObjects)
@@ -72,7 +72,7 @@ namespace TEngine.EngineManagement.Pipelines.Text
                 if (renderer == null || transform == null)
                     continue;
 
-                Driver.Draw(renderer.GetRenderedData(), transform.GlobalPosition);
+                _driver.Draw(renderer.GetRenderedData(), transform.GlobalPosition);
             }
         }
     }
