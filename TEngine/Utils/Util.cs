@@ -11,7 +11,7 @@ namespace TEngine.Utils
 
     public record Layer(int number, string name);
     public record Tag(string name);
-    public record EngineConfig(GraphicSystem system)
+    public record EngineConfig(GraphicSystem system);
     public enum GraphicSystem
     {
         Text,

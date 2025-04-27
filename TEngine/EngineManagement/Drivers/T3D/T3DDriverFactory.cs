@@ -11,6 +11,7 @@ namespace TEngine.EngineManagement.Drivers.T3D
     {
         public IDriver<T> Create<T>()
         {
+            throw new NotImplementedException("T3DDriverFactory is not implemented yet.");
             if (typeof(T) == typeof(string)) /*!TODO: Change drawable type*/
                 return (IDriver<T>)(object)new Driver3D(); // cast safely
             throw new NotSupportedException($"Unsupported drawable type {typeof(T)} for T3DDriverFactory");

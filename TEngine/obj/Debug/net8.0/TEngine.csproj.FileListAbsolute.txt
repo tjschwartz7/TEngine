@@ -131,3 +131,4 @@ C:\Users\tjsch\source\repos\TEngine2.0\TEngine\bin\Debug\net8.0\runtimes\win\lib
 C:\Users\tjsch\source\repos\TEngine2.0\TEngine\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
 C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.csproj.Up2Date
 C:\Users\tjsch\source\repos\TEngine2.0\TEngine\obj\Debug\net8.0\TEngine.genruntimeconfig.cache
+C:\Users\tjsch\source\repos\TEngine2.0\TEngine\bin\Debug\net8.0\TEngine.dll.config

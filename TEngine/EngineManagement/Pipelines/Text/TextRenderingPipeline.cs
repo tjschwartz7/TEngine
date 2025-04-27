@@ -13,16 +13,17 @@ using System.Drawing;
 using TEngine.GameObjects.Cameras;
 using TEngine.Components.Transforms;
 using TEngine.EngineManagement.Drivers;
+using TEngine.Services;
+using TEngine.Components.Graphics;
 
 namespace TEngine.EngineManagement.Pipelines.Text
 {
     public class TextRenderingPipeline : RenderingPipeline
     {
         private readonly IDriver<string> _driver;
-        public TextRenderingPipeline(IDriverFactory factory)
-        : base(factory)
+        public TextRenderingPipeline()
         {
-            _driver = DriverFactory.Create<string>();
+            _driver = DriverService.Get<string>();
         }
 
         public override void Render(Scene scene)
@@ -42,7 +43,7 @@ namespace TEngine.EngineManagement.Pipelines.Text
 
             foreach (var go in scene.GetRenderableGameObjects())
             {
-                if (!go.HasComponent<TextRenderer>() || !go.HasComponent<Transform>())
+                if (!go.HasComponent<Graphic>() || !go.HasComponent<Transform>())
                     continue;
 
                 var transform = go.GetComponent<Transform>();

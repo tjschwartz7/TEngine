@@ -1,15 +1,15 @@
 ﻿using TEngine.EngineManagement.Drivers;
 using TEngine.EngineManagement.Scenes;
 using TEngine.GameObjects.Cameras;
+using TEngine.Services;
 namespace TEngine.EngineManagement.Pipelines.T2D
 {
     public class T2DRenderingPipeline : RenderingPipeline
     {
         private readonly IDriver<string> _driver;
-        public T2DRenderingPipeline(IDriverFactory factory)
-        : base(factory)
+        public T2DRenderingPipeline()
         {
-            _driver = DriverFactory.Create<string>();
+            _driver = DriverService.Get<string>();
         }
         public override void Render(Scene scene)
         {

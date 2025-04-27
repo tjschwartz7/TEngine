@@ -13,7 +13,7 @@ namespace TEngine.EngineManagement.Pipelines.Text
     {
         public IRenderingPipeline Create()
         {
-            return (IRenderingPipeline)(object)new T2DRenderingPipeline(); // cast safely
+            throw new NotImplementedException();
         }
     }
 }

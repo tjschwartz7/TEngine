@@ -5,6 +5,7 @@ using TEngine.Services;
 using TEngine.EngineManagement.Scenes;
 using TEngine.EngineManagement.Pipelines;
 using TEngine.Utils.Configurations;
+using TEngine.Utils.Configurations.NETConfig;
 
 namespace TEngine.EngineManagement
 {
@@ -42,8 +43,13 @@ namespace TEngine.EngineManagement
             EventManager.Instance.Subscribe("QUIT", OnQuit);
 
             // Initialize the graphics system
-            GraphicSystem system = 
-            SetRenderer(GraphicSystem.Text); // Default to Text rendering system
+            GraphicSystem system = NETConfigLoader.Load("Config/app.config").system;
+            SetRenderer(system);
+
+            CameraService.Initialize();
+            DriverService.Initialize();
+            RenderingPipelineService.Initialize();
+
 
             // Initialize time tracking variables
             fixedUpdateAccumulator = 0f;
@@ -58,8 +64,8 @@ namespace TEngine.EngineManagement
             fpsStepTarget = 1000f / targetFps; // Calculate the time step for FPS tracking
             upsStepTarget = 1000f / targetUps; // Calculate the time step for UPS tracking
 
-            // Initialize the rendering pipeline
             Pipeline = RenderingPipelineService.Get();
+
 
             if (Instance != null)
             {
@@ -75,7 +81,7 @@ namespace TEngine.EngineManagement
         }
 
         // Set the rendering type (Text, T2D, or T3D)
-        public void SetRenderer(GraphicSystem type)
+        private void SetRenderer(GraphicSystem type)
         {
             GraphicSystem = type;
         }

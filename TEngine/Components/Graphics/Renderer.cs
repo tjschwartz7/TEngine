@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Animations;
 
-namespace TEngine.Components.Renderers
+namespace TEngine.Components.Graphics
 {
     public abstract class Renderer : Component
     {

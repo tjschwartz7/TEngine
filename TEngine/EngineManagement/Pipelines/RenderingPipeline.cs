@@ -18,14 +18,13 @@ namespace TEngine.EngineManagement.Pipelines
 
     public abstract class RenderingPipeline : IRenderingPipeline
     {
-        protected IDriverFactory DriverFactory { get; }
         public abstract void Render(Scene scene);
         public abstract void Preprocess(List<GameObject> gameObjects, Camera camera);
         public abstract void Draw(List<GameObject> gameObjects, Camera camera);
         public abstract List<GameObject> CullAndSort(Scene scene, Camera camera);
-        protected RenderingPipeline(IDriverFactory driverFactory)
+        protected RenderingPipeline()
         {
-            DriverFactory = driverFactory;
+
         }
     }
 

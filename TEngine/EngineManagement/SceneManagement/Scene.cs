@@ -8,6 +8,7 @@ using TEngine.GameObjects.Cameras;
 using TEngine.GameObjects.Cameras.Text;
 using TEngine.GameObjects.Comparers;
 using TEngine;
+using TEngine.Services;
 
 namespace TEngine.EngineManagement.Scenes
 {
@@ -16,7 +17,7 @@ namespace TEngine.EngineManagement.Scenes
         string name;
 
         private List<GameObject> gameObjects = new List<GameObject>();
-        public Camera MainCamera { get; set; }
+        public ICamera MainCamera { get; set; }
         private readonly GameObjectZIndexComparer comparer = new();
         public List<GameObject> GetRenderableGameObjects()
         {
@@ -31,8 +32,7 @@ namespace TEngine.EngineManagement.Scenes
         public Scene(string name)
         {
             this.name = name;
-
-            MainCamera = Camera.Default;
+            MainCamera = CameraService.Get();
 
         }
 

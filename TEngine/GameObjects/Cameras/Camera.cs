@@ -13,7 +13,7 @@ using TEngine.EngineManagement;
 
 namespace TEngine.GameObjects.Cameras
 {
-    public abstract class Camera : GameObject
+    public abstract class Camera : GameObject, ICamera
     {
         public RenderType RenderType { get; set; } = RenderType.Base;
 
@@ -26,8 +26,6 @@ namespace TEngine.GameObjects.Cameras
 
         public Vector3 Position = Vector3.zero; // Top-left world coordinate in view
         public Vector2 ViewSize = new(Console.WindowWidth, Console.WindowHeight);
-
-        public static Camera Default { get; private set; } = new CameraText();
 
         public float Zoom { get; set; } = 1f; // 1 = normal, >1 = zoom in, <1 = zoom out
 
@@ -51,18 +49,6 @@ namespace TEngine.GameObjects.Cameras
             Volumes = new VolumeSettings(VolumeUpdateMode.EveryFrame, 0, null);
             Output = new OutputSettings(0, TargetEye.Both, new Rect(0, 0, Console.WindowWidth, Console.WindowHeight), false, false, false);
 
-            switch (Engine.GraphicSystem)
-            {
-                case GraphicSystem.Text:
-                    Default = new CameraText();
-                    break;
-                case GraphicSystem.T2D:
-                    Default = new Camera2D();
-                    break;
-                case GraphicSystem.T3D:
-                    Default = new Camera3D();
-                    break;
-            }
         }
 
         public bool IsVisible(Vector3 position)
@@ -82,6 +68,10 @@ namespace TEngine.GameObjects.Cameras
         public record RenderingSettings(GraphicSystem Renderer, bool PostProcessing, bool Glow, bool Dithering, bool RenderShadows, int Priority, bool OpaqueTexture);
         public record StackSettings(List<Camera> Cameras);
         public record VolumeSettings(VolumeUpdateMode UpdateMode, int VolumeMask, object VolumeTrigger);
+    }
+
+    public interface ICamera
+    {
     }
 
     public enum RenderType

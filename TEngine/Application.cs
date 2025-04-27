@@ -15,7 +15,7 @@ namespace TEngine
         public static void Start()
         {
 
-            
+            _gameEngine.Start();
         }
 
         public static void Run()

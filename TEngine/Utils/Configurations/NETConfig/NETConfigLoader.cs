@@ -4,16 +4,16 @@ using TEngine.Utils;
 
 namespace TEngine.Utils.Configurations.NETConfig
 {
-    public class NETConfigLoader : ConfigLoader<EngineConfig>
+    public class NETConfigLoader
     {
-        public override EngineConfig Load(string path)
+        public static EngineConfig Load(string path)
         {
             var graphicSystem = ConfigurationManager.AppSettings["Rendering:GraphicSystem"];
 
             if (graphicSystem == null)
                 throw new ConfigurationErrorsException("Missing Rendering:GraphicSystem in app.config");
 
-            GraphicSystem system= = GraphicSystem.Text;
+            GraphicSystem system = GraphicSystem.Text;
             switch (graphicSystem)
             {
                 case "Text":

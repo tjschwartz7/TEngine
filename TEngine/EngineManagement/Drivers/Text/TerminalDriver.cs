@@ -6,7 +6,6 @@ namespace TEngine.EngineManagement.RenderingEngines.Text
 {
     public class TerminalDriver : Driver<string>
     {
-        public TerminalDriver Instance { get; private set; } = new TerminalDriver();
         public override void Draw(string text, Vector3 position)
         {
             // Convert position to screen coordinates (X, Y)

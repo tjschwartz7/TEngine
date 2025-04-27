@@ -11,6 +11,7 @@ namespace TEngine.EngineManagement.Drivers.T2D
     {
         public IDriver<T> Create<T>()
         {
+            throw new NotImplementedException("T2DDriverFactory is not implemented yet.");
             if (typeof(T) == typeof(string)) /*!TODO: Change drawable type*/
                 return (IDriver<T>)(object)new Driver2D(); // cast safely
             throw new NotSupportedException($"Unsupported drawable type {typeof(T)} for T2DDriverFactory");
