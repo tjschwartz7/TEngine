@@ -22,6 +22,7 @@ namespace TEngine.EngineManagement.Pipelines
         public abstract void Preprocess(List<GameObject> gameObjects, Camera camera);
         public abstract void Draw(List<GameObject> gameObjects, Camera camera);
         public abstract List<GameObject> CullAndSort(Scene scene, Camera camera);
+        public IDriver<DrawCommand> Driver { get; } = DriverService.Get<DrawCommand>();
         protected RenderingPipeline()
         {
 

@@ -56,11 +56,26 @@ public class GameObject
     public T AddComponent<T>() where T : Component, new()
     {
         var component = new T();
-        component.Awake();  
-        component.Owner = this;
-        component.OnAttach();
-        _components[typeof(T)] = component;
-        return component;
+        //If the component is not already attached to the GameObject,
+        if (!HasComponent<T>())
+        {
+            // Set up the component
+            component.Awake();
+            component.Owner = this;
+            component.OnAttach();
+            // and add it to the components list.
+            _components[typeof(T)] = component;
+
+            //Return the newly attached component
+            return component;
+        }
+        // If the component already exists, 
+        else
+        {
+            //return the existing one.
+            //Ignore the warning, this case only is reached if the component exists.
+            return GetComponent<T>();
+        }
     }
 
     // Add a MonoBehavior component

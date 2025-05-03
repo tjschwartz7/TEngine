@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.Utils;
 
-namespace TEngine.Components.Graphics
+namespace TEngine.Assets
 {
-    public interface IVisualData
+    public class Material
     {
+        public static Material Default { get; } = new Material();
     }
 }

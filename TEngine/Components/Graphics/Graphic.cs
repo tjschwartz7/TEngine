@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using TEngine.EngineManagement;
 using TEngine.TMath;
 
 namespace TEngine.Components.Graphics
@@ -22,6 +23,11 @@ namespace TEngine.Components.Graphics
         }
 
         // Abstract method for all Graphics to implement
-        public abstract void Render();
+        public abstract void Draw(CanvasContext ctx); //!TODO
+    }
+
+    interface IGraphicsDriver
+    {
+        void Render(IReadOnlyList<DrawCommand> commands);
     }
 }

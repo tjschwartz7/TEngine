@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.Utils;
 
-namespace TEngine.Components.Graphics
+namespace TEngine.Assets.UI
 {
-    public interface IVisualData
+    public enum TextAlignment
     {
+        Left,
+        Center,
+        Right,
+        Justify
     }
 }

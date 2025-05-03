@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEngine.Components.Layouts.Text
+namespace TEngine.Components.UI
 {
-    public class TextCanvas
+    public interface IUIComponent
     {
-
     }
 }
