@@ -2,7 +2,7 @@
 
 namespace TEngine.Components.Animations.Text
 {
-    public class RippleDithering : Animation<string>
+    public class RippleDithering : TextAnimation
     {
         public override string Apply(string input)
         {

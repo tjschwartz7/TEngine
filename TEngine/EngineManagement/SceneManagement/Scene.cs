@@ -3,56 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.Components.Renderers;
-using TEngine.GameObjects.Cameras;
-using TEngine.GameObjects.Cameras.Text;
-using TEngine.GameObjects.Comparers;
-using TEngine;
-using TEngine.Services;
+using TEngine.Components.Rendering;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Comparers;
+using TEngine.EngineManagement.AssetManagement;
 
 namespace TEngine.EngineManagement.Scenes
 {
     public class Scene
     {
-        string name;
+        public string name;
 
-        private List<GameObject> gameObjects = new List<GameObject>();
+        private HashSet<int> gameObjectIDs = new HashSet<int>();
         public ICamera MainCamera { get; set; }
         private readonly GameObjectZIndexComparer comparer = new();
-        public List<GameObject> GetRenderableGameObjects()
-        {
-            return gameObjects.Where(go => go.HasComponent<Renderer>()).ToList();
-        }
 
-        public List<GameObject> GetAllObjects()
+        public HashSet<int> GetAllObjectIDs()
         {
-            return gameObjects;
+            return gameObjectIDs;
         }
 
         public Scene(string name)
         {
             this.name = name;
-            MainCamera = CameraService.Get();
+            MainCamera = AssetManager.Instance.CreateCamera("MainCamera", "MainCamera");
+            
 
         }
 
         public void AddGameObject(GameObject gameObject)
         {
-            int index = gameObjects.BinarySearch(gameObject, comparer);
-            if (index < 0) index = ~index; // bitwise complement gives insert index
-            gameObjects.Insert(index, gameObject);
+            gameObjectIDs.Add(gameObject.ID);
         }
 
         public void RemoveGameObject(GameObject gameObject)
         {
-            gameObjects.Remove(gameObject);
+            gameObjectIDs.Remove(gameObject.ID);
         }
 
         public void AddGameObjects(List<GameObject> gameObjects)
         {
             foreach (var gameObject in gameObjects)
             {
-                this.gameObjects.Add(gameObject);
+                this.gameObjectIDs.Add(gameObject.ID);
             }
         }
     }

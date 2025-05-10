@@ -15,6 +15,7 @@ namespace TEngine.EngineManagement
          
         public static Engine Instance { get; private set; } = new Engine();
         public static GraphicSystem GraphicSystem { get; private set; } = GraphicSystem.Text;
+        public static Resolution Resolution { get; private set; } = Resolution.R80x25;
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
         public static IRenderingPipeline Pipeline { get; private set; } 
 
@@ -43,8 +44,11 @@ namespace TEngine.EngineManagement
             EventManager.Instance.Subscribe("QUIT", OnQuit);
 
             // Initialize the graphics system
-            GraphicSystem system = NETConfigLoader.Load("Config/app.config").system;
+            var config = NETConfigLoader.Load("Config/app.config");
+            GraphicSystem system = config.system;
+            Resolution resolution = config.resolution;
             SetRenderer(system);
+            SetResolution(resolution);
 
             CameraService.Initialize();
             DriverService.Initialize();
@@ -85,6 +89,11 @@ namespace TEngine.EngineManagement
         {
             GraphicSystem = type;
         }
+
+        private void SetResolution(Resolution resolution)
+        {
+            Resolution = resolution;
+        }   
 
         public void Start()
         {

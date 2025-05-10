@@ -41,14 +41,10 @@ namespace TEngine.EngineManagement.Scenes
             activeScene = name;
         }
 
-        public List<GameObject> GetRenderableGameObjects()
-        {
-            return scenes[activeScene].GetRenderableGameObjects();
-        }
 
-        public List<GameObject> GetAllGameObjects()
+        public HashSet<int> GetAllActiveGameObjectIDs()
         {
-            return scenes[activeScene].GetAllObjects();
+            return scenes[activeScene].GetAllObjectIDs();
         }
 
         public Scene GetActiveScene()

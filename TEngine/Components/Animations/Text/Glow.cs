@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Animations.Text
 {
-    public class Glow : Animation<string>
+    public class Glow : TextAnimation
     {
         public override string Apply(string target)
         {

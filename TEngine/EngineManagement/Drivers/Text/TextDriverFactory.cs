@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.EngineManagement.Commands;
 using TEngine.EngineManagement.RenderingEngines.Text;
 
 namespace TEngine.EngineManagement.Drivers.Text
@@ -11,7 +12,7 @@ namespace TEngine.EngineManagement.Drivers.Text
     {
         public IDriver<T> Create<T>()
         {
-            if (typeof(T) == typeof(string))
+            if (typeof(T) == typeof(DrawCommand))
                 return (IDriver<T>)(object)new TerminalDriver(); // cast safely
             throw new NotSupportedException($"Unsupported drawable type {typeof(T)} for TextDriverFactory");
         }

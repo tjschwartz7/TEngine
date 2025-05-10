@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.Components.Renderers;
+using TEngine.Components.Rendering;
+using TEngine.EngineManagement.Commands;
 
 namespace TEngine.Components.Animations
 {
@@ -35,22 +37,5 @@ namespace TEngine.Components.Animations
             // Can be overridden with actual frame limits
             return false;
         }
-
-        public abstract T Apply(T target); // Or overload this depending on use-case
-
-        public override void Update()
-        {
-            base.Update();
-
-            if (IsPlaying)
-            {
-                Tick();
-                if(HasComponent<Renderer<T>>())
-                {
-                    Apply(GetComponent<Renderer<T>>().RenderData); // Replace with actual target
-                }
-            }
-        }
     }
-
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.GameObjects.Cameras;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 
 namespace TEngine.Services
 {
@@ -31,12 +31,12 @@ namespace TEngine.Services
         /// <summary>
         /// Returns a driver for the specified drawable type.
         /// </summary>
-        public static ICamera Get()
+        public static ICamera Get(int id, string name, string tag)
         {
             if (_factory == null)
                 throw new InvalidOperationException("DriverService is not initialized. Call Initialize() first.");
 
-            return _factory.Create();
+            return _factory.Create(id, name, tag);
         }
     }
 }

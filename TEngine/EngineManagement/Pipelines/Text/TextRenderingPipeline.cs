@@ -1,81 +1,83 @@
-﻿using System;
-using TEngine.Components.Transforms.Text;
-using TEngine.Components.Animations.Text;
-using TEngine.Components.Renderers.Text;
-using TEngine.EngineManagement.RenderingEngines.Text;
-
-using TEngine.GameObjects;
-using TEngine.EngineManagement.Drivers.Text;
-using TEngine.EngineManagement.Pipelines;
+﻿using TEngine.Components.Rendering;
 using TEngine.EngineManagement.Scenes;
-using TEngine.GameObjects.Cameras.Text;
 using System.Drawing;
-using TEngine.GameObjects.Cameras;
-using TEngine.Components.Transforms;
 using TEngine.EngineManagement.Drivers;
 using TEngine.Services;
-using TEngine.Components.Graphics;
+using TEngine.Components.UI.Layouts;
+using TEngine.EngineManagement.Commands;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
 
 namespace TEngine.EngineManagement.Pipelines.Text
 {
+
+
     public class TextRenderingPipeline : RenderingPipeline
     {
-        private readonly IDriver<string> _driver;
+        private readonly IDriver<DrawCommand> _driver;
+
         public TextRenderingPipeline()
         {
-            _driver = DriverService.Get<string>();
+            _driver = DriverService.Get<DrawCommand>();
         }
 
+        // Override the Render method to use DrawCommands instead of GameObjects.
         public override void Render(Scene scene)
         {
             if (scene.MainCamera is not CameraText camera)
                 throw new InvalidOperationException("MainCamera is not CameraText");
 
-            var gameObjects = CullAndSort(scene, camera);
-            Preprocess(gameObjects, camera);
-            Draw(gameObjects, camera);
+            var drawCommands = CullAndSort(scene, camera);
+            Preprocess(drawCommands, camera);
+            Draw(drawCommands, camera);
         }
 
-        public override List<GameObject> CullAndSort(Scene scene, Camera camera)
+        // This method now collects DrawCommands rather than GameObjects.
+        public override List<DrawCommand> CullAndSort(Scene scene, Camera camera)
         {
-            var list = new List<GameObject>();
+            var drawCommands = new List<DrawCommand>();
             var viewBounds = new RectangleF(camera.Position.X, camera.Position.Y, camera.ViewSize.X, camera.ViewSize.Y);
 
+            // Iterate over all renderable game objects to generate draw commands.
             foreach (var go in scene.GetRenderableGameObjects())
             {
-                if (!go.HasComponent<Graphic>() || !go.HasComponent<Transform>())
+                //The TextPipeline is only for UI elements,
+                // meaning all of the renderables need to have a RectTransform and a Renderer component.
+                if (!go.HasComponent<Renderer>() || !go.HasComponent<RectTransform>())
                     continue;
 
-                var transform = go.GetComponent<Transform>();
-                if (viewBounds.Contains(transform.GlobalPosition.X, transform.GlobalPosition.Y))
-                    list.Add(go);
+                var transform = go.GetComponent<RectTransform>();
+                var renderer = go.GetComponent<Renderer>();
 
+                // If the GameObject is within the camera view, create a DrawCommand.
+                if (viewBounds.Contains(transform.GlobalPosition.X, transform.GlobalPosition.Y))
+                {
+                    var drawCommand = renderer.GetDrawCommands();
+                    drawCommands.AddRange(drawCommand);
+                }
             }
 
-            //Gameobjects are already sorted by Z index, so no need to sort again.
-            return list;
+            // Sorting can be added if needed, based on layers or other criteria.
+            return drawCommands;
         }
 
-        public override void Preprocess(List<GameObject> gameObjects, Camera camera)
+        // Preprocess draw commands if needed. In this case, we're keeping it simple.
+        public override void Preprocess(List<DrawCommand> drawCommands, Camera camera)
         {
-           //Preprocessing is handled mostly by the animation class already.
-           //For now, nothing to be done here.
+            // For now, there's nothing special to preprocess.
+            // If animations, shaders, or transformations are applied, it could go here.
         }
 
-        public override void Draw(List<GameObject> gameObjects, Camera camera)
+        // Draw the collected DrawCommands to the screen.
+        public override void Draw(List<DrawCommand> drawCommands, Camera camera)
         {
-            //Render each gameobject
-            foreach (var go in gameObjects)
+            foreach (var drawCommand in drawCommands)
             {
-                var renderer = go.GetComponent<TextRenderer>();
-                var transform = go.GetComponent<Transform>();
-
-                if (renderer == null || transform == null)
-                    continue;
-
-                _driver.Draw(renderer.GetRenderedData(), transform.GlobalPosition);
+                _driver.Draw(drawCommand);
             }
         }
     }
-
 }
+
+
+

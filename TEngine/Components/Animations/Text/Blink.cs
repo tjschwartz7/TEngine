@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Animations.Text
 {
-    public class Blink : Animation<string>
+    public class Blink : TextAnimation
     {
         public uint Speed = 5;
         public uint BlinkRate = 30;

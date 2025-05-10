@@ -1,16 +1,17 @@
 ﻿using TEngine.TMath;
 using TEngine.EngineManagement.Drivers;
+using TEngine.EngineManagement.Commands;
 
 
 namespace TEngine.EngineManagement.RenderingEngines.Text
 {
-    public class TerminalDriver : Driver<string>
+    public class TerminalDriver : Driver
     {
-        public override void Draw(string text, Vector3 position)
+        public override void Draw(DrawCommand cmd)
         {
             // Convert position to screen coordinates (X, Y)
-            int x = (int)position.X;
-            int y = (int)position.Y;
+            int x = (int)cmd.Position.X;
+            int y = (int)cmd.Position.Y;
 
             // Save the current cursor position to restore later
             var originalCursorPosition = Console.GetCursorPosition();
@@ -19,7 +20,23 @@ namespace TEngine.EngineManagement.RenderingEngines.Text
             Console.SetCursorPosition(x, y);
 
             // Write the text at the specified position
-            Console.Write(text);
+            if(cmd.TextAttr != null)
+            {
+                // Apply background color if specified
+                if (cmd.TextAttr.WinBackgroundColor != ConsoleColor.Black)
+                {
+                    Console.BackgroundColor = cmd.TextAttr.WinBackgroundColor;
+                }
+                // Apply foreground color if specified
+                if (cmd.TextAttr.WinForegroundColor != ConsoleColor.White)
+                {
+                    Console.ForegroundColor = cmd.TextAttr.WinForegroundColor;
+                }
+            }
+
+            Console.Write(cmd.TextValue);
+            // Reset colors to default
+            Console.ResetColor();
 
             // Restore the original cursor position to avoid affecting the terminal's normal behavior
             Console.SetCursorPosition(originalCursorPosition.Left, originalCursorPosition.Top);

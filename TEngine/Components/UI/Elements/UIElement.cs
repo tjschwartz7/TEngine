@@ -1,21 +1,60 @@
-﻿using TEngine.Components.UI.Layouts;
+﻿using System.Diagnostics.Metrics;
+using System.Reflection.Metadata;
+using TEngine.Components.UI.Layouts;
+using TEngine.EngineManagement.Commands;
 
 namespace TEngine.Components.UI.Elements
 {
-    public class UIElement : Component, IUIComponent
+    public abstract class UIElement : RenderableComponent
     {
-        public UIElement()
-        {
-            // Initialize if needed
-            Owner?.AddComponent<RectTransform>();
-        }
-        public bool Visible { get; set; } = true;
-        public bool IsDirty { get; set; } = true;
+        private CanvasContext? context; 
+        public bool IsActive { get; private set; } = true; // Add a flag to control visibility
 
-        // This method will be called to draw the UI element
-        public virtual void Draw(CanvasContext context)
+        public override void OnEnable()
         {
-            // Implement drawing logic here
+            base.OnEnable();
+            RegisterToNearestCanvas();
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            UnregisterFromCanvas();
+        }
+
+        private void RegisterToNearestCanvas()
+        {
+            var current = Owner;
+            while (current != null)
+            {
+                if (current.HasComponent<Canvas>())
+                {
+                    context = current.GetComponent<Canvas>().Context;
+                    context.Register(this);
+                    IsActive = true; // Set active when registered
+                    break;
+                }
+
+                current = current.Parent;
+            }
+        }
+
+        private void UnregisterFromCanvas()
+        {
+            context?.Unregister(this);
+            IsActive = false; // Set to inactive when unregistered
+            context = null;
+        }
+
+        // Override Render method to respect IsActive flag
+        public override List<DrawCommand> GetDrawCommands()
+        {
+            if (!IsActive)
+                return new List<DrawCommand>(); // Don't return any commands if inactive
+
+            // If active, proceed to generate the draw commands
+            return new List<DrawCommand>(); // Replace with actual draw command generation logic
         }
     }
+
 }

@@ -4,9 +4,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEngine.EngineManagement.Commands;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 
 namespace TEngine.Components
 {
+
     public abstract class Component : IDisposable
     {
         public Component()

@@ -6,11 +6,5 @@ using System.Threading.Tasks;
 
 namespace TEngine.GoneMedieval.Player
 {
-    public class Player : GameObject
-    {
-        public Player(int x, int y, char symbol)
-        {
-            
-        }
-    }
+
 }

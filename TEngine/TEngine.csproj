@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GoneMedieval\GameObjects\" />
+    <Folder Include="GoneMedieval\Assets\UI\" />
+    <Folder Include="Components\Agent\" />
     <Folder Include="GoneMedieval\Levels\Scenes\" />
   </ItemGroup>
 

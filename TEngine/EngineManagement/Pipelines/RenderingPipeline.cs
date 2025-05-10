@@ -1,27 +1,27 @@
 ﻿
 using TEngine.EngineManagement.Scenes;
-using TEngine.GameObjects.Cameras;
-using TEngine.Components.Transforms;
+using TEngine.EngineManagement.Commands;
 using TEngine.EngineManagement.Drivers;
 using TEngine.Services;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 
 namespace TEngine.EngineManagement.Pipelines
 {
     public interface IRenderingPipeline
     {
-        public void Render(Scene scene);
+        public void Render(List<DrawCommand> scene);
 
-        protected List<GameObject> CullAndSort(Scene scene, Camera camera);
-        protected void Preprocess(List<GameObject> gameObjects, Camera camera);
-        protected void Draw(List<GameObject> gameObjects, Camera camera);
+        protected List<DrawCommand> CullAndSort(List<DrawCommand> scene, Camera camera);
+        protected void Preprocess(List<DrawCommand> commands, Camera camera);
+        protected void Draw(List<DrawCommand> commands, Camera camera);
     }
 
     public abstract class RenderingPipeline : IRenderingPipeline
     {
-        public abstract void Render(Scene scene);
-        public abstract void Preprocess(List<GameObject> gameObjects, Camera camera);
-        public abstract void Draw(List<GameObject> gameObjects, Camera camera);
-        public abstract List<GameObject> CullAndSort(Scene scene, Camera camera);
+        public abstract void Render(List<DrawCommand> scene);
+        public abstract void Preprocess(List<DrawCommand> drawCommands, Camera camera);
+        public abstract void Draw(List<DrawCommand> drawCommands, Camera camera);
+        public abstract List<DrawCommand> CullAndSort(List<DrawCommand> scene, Camera camera);
         public IDriver<DrawCommand> Driver { get; } = DriverService.Get<DrawCommand>();
         protected RenderingPipeline()
         {

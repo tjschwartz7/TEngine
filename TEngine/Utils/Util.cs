@@ -8,14 +8,20 @@ using TEngine.EngineManagement.Pipelines;
 
 namespace TEngine.Utils
 {
-
-    public record Layer(int number, string name);
-    public record Tag(string name);
-    public record EngineConfig(GraphicSystem system);
+    public record EngineConfig(GraphicSystem system, Resolution resolution);
     public enum GraphicSystem
     {
         Text,
         T2D,
         T3D
     }
+
+    public enum Resolution
+    {
+        R80x25,
+        R100x30,
+        R120x40,
+        R160x50
+    }
+
 }

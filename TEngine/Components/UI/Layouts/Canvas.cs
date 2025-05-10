@@ -1,32 +1,50 @@
-﻿using TEngine.Components.Transforms;
+﻿using TEngine.EngineManagement.Commands;
 using TEngine.Components.UI.Elements;
 
 namespace TEngine.Components.UI.Layouts
 {
-    // Canvas is a container for UI elements
-    public class Canvas : Component, IUIComponent
+    public class Canvas : RenderableComponent, IUIComponent
     {
-        // Stores all child Graphic components (like TextRenderer, ImageRenderer)
-        private List<UIElement> uiComponents = new List<UIElement>();
         public CanvasContext Context { get; private set; } = new CanvasContext();
 
-        // Constructor
         public Canvas()
         {
-            // Initialize if needed
             Owner?.AddComponent<RectTransform>();
         }
 
-        // Call this to add Graphics to the Canvas
-        public void AddUIElement(UIElement element)
+        public override List<DrawCommand> GetDrawCommands()
         {
-            uiComponents.Add(element);
+            var allUIElements = new List<UIElement>();
+            CollectUIElements(allUIElements);
+
+            allUIElements.Sort((a, b) =>
+            {
+                var az = a.GetComponent<RectTransform>()?.GlobalPosition.Z ?? 0;
+                var bz = b.GetComponent<RectTransform>()?.GlobalPosition.Z ?? 0;
+                return az.CompareTo(bz);
+            });
+
+            var commands = new List<DrawCommand>();
+            foreach (var ui in allUIElements)
+            {
+                commands.AddRange(ui.GetDrawCommands());
+            }
+
+            return commands;
         }
 
-        // Optionally you can add layout management features like sorting or anchoring later
-        public void SortGraphics()
+        private void CollectUIElements(List<UIElement> list)
         {
-            uiComponents.Sort((g1, g2) => g1.GetComponent<RectTransform>().GlobalPosition.Y.CompareTo(g2.GetComponent<RectTransform>().GlobalPosition.Y));
+            IEnumerable<GameObject>? children = Owner?.GetHierarchy() ?? null;
+            if (children == null)
+                return;
+            foreach (var child in children)
+            {
+                if (child.HasComponent<UIElement>())
+                {
+                    list.Add(child.GetComponent<UIElement>());
+                }
+            }
         }
     }
 }

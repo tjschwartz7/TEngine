@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TEngine.Components.Animations.Text
 {
-    public class RandomDithering : Animation<string>
+    public class RandomDithering : TextAnimation
     {
         private Random random = new Random();
 

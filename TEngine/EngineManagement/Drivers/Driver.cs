@@ -1,23 +1,16 @@
-﻿using TEngine.TMath;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.RenderingEngines.Text;
-using TEngine.EngineManagement.Drivers.T2D;
-using TEngine.EngineManagement.Drivers.T3D;
+﻿using TEngine.EngineManagement.Commands;
 
 namespace TEngine.EngineManagement.Drivers
 {
     public interface IDriver<T>
     {
-        void Draw(T drawable, Vector3 position);
+        void Draw(T drawable);
     }
 
     public abstract class DriverBase { }
 
-    public abstract class Driver<T> : DriverBase, IDriver<T>
+    public abstract class Driver : DriverBase, IDriver<DrawCommand>
     {
-        public abstract void Draw(T drawable, Vector3 position);
-
+        public abstract void Draw(DrawCommand drawable);
     }
-
-
 }

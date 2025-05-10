@@ -1,5 +1,5 @@
 ﻿using TEngine.TMath;
-using TEngine.GameObjects.Cameras;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 
 namespace TEngine.Components.Controllers
 {
