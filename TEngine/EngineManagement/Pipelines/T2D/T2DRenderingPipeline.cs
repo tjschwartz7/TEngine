@@ -12,19 +12,19 @@ namespace TEngine.EngineManagement.Pipelines.T2D
         {
             _driver = DriverService.Get<DrawCommand>();
         }
-        public override void Render(Scene scene)
+        public override void Render(IEnumerable<DrawCommand> commands, Camera camera)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }
-        public override List<DrawCommand> CullAndSort(Scene scene, Camera camera)
+        public override IEnumerable<DrawCommand> CullAndSort(IEnumerable<DrawCommand> commands, Camera camera)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }
-        public override void Preprocess(List<DrawCommand> drawCommands, Camera camera)
+        public override IEnumerable<DrawCommand> Preprocess(IEnumerable<DrawCommand> commands, Camera camera)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }
-        public override void Draw(List<DrawCommand> drawCommands, Camera camera)
+        public override void Draw(IEnumerable<DrawCommand> commands, Camera camera)
         {
             throw new NotImplementedException("Render method not implemented for T2DRenderingPipeline");
         }

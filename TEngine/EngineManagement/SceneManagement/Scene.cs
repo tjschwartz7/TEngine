@@ -15,7 +15,7 @@ namespace TEngine.EngineManagement.Scenes
         public string name;
 
         private HashSet<int> gameObjectIDs = new HashSet<int>();
-        public ICamera MainCamera { get; set; }
+        public Camera MainCamera { get; set; }
         private readonly GameObjectZIndexComparer comparer = new();
 
         public HashSet<int> GetAllObjectIDs()

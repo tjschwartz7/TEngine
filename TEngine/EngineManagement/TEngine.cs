@@ -6,6 +6,8 @@ using TEngine.EngineManagement.Scenes;
 using TEngine.EngineManagement.Pipelines;
 using TEngine.Utils.Configurations;
 using TEngine.Utils.Configurations.NETConfig;
+using TEngine.Components;
+using TEngine.EngineManagement.AssetManagement;
 
 namespace TEngine.EngineManagement
 {
@@ -17,7 +19,7 @@ namespace TEngine.EngineManagement
         public static GraphicSystem GraphicSystem { get; private set; } = GraphicSystem.Text;
         public static Resolution Resolution { get; private set; } = Resolution.R80x25;
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
-        public static IRenderingPipeline Pipeline { get; private set; } 
+        public static IRenderingPipeline Pipeline { get; private set; }
 
 
         private float targetFps = 5f; // Target FPS    
@@ -98,7 +100,7 @@ namespace TEngine.EngineManagement
         public void Start()
         {
             // Loop over each GameObject in the scene and start their lifecycle
-            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            foreach (var gameObject in SceneGameObjectsManager.Instance.GetRenderableGameObjects())
             {
                 gameObject.StartLifecycle(); // Initialize each GameObject's lifecycle
             }
@@ -106,7 +108,7 @@ namespace TEngine.EngineManagement
 
         public void Update()
         {
-            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            foreach (var gameObject in SceneGameObjectsManager.Instance.GetRenderableGameObjects())
             {
                 gameObject.UpdateLifecycle(); // Initialize each GameObject's lifecycle
             }
@@ -114,7 +116,7 @@ namespace TEngine.EngineManagement
 
         public void FixedUpdate()
         {
-            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            foreach (var gameObject in SceneGameObjectsManager.Instance.GetRenderableGameObjects())
             {
                 gameObject.FixedUpdateLifecycle(); // Initialize each GameObject's lifecycle
             }
@@ -122,7 +124,7 @@ namespace TEngine.EngineManagement
 
         public void LateUpdate()
         {
-            foreach (var gameObject in SceneManager.GetAllGameObjects())
+            foreach (var gameObject in SceneGameObjectsManager.Instance.GetRenderableGameObjects())
             {
                 gameObject.LateUpdateLifecycle(); // Initialize each GameObject's lifecycle
             }
@@ -133,8 +135,17 @@ namespace TEngine.EngineManagement
             // Handle the rendering logic directly here
             if (Pipeline != null)
             {
-                // Call the renderer form to display the current game state
-                Pipeline.Render( /*O(1) retrieval*/SceneManager.GetActiveScene());  // Pass active scene to pipeline
+                var gameObjects = SceneGameObjectsManager.Instance.GetRenderableGameObjects();
+                var activeScene = SceneManager.GetActiveScene();
+                var mainCamera = activeScene?.MainCamera;
+
+                bool hasGameObjects = gameObjects?.Any() ?? false;
+                bool hasCamera = mainCamera != null;
+                if (hasGameObjects && hasCamera)
+                {
+                    // Render all active commands
+                    Pipeline.Render( /*O(1) retrieval*/DrawObjectManager.Instance.GetDrawCommands(gameObjects), mainCamera);
+                }
             }
         }
 

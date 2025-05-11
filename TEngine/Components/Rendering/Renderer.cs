@@ -11,7 +11,7 @@ using TEngine.Components.UI.Layouts;
 
 namespace TEngine.Components.Rendering
 {
-    public class Renderer : Component
+    public class Renderer : Component, IRenderer
     {
         private List<DrawCommand> _commandBuffer = new List<DrawCommand>();
         public IReadOnlyList<DrawCommand> CommandBuffer => _commandBuffer;
@@ -29,7 +29,7 @@ namespace TEngine.Components.Rendering
             _commandBuffer.Sort((a, b) => a.SortingOrder.CompareTo(b.SortingOrder));
         }
 
-        public List<DrawCommand> GetDrawCommands()
+        public IEnumerable<DrawCommand> GetDrawCommands()
         {
             return _commandBuffer;
         }

@@ -1,5 +1,4 @@
 ﻿
-using TEngine.EngineManagement.Scenes;
 using TEngine.EngineManagement.Commands;
 using TEngine.EngineManagement.Drivers;
 using TEngine.Services;
@@ -9,20 +8,20 @@ namespace TEngine.EngineManagement.Pipelines
 {
     public interface IRenderingPipeline
     {
-        public void Render(List<DrawCommand> scene);
+        public void Render(IEnumerable<DrawCommand> commands, Camera camera);
 
-        protected List<DrawCommand> CullAndSort(List<DrawCommand> scene, Camera camera);
-        protected void Preprocess(List<DrawCommand> commands, Camera camera);
-        protected void Draw(List<DrawCommand> commands, Camera camera);
+        protected IEnumerable<DrawCommand> CullAndSort(IEnumerable<DrawCommand> commands, Camera camera);
+        protected IEnumerable<DrawCommand> Preprocess(IEnumerable<DrawCommand> commands, Camera camera);
+        protected void Draw(IEnumerable<DrawCommand> commands, Camera camera);
     }
 
     public abstract class RenderingPipeline : IRenderingPipeline
     {
-        public abstract void Render(List<DrawCommand> scene);
-        public abstract void Preprocess(List<DrawCommand> drawCommands, Camera camera);
-        public abstract void Draw(List<DrawCommand> drawCommands, Camera camera);
-        public abstract List<DrawCommand> CullAndSort(List<DrawCommand> scene, Camera camera);
-        public IDriver<DrawCommand> Driver { get; } = DriverService.Get<DrawCommand>();
+        public abstract void Render(IEnumerable<DrawCommand> commands, Camera camera);
+        public abstract IEnumerable<DrawCommand> CullAndSort(IEnumerable<DrawCommand> commands, Camera camera);
+        public abstract IEnumerable<DrawCommand> Preprocess(IEnumerable<DrawCommand> commands, Camera camera);
+        public abstract void Draw(IEnumerable<DrawCommand> commands, Camera camera);
+        public IDriver<DrawCommand> Driver { get; } = DriverService.Get<DrawCommand>() ?? throw new InvalidOperationException("Driver for DrawCommand could not be retrieved.");
         protected RenderingPipeline()
         {
 

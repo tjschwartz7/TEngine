@@ -1,9 +1,6 @@
-﻿using TEngine.Components.Rendering;
-using TEngine.EngineManagement.Scenes;
-using System.Drawing;
+﻿using TEngine.TMath;
 using TEngine.EngineManagement.Drivers;
 using TEngine.Services;
-using TEngine.Components.UI.Layouts;
 using TEngine.EngineManagement.Commands;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
@@ -18,60 +15,41 @@ namespace TEngine.EngineManagement.Pipelines.Text
 
         public TextRenderingPipeline()
         {
-            _driver = DriverService.Get<DrawCommand>();
+            _driver = DriverService.Get<DrawCommand>() ?? throw new InvalidOperationException("Failed to retrieve the DrawCommand driver."); ;
         }
 
         // Override the Render method to use DrawCommands instead of GameObjects.
-        public override void Render(Scene scene)
+        public override void Render(IEnumerable<DrawCommand> commands, Camera camera)
         {
-            if (scene.MainCamera is not CameraText camera)
-                throw new InvalidOperationException("MainCamera is not CameraText");
+            if (camera is not CameraText cameraText)
+                throw new InvalidOperationException("The provided camera is incompatible with the Text Rendering Pipeline.");
 
-            var drawCommands = CullAndSort(scene, camera);
-            Preprocess(drawCommands, camera);
-            Draw(drawCommands, camera);
+            var drawCommands = CullAndSort(commands, cameraText);
+            drawCommands = Preprocess(drawCommands, cameraText);
+            Draw(drawCommands, cameraText);
         }
 
         // This method now collects DrawCommands rather than GameObjects.
-        public override List<DrawCommand> CullAndSort(Scene scene, Camera camera)
+        public override IEnumerable<DrawCommand> CullAndSort(IEnumerable<DrawCommand> commands, Camera camera)
         {
-            var drawCommands = new List<DrawCommand>();
             var viewBounds = new RectangleF(camera.Position.X, camera.Position.Y, camera.ViewSize.X, camera.ViewSize.Y);
 
-            // Iterate over all renderable game objects to generate draw commands.
-            foreach (var go in scene.GetRenderableGameObjects())
-            {
-                //The TextPipeline is only for UI elements,
-                // meaning all of the renderables need to have a RectTransform and a Renderer component.
-                if (!go.HasComponent<Renderer>() || !go.HasComponent<RectTransform>())
-                    continue;
-
-                var transform = go.GetComponent<RectTransform>();
-                var renderer = go.GetComponent<Renderer>();
-
-                // If the GameObject is within the camera view, create a DrawCommand.
-                if (viewBounds.Contains(transform.GlobalPosition.X, transform.GlobalPosition.Y))
-                {
-                    var drawCommand = renderer.GetDrawCommands();
-                    drawCommands.AddRange(drawCommand);
-                }
-            }
-
-            // Sorting can be added if needed, based on layers or other criteria.
-            return drawCommands;
+            return commands.Where(cmd => viewBounds.Contains(cmd.Position.X, cmd.Position.Y));
         }
 
         // Preprocess draw commands if needed. In this case, we're keeping it simple.
-        public override void Preprocess(List<DrawCommand> drawCommands, Camera camera)
+        public override IEnumerable<DrawCommand> Preprocess(IEnumerable<DrawCommand> commands, Camera camera)
         {
             // For now, there's nothing special to preprocess.
             // If animations, shaders, or transformations are applied, it could go here.
+
+            return commands;
         }
 
         // Draw the collected DrawCommands to the screen.
-        public override void Draw(List<DrawCommand> drawCommands, Camera camera)
+        public override void Draw(IEnumerable<DrawCommand> commands, Camera camera)
         {
-            foreach (var drawCommand in drawCommands)
+            foreach (var drawCommand in commands)
             {
                 _driver.Draw(drawCommand);
             }
