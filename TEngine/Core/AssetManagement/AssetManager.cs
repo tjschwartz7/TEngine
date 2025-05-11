@@ -1,6 +1,6 @@
 ﻿using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
-using TEngine.Services;
+using TEngine.Core.Services;
 
 
 namespace TEngine.EngineManagement.AssetManagement

@@ -1,5 +1,5 @@
 ﻿using System.Configuration;
-using TEngine.Services;
+using TEngine.Core.Services;
 using TEngine.Utils;
 
 namespace TEngine.Utils.Configurations.NETConfig

@@ -1,11 +1,11 @@
-﻿using TEngine.EngineManagement.Pipelines;
+﻿using System;
 using TEngine.EngineManagement.Drivers;
 
-namespace TEngine.Services
+namespace TEngine.Core.Services
 {
-    public class RenderingPipelineService
+    public static class DriverService
     {
-        private static IRenderingPipelineFactory? _factory;
+        private static IDriverFactory? _factory;
 
         /// <summary>
         /// Initializes the driver service by selecting the appropriate driver factory.
@@ -13,7 +13,7 @@ namespace TEngine.Services
         /// </summary>
         public static void Initialize()
         {
-            _factory = RenderingPipelineFactoryProvider.Get();
+            _factory = DriverFactoryProvider.Get();
         }
 
         /// <summary>
@@ -27,12 +27,13 @@ namespace TEngine.Services
         /// <summary>
         /// Returns a driver for the specified drawable type.
         /// </summary>
-        public static IRenderingPipeline Get()
+        public static IDriver<T> Get<T>()
         {
             if (_factory == null)
                 throw new InvalidOperationException("DriverService is not initialized. Call Initialize() first.");
 
-            return _factory.Create();
+            return _factory.Create<T>();
         }
     }
 }
+

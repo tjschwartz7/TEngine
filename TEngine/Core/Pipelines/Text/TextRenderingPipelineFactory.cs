@@ -1,6 +1,6 @@
 ﻿using TEngine.EngineManagement.Drivers;
 using TEngine.EngineManagement.RenderingEngines.Text;
-using TEngine.Services;
+using TEngine.Core.Services;
 
 namespace TEngine.EngineManagement.Pipelines.Text
 {

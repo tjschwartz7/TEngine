@@ -1,7 +1,8 @@
 ﻿using TEngine.EngineManagement.Scenes;
 using TEngine.Components.Rendering;
+using TEngine.EngineManagement.AssetManagement;
 
-namespace TEngine.EngineManagement.AssetManagement
+namespace TEngine.Core.Mediation
 {
     public class SceneGameObjectsManager
     {

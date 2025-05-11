@@ -1,7 +1,7 @@
 ﻿using TEngine.Components.Rendering;
 using TEngine.EngineManagement.Commands;
 
-namespace TEngine.EngineManagement.AssetManagement
+namespace TEngine.Core.Mediation
 {
     public class DrawObjectManager
     {

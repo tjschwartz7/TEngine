@@ -1,11 +1,15 @@
 ﻿using System;
-using TEngine.EngineManagement.Drivers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 
-namespace TEngine.Services
+namespace TEngine.Core.Services
 {
-    public static class DriverService
+    public class CameraService
     {
-        private static IDriverFactory? _factory;
+        private static ICameraFactory? _factory;
 
         /// <summary>
         /// Initializes the driver service by selecting the appropriate driver factory.
@@ -13,7 +17,7 @@ namespace TEngine.Services
         /// </summary>
         public static void Initialize()
         {
-            _factory = DriverFactoryProvider.Get();
+            _factory = CameraFactoryProvider.Get();
         }
 
         /// <summary>
@@ -27,13 +31,12 @@ namespace TEngine.Services
         /// <summary>
         /// Returns a driver for the specified drawable type.
         /// </summary>
-        public static IDriver<T> Get<T>()
+        public static ICamera Get(int id, string name, string tag)
         {
             if (_factory == null)
                 throw new InvalidOperationException("DriverService is not initialized. Call Initialize() first.");
 
-            return _factory.Create<T>();
+            return _factory.Create(id, name, tag);
         }
     }
 }
-
