@@ -5,6 +5,7 @@ using TEngine.EngineManagement.Pipelines;
 using TEngine.Utils.Configurations.NETConfig;
 using TEngine.Core.Mediation;
 using TEngine.Core.Services;
+using TEngine.EngineManagement.Commands;
 
 namespace TEngine.EngineManagement
 {
@@ -17,6 +18,7 @@ namespace TEngine.EngineManagement
         public static Resolution Resolution { get; private set; } = Resolution.R80x25;
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
         public static IRenderingPipeline Pipeline { get; private set; }
+        public DrawCommandBuffer DrawCommandBuffer { get; private set; } = new DrawCommandBuffer(); // Buffer for draw commands
 
 
         private float targetFps = 5f; // Target FPS    
@@ -136,12 +138,14 @@ namespace TEngine.EngineManagement
                 var activeScene = SceneManager.GetActiveScene();
                 var mainCamera = activeScene?.MainCamera;
 
+                DrawCommandBuffer.Add(DrawObjectManager.Instance.GetDrawCommands(gameObjects)); // Add commands to the buffer
+
                 bool hasGameObjects = gameObjects?.Any() ?? false;
                 bool hasCamera = mainCamera != null;
                 if (hasGameObjects && hasCamera)
                 {
                     // Render all active commands
-                    Pipeline.Render( /*O(1) retrieval*/DrawObjectManager.Instance.GetDrawCommands(gameObjects), mainCamera);
+                    Pipeline.Render( DrawCommandBuffer.GetSortedCommands()/*O(1) retrieval*/, mainCamera);
                 }
             }
         }

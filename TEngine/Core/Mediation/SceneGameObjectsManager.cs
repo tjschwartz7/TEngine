@@ -1,6 +1,6 @@
 ﻿using TEngine.EngineManagement.Scenes;
 using TEngine.Components.Rendering;
-using TEngine.EngineManagement.AssetManagement;
+using TEngine.Core.AssetManagement.GameObjects;
 
 namespace TEngine.Core.Mediation
 {
@@ -20,7 +20,7 @@ namespace TEngine.Core.Mediation
                 return new List<GameObject>(); // Return an empty list if no game objects
             }
 
-            return AssetManager.Instance.GetGameObjectsByIDs(sceneGameObjectIDs)
+            return GameObjectManager.Instance.GetGameObjectsByIDs(sceneGameObjectIDs)
                 .Where(go => go.IsActive && go.Layer.isVisible && go.HasComponent<Renderer>())
                 .ToList();
         }
@@ -35,7 +35,7 @@ namespace TEngine.Core.Mediation
                 return new List<GameObject>(); // Return an empty list if no game objects
             }
 
-            return AssetManager.Instance.GetGameObjectsByIDs(sceneGameObjectIDs)
+            return GameObjectManager.Instance.GetGameObjectsByIDs(sceneGameObjectIDs)
                 .Where(go => go.IsActive)
                 .ToList();
         }
@@ -50,7 +50,7 @@ namespace TEngine.Core.Mediation
                 return new List<GameObject>(); // Return an empty list if no game objects
             }
 
-            return AssetManager.Instance.GetGameObjectsByIDs(sceneGameObjectIDs).ToList();
+            return GameObjectManager.Instance.GetGameObjectsByIDs(sceneGameObjectIDs).ToList();
         }
     }
 }

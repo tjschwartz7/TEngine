@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TEngine.Components.Rendering;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Comparers;
-using TEngine.EngineManagement.AssetManagement;
+using TEngine.Core.AssetManagement.GameObjects;
 
 namespace TEngine.EngineManagement.Scenes
 {
@@ -26,7 +26,7 @@ namespace TEngine.EngineManagement.Scenes
         public Scene(string name)
         {
             this.name = name;
-            MainCamera = AssetManager.Instance.CreateCamera("MainCamera", "MainCamera");
+            MainCamera = GameObjectManager.Instance.CreateCamera("MainCamera", "MainCamera");
             
 
         }

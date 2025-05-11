@@ -12,14 +12,28 @@ namespace TEngine.EngineManagement.Commands
         /// <summary>
         /// Adds a draw command to the appropriate layer.
         /// </summary>
-        public void Add(DrawCommand command, int layer)
+        public void Add(DrawCommand command)
         {
-            if (!_layeredCommands.TryGetValue(layer, out var list))
+            Layer layer = command.Layer;
+            int layerIndex = layer.index;
+            if (!_layeredCommands.TryGetValue(layerIndex, out var list))
             {
                 list = new List<DrawCommand>();
-                _layeredCommands[layer] = list;
+                _layeredCommands[layerIndex] = list;
             }
             list.Add(command);
+        }
+
+        /// <summary>
+        /// Adds a collection of Draw Commands to their correct layer.
+        /// </summary>
+        /// <param name="command">The command to add.</param>
+        public void Add(IEnumerable<DrawCommand> commands)
+        {
+            foreach(var cmd in commands)
+            {
+                Add(cmd);
+            }
         }
 
         /// <summary>

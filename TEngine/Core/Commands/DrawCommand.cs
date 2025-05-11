@@ -2,6 +2,7 @@
 using TEngine.Components.Mesh;
 using System.Drawing;
 using TEngine.Styles;
+using TEngine.Utils;
 
 namespace TEngine.EngineManagement.Commands
 {
@@ -16,7 +17,7 @@ namespace TEngine.EngineManagement.Commands
     public class DrawCommand
     {
         public DrawCommandType Type { get; set; }
-
+        public Layer Layer { get; set; } = Layers.GetLayer(0); // Default layer for rendering
         public Vector3 Position { get; set; } = Vector3.zero; // Z = depth/layer
 
         public Material? Material { get; set; } // Nullable; fallback to default if null
@@ -32,5 +33,6 @@ namespace TEngine.EngineManagement.Commands
 
         // Tag or metadata
         public object? UserData { get; set; }
+        public int uuid { get; set; } = 0; // Unique identifier for the command
     }
 }
