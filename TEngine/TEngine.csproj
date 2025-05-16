@@ -16,6 +16,7 @@
     <Folder Include="Components\UI\Elements\Text\" />
     <Folder Include="Components\Agent\" />
     <Folder Include="GoneMedieval\Levels\Scenes\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
+﻿using TEngine.Utils.Logging;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 using TEngine.Core.Services;
 
@@ -64,7 +64,7 @@ namespace TEngine.Core.AssetManagement.GameObjects
             }
             else
             {
-                Console.WriteLine($"No GameObject found with ID {id}");
+                Logging.Error($"No GameObject found with ID {id}");
                 return null;
             }
         }
@@ -78,7 +78,7 @@ namespace TEngine.Core.AssetManagement.GameObjects
             }
             else
             {
-                Console.WriteLine($"No GameObjects found with name '{name}'");
+                Logging.Error($"No GameObjects found with name '{name}'");
                 return new List<GameObject>();
             }
         }
@@ -92,7 +92,7 @@ namespace TEngine.Core.AssetManagement.GameObjects
             }
             else
             {
-                Console.WriteLine($"No GameObjects found with tag '{tag}'");
+                Logging.Error($"No GameObjects found with tag '{tag}'");
                 return new List<GameObject>();
             }
         }
@@ -114,11 +114,11 @@ namespace TEngine.Core.AssetManagement.GameObjects
                 if (_gameObjectsByTag[obj.Tag].Count == 0)
                     _gameObjectsByTag.Remove(obj.Tag);
 
-                Console.WriteLine($"Destroyed GameObject {obj.Name} (ID {id})");
+                Logging.Info($"Destroyed GameObject {obj.Name} (ID {id})");
             }
             else
             {
-                Console.WriteLine($"No GameObject found with ID {id} to destroy.");
+                Logging.Error($"No GameObject found with ID {id} to destroy.");
             }
         }
 
@@ -127,7 +127,7 @@ namespace TEngine.Core.AssetManagement.GameObjects
             // Check if the object exists
             if (!_gameObjectsByID.ContainsKey(id))
             {
-                Console.WriteLine($"GameObject with ID {id} not found.");
+                Logging.Error($"GameObject with ID {id} not found.");
                 return;
             }
 
@@ -160,7 +160,7 @@ namespace TEngine.Core.AssetManagement.GameObjects
             // Check if the object exists
             if (!_gameObjectsByID.ContainsKey(id))
             {
-                Console.WriteLine($"GameObject with ID {id} not found.");
+                Logging.Error($"GameObject with ID {id} not found.");
                 return;
             }
 
@@ -212,7 +212,7 @@ namespace TEngine.Core.AssetManagement.GameObjects
                 }
                 else
                 {
-                    Console.WriteLine($"GameObject with ID {id} not found.");
+                    Logging.Error($"GameObject with ID {id} not found.");   
                 }
             }
 

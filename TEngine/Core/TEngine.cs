@@ -6,6 +6,8 @@ using TEngine.Utils.Configurations.NETConfig;
 using TEngine.Core.Mediation;
 using TEngine.Core.Services;
 using TEngine.EngineManagement.Commands;
+using TEngine.Utils.Logging;
+using TEngine.TMath;
 
 namespace TEngine.EngineManagement
 {
@@ -15,7 +17,8 @@ namespace TEngine.EngineManagement
          
         public static Engine Instance { get; private set; } = new Engine();
         public static GraphicSystem GraphicSystem { get; private set; } = GraphicSystem.Text;
-        public static Resolution Resolution { get; private set; } = Resolution.R80x25;
+        public static Resolution ResolutionConfig { get; private set; } = Utils.Resolution.R80x25;
+        public static Vector2 Resolution { get; private set; } = new Vector2(80, 25); // Default resolution size
         public static SceneManager SceneManager { get; private set; } = SceneManager.Instance;
         public static IRenderingPipeline Pipeline { get; private set; }
         public DrawCommandBuffer DrawCommandBuffer { get; private set; } = new DrawCommandBuffer(); // Buffer for draw commands
@@ -49,7 +52,10 @@ namespace TEngine.EngineManagement
             GraphicSystem system = config.system;
             Resolution resolution = config.resolution;
             SetRenderer(system);
+            SetResolutionConfig(resolution);
             SetResolution(resolution);
+
+            
 
             CameraService.Initialize();
             DriverService.Initialize();
@@ -91,10 +97,32 @@ namespace TEngine.EngineManagement
             GraphicSystem = type;
         }
 
+        private void SetResolutionConfig(Resolution resolution)
+        {
+            ResolutionConfig = resolution;
+        }
+
         private void SetResolution(Resolution resolution)
         {
-            Resolution = resolution;
-        }   
+            switch (resolution)
+            {
+                case Utils.Resolution.R80x25:
+                    Resolution = new Vector2(80, 25);
+                    break;
+                case Utils.Resolution.R160x50:
+                    Resolution = new Vector2(160, 50);
+                    break;
+                case Utils.Resolution.R120x40:
+                    Resolution = new Vector2(120, 40);
+                    break;
+                case Utils.Resolution.R100x30:
+                    Resolution = new Vector2(100, 30);
+                    break;
+                default:
+                    Resolution = new Vector2(80, 25);
+                    break;
+            }
+        }
 
         public void Start()
         {
@@ -196,7 +224,7 @@ namespace TEngine.EngineManagement
                 fps = (int)(fpsAccumulator / (Time.time - lastFpsUpdateTime));
                 fpsAccumulator = 0f;
                 lastFpsUpdateTime = Time.time;
-                Console.WriteLine($"FPS: {fps}");
+                Logging.Debug($"FPS: {fps}");
             }
 
             // UPS Calculation
@@ -206,7 +234,7 @@ namespace TEngine.EngineManagement
                 ups = (int)(upsAccumulator / upsStepTarget);
                 upsAccumulator = 0f;
                 lastUpsUpdateTime = Time.time;
-                Console.WriteLine($"UPS: {ups}");
+                Logging.Debug($"UPS: {ups}");
             }
         }
 

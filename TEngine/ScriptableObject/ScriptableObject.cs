@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TEngine.Utils.Logging;
 using System.Text.Json;
 
 namespace TEngine.ScriptableObject
@@ -18,7 +14,7 @@ namespace TEngine.ScriptableObject
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fileName);
             string json = JsonSerializer.Serialize(this, GetType(), new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(path, json);
-            Console.WriteLine($"Saved {GetType().Name} to {path}");
+            Logging.Info($"Saved {GetType().Name} to {path}");
         }
 
         public static T Load<T>(string fileName) where T : ScriptableObject<T>, new()
@@ -29,11 +25,11 @@ namespace TEngine.ScriptableObject
                 string json = File.ReadAllText(path);
                 T obj = JsonSerializer.Deserialize<T>(json);
                 obj?.OnEnable();
-                Console.WriteLine($"Loaded {typeof(T).Name} from {path}");
+                Logging.Info($"Loaded {typeof(T).Name} from {path}");
                 return obj;
             }
 
-            Console.WriteLine($"No save file found for {typeof(T).Name}");
+            Logging.Error($"No save file found for {typeof(T).Name}");
             return new T(); // Return default instance if file doesn't exist
         }
 

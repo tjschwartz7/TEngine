@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using TEngine.EngineManagement.RenderingEngines;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T2D;
@@ -44,25 +40,8 @@ namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras
             Stack = new StackSettings(new List<Camera>());
             Environment = new EnvironmentSettings(BackgroundType.SolidColor, ConsoleColor.Black);
             Volumes = new VolumeSettings(VolumeUpdateMode.EveryFrame, 0, null);
-            Output = new OutputSettings(0, TargetEye.Both, new Rect(0, 0, Console.WindowWidth, Console.WindowHeight), false, false, false);
-            switch (Engine.Resolution)
-            {
-                case Resolution.R80x25:
-                    ViewSize = new Vector2(80, 25);
-                    break;
-                case Resolution.R160x50:
-                    ViewSize = new Vector2(160, 50);
-                    break;
-                case Resolution.R120x40:
-                    ViewSize = new Vector2(120, 40);
-                    break;
-                case Resolution.R100x30:
-                    ViewSize = new Vector2(100, 30);
-                    break;
-                default:
-                    ViewSize = new Vector2(80, 25);
-                    break;
-            }
+            Output = new OutputSettings(0, TargetEye.Both, new Rect(0, 0, Engine.Resolution.X, Engine.Resolution.Y), false, false, false);
+            ViewSize = Engine.Resolution;
         }
 
         public bool IsVisible(Vector3 position)

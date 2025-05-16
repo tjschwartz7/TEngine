@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using static TEngine.Utils.Logging.Logging;
 
 namespace TEngine.Utils
 {
@@ -26,7 +22,7 @@ namespace TEngine.Utils
             }
             else
             {
-                Console.WriteLine($"Layer '{layerName}' already exists.");
+                Error($"Layer '{layerName}' already exists.");
             }
         }
 
@@ -36,7 +32,7 @@ namespace TEngine.Utils
             int index = AllLayers.IndexOf(name);
             if (index == -1)
             {
-                Console.WriteLine($"Layer '{name}' not found.");
+                Error($"Layer '{name}' not found.");
                 return new Layer(0, AllLayers[index]);
             }
             return new Layer(index, name);

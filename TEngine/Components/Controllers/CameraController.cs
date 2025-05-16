@@ -1,4 +1,5 @@
 ﻿using TEngine.TMath;
+using TEngine.EngineManagement;
 using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
 
 namespace TEngine.Components.Controllers
@@ -28,8 +29,8 @@ namespace TEngine.Components.Controllers
         private Vector3 ClampPosition(Vector3 position, Rect bounds)
         {
             // Assume center-aligned camera for clamping math
-            float halfWidth = Console.WindowWidth / 2f;
-            float halfHeight = Console.WindowHeight / 2f;
+            float halfWidth = Engine.Resolution.X / 2f;
+            float halfHeight = Engine.Resolution.Y / 2f;
 
             float minX = bounds.X + halfWidth;
             float maxX = bounds.X + bounds.W - halfWidth;

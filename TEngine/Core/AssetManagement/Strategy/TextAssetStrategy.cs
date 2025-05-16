@@ -8,7 +8,6 @@ namespace TEngine.Core.AssetManagement.Strategy
     {
         public IEnumerable<DrawCommand> GetDrawCommands(IEnumerable<string> textData)
         {
-
             foreach (var line in textData)
             {
                 // Create a DrawCommand to render the text
@@ -23,5 +22,4 @@ namespace TEngine.Core.AssetManagement.Strategy
             }
         }
     }
-
 }
