@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Animations;
 using static System.Net.Mime.MediaTypeNames;
-using TEngine.EngineManagement.Commands;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.Commands;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
 using TEngine.Components.UI.Layouts;
 
 namespace TEngine.Components.Rendering

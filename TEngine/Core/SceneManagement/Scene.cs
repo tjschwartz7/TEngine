@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Rendering;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Comparers;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.AssetManagement.GameObjects.Comparers;
 using TEngine.Core.AssetManagement.GameObjects;
 
-namespace TEngine.EngineManagement.Scenes
+namespace TEngine.Core.Scenes
 {
     public class Scene
     {

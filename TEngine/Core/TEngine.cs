@@ -1,15 +1,15 @@
 ﻿
 using TEngine.Utils;
-using TEngine.EngineManagement.Scenes;
-using TEngine.EngineManagement.Pipelines;
+using TEngine.Core.Scenes;
+using TEngine.Core.Pipelines;
 using TEngine.Utils.Configurations.NETConfig;
 using TEngine.Core.Mediation;
 using TEngine.Core.Services;
-using TEngine.EngineManagement.Commands;
+using TEngine.Core.Commands;
 using TEngine.Utils.Logging;
 using TEngine.TMath;
 
-namespace TEngine.EngineManagement
+namespace TEngine.Core
 {
     public class Engine
     {

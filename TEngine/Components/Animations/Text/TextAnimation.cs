@@ -1,6 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using TEngine.Components.Rendering;
-using TEngine.EngineManagement.Commands;
+using TEngine.Core.Commands;
 
 namespace TEngine.Components.Animations.Text
 {

@@ -1,13 +1,13 @@
 ﻿using TEngine.Utils;
-using TEngine.EngineManagement.Drivers.T2D;
-using TEngine.EngineManagement.Drivers.T3D;
-using TEngine.EngineManagement.RenderingEngines.Text;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.Drivers.Text;
-using TEngine.EngineManagement.Pipelines;
-using TEngine.EngineManagement.Pipelines.Text;
+using TEngine.Core.Drivers.T2D;
+using TEngine.Core.Drivers.T3D;
+using TEngine.Core.RenderingEngines.Text;
+using TEngine.Core;
+using TEngine.Core.Drivers.Text;
+using TEngine.Core.Pipelines;
+using TEngine.Core.Pipelines.Text;
 
-namespace TEngine.EngineManagement.Drivers
+namespace TEngine.Core.Drivers
 {
     public static class RenderingPipelineFactoryProvider
     {

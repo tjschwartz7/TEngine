@@ -1,10 +1,10 @@
 ﻿using TEngine.Core.Services;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
-using TEngine.EngineManagement.Commands;
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.Scenes;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.Commands;
+using TEngine.Core.Drivers;
+using TEngine.Core.Scenes;
 
-namespace TEngine.EngineManagement.Pipelines.T3D
+namespace TEngine.Core.Pipelines.T3D
 {
     public class T3DRenderingPipeline : RenderingPipeline
     {

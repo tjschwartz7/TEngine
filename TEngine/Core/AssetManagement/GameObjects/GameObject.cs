@@ -1,14 +1,10 @@
-﻿using System.ComponentModel.Composition;
-using TEngine.Components;
+﻿using TEngine.Components;
 using TEngine.Components.Behavior;
-using TEngine.Components.Colliders;
-using TEngine.Components.Inputs;
-using TEngine.Components.Physics;
+using TEngine.Core;
 using TEngine.Components.Transforms.Text;
 using TEngine.TMath;
 using TEngine.Utils;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.AssetManagement.GameObjects;
+using TEngine.Core.AssetManagement.GameObjects;
 
 public class GameObject
 {

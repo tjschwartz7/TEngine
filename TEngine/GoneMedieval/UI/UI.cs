@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Behavior;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.RenderingEngines.Text;
+using TEngine.Core;
+using TEngine.Core.RenderingEngines.Text;
 using TEngine.GoneMedieval.Managers;
 
 namespace TEngine.GoneMedieval.UI

@@ -1,5 +1,5 @@
-﻿using TEngine.EngineManagement.Pipelines;
-using TEngine.EngineManagement.Drivers;
+﻿using TEngine.Core.Pipelines;
+using TEngine.Core.Drivers;
 
 namespace TEngine.Core.Services
 {

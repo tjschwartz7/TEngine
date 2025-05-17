@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+﻿using TEngine.Core.AssetManagement.GameObjects.Cameras;
+using TEngine.Utils.Logging;
 
 namespace TEngine.Core.Services
 {
@@ -34,7 +30,11 @@ namespace TEngine.Core.Services
         public static ICamera Get(int id, string name, string tag)
         {
             if (_factory == null)
+            {
+                Logging.Critical("CameraService is not initialized. Call Initialize() first.");
                 throw new InvalidOperationException("DriverService is not initialized. Call Initialize() first.");
+            }
+                
 
             return _factory.Create(id, name, tag);
         }

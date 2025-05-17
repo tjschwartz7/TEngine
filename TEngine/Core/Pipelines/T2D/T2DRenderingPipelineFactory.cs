@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.Pipelines.T2D;
-using TEngine.EngineManagement.RenderingEngines.Text;
+using TEngine.Core.Drivers;
+using TEngine.Core.Pipelines.T2D;
+using TEngine.Core.RenderingEngines.Text;
 
-namespace TEngine.EngineManagement.Pipelines.Text
+namespace TEngine.Core.Pipelines.Text
 {
     public class T2DRenderingPipelineFactory : IRenderingPipelineFactory
     {

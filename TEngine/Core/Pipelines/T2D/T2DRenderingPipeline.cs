@@ -1,9 +1,9 @@
 ﻿using TEngine.Core.Services;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
-using TEngine.EngineManagement.Commands;
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.Scenes;
-namespace TEngine.EngineManagement.Pipelines.T2D
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.Commands;
+using TEngine.Core.Drivers;
+using TEngine.Core.Scenes;
+namespace TEngine.Core.Pipelines.T2D
 {
     public class T2DRenderingPipeline : RenderingPipeline
     {

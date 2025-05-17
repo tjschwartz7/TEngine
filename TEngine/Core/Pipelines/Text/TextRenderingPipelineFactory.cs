@@ -1,8 +1,8 @@
-﻿using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.RenderingEngines.Text;
+﻿using TEngine.Core.Drivers;
+using TEngine.Core.RenderingEngines.Text;
 using TEngine.Core.Services;
 
-namespace TEngine.EngineManagement.Pipelines.Text
+namespace TEngine.Core.Pipelines.Text
 {
     public class TextRenderingPipelineFactory : IRenderingPipelineFactory
     {

@@ -1,10 +1,10 @@
 ﻿
-using TEngine.EngineManagement.Commands;
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.Commands;
+using TEngine.Core.Drivers;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
 using TEngine.Core.Services;
 
-namespace TEngine.EngineManagement.Pipelines
+namespace TEngine.Core.Pipelines
 {
     public interface IRenderingPipeline
     {

@@ -1,6 +1,6 @@
 ﻿using TEngine.Utils;
 
-namespace TEngine.EngineManagement.Commands
+namespace TEngine.Core.Commands
 {
     /// <summary>
     /// Buffers draw commands grouped by layer.

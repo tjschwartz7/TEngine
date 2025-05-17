@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using TEngine.Utils;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.RenderingEngines;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.Core;
+using TEngine.Core.RenderingEngines;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text
+namespace TEngine.Core.AssetManagement.GameObjects.Cameras.Text
 {
     public class CameraText : Camera
     {

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
-using TEngine.EngineManagement.Commands;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.Commands;
 using TEngine.Components.UI.Elements;
 
 namespace TEngine.Components.UI.Layouts

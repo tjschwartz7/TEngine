@@ -1,6 +1,6 @@
 ﻿using TEngine.TMath;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.Core;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
 
 namespace TEngine.Components.Controllers
 {

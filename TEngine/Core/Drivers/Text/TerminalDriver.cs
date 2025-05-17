@@ -1,9 +1,9 @@
 ﻿using TEngine.TMath;
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.Commands;
+using TEngine.Core.Drivers;
+using TEngine.Core.Commands;
 
 
-namespace TEngine.EngineManagement.RenderingEngines.Text
+namespace TEngine.Core.RenderingEngines.Text
 {
     public class TerminalDriver : Driver
     {

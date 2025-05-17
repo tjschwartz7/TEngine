@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.EngineManagement.Commands;
-using TEngine.EngineManagement.RenderingEngines.Text;
+using TEngine.Core.Commands;
+using TEngine.Core.RenderingEngines.Text;
 
-namespace TEngine.EngineManagement.Drivers.Text
+namespace TEngine.Core.Drivers.Text
 {
     public class TextDriverFactory : IDriverFactory
     {

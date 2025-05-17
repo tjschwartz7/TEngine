@@ -1,6 +1,6 @@
 ﻿
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T2D
+namespace TEngine.Core.AssetManagement.GameObjects.Cameras.T2D
 {
     public class Camera2DFactory : ICameraFactory
     {

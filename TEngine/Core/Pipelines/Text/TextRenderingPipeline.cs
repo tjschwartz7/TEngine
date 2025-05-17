@@ -1,11 +1,11 @@
 ﻿using TEngine.TMath;
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.Commands;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
+using TEngine.Core.Drivers;
+using TEngine.Core.Commands;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.AssetManagement.GameObjects.Cameras.Text;
 using TEngine.Core.Services;
 
-namespace TEngine.EngineManagement.Pipelines.Text
+namespace TEngine.Core.Pipelines.Text
 {
 
 

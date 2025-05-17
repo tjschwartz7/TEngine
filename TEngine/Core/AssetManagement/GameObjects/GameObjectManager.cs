@@ -1,5 +1,5 @@
 ﻿using TEngine.Utils.Logging;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
 using TEngine.Core.Services;
 
 

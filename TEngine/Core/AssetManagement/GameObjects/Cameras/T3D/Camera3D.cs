@@ -1,12 +1,12 @@
-﻿using TEngine.EngineManagement.RenderingEngines;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T2D;
+﻿using TEngine.Core.RenderingEngines;
+using TEngine.Core.AssetManagement.GameObjects.Cameras.Text;
+using TEngine.Core.AssetManagement.GameObjects.Cameras.T2D;
 using TEngine.TMath;
 using TEngine.Utils;
-using TEngine.EngineManagement;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
+using TEngine.Core;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T3D
+namespace TEngine.Core.AssetManagement.GameObjects.Cameras.T3D
 {
     public class Camera3D : Camera
     {

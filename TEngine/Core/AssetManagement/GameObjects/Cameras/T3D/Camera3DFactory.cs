@@ -1,5 +1,5 @@
 ﻿
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T3D
+namespace TEngine.Core.AssetManagement.GameObjects.Cameras.T3D
 {
     public class Camera3DFactory : ICameraFactory
     {

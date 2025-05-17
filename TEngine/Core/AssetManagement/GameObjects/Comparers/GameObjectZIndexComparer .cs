@@ -1,6 +1,6 @@
 ﻿using TEngine.Components.Transforms;
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Comparers
+namespace TEngine.Core.AssetManagement.GameObjects.Comparers
 {
     class GameObjectZIndexComparer : IComparer<GameObject>
     {

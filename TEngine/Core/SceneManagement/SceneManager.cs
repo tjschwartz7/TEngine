@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TEngine.Components.Behavior;
 using TEngine.Components.Mesh;
+using TEngine.Utils.Logging;
 
-namespace TEngine.EngineManagement.Scenes
+namespace TEngine.Core.Scenes
 {
     public class SceneManager
     {
@@ -16,14 +17,7 @@ namespace TEngine.EngineManagement.Scenes
 
         private SceneManager()
         {
-            if (Instance != null)
-            {
-                throw new Exception("SceneManager is a singleton and cannot be instantiated more than once.");
-            }
-            else
-            {
-                Instance = this;
-            }
+            Logging.Debug("Loading new scene manager");
             scenes = new Dictionary<string, Scene>();
             string firstSceneName = "FirstScene";
             scenes.Add(firstSceneName, new Scene(firstSceneName));
@@ -32,11 +26,13 @@ namespace TEngine.EngineManagement.Scenes
 
         public void Register(string name)
         {
+            Logging.Debug("Registering scene " + name);
             scenes.Add(name, new Scene(name));
         }
 
         public void RegisterAndLoad(string name)
         {
+            Logging.Debug("Adding new active scene " + name);
             scenes.Add(name, new Scene(name));
             activeScene = name;
         }

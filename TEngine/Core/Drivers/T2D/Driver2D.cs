@@ -1,9 +1,9 @@
 ﻿using System;
-using TEngine.EngineManagement.Commands;
-using TEngine.EngineManagement.Drivers;
+using TEngine.Core.Commands;
+using TEngine.Core.Drivers;
 using TEngine.TMath;
 
-namespace TEngine.EngineManagement.Drivers.T2D
+namespace TEngine.Core.Drivers.T2D
 {
     public class Driver2D : Driver
     {

@@ -1,6 +1,6 @@
-﻿using TEngine.EngineManagement.Commands;
+﻿using TEngine.Core.Commands;
 
-namespace TEngine.EngineManagement.Drivers
+namespace TEngine.Core.Drivers
 {
     public interface IDriver<T>
     {

@@ -1,10 +1,7 @@
 ﻿
-using TEngine.Components.Behavior;
 using TEngine.Components;
-using TEngine.Components.Physics;
-using TEngine.Components.Colliders;
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects
+namespace TEngine.Core.AssetManagement.GameObjects
 {
     public class LifecycleManager
     {

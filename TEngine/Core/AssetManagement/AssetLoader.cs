@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TEngine.EngineManagement.AssetManagement
+namespace TEngine.Core.AssetManagement
 {
     public class AssetLoader
     {

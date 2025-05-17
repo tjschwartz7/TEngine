@@ -1,13 +1,8 @@
-﻿
-using TEngine.EngineManagement.RenderingEngines;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T2D;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T3D;
-using TEngine.TMath;
+﻿using TEngine.TMath;
 using TEngine.Utils;
-using TEngine.EngineManagement;
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras
+
+namespace TEngine.Core.AssetManagement.GameObjects.Cameras
 {
     public abstract class Camera : GameObject, ICamera
     {

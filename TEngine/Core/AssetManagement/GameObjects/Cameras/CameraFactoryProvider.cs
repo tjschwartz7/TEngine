@@ -1,12 +1,12 @@
 ﻿
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement;
+using TEngine.Core.Drivers;
+using TEngine.Core;
 using TEngine.Utils;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T2D;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.T3D;
+using TEngine.Core.AssetManagement.GameObjects.Cameras.Text;
+using TEngine.Core.AssetManagement.GameObjects.Cameras.T2D;
+using TEngine.Core.AssetManagement.GameObjects.Cameras.T3D;
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras
+namespace TEngine.Core.AssetManagement.GameObjects.Cameras
 {
     public class CameraFactoryProvider
     {

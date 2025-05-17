@@ -4,7 +4,7 @@ using System.Drawing;
 using TEngine.Styles;
 using TEngine.Utils;
 
-namespace TEngine.EngineManagement.Commands
+namespace TEngine.Core.Commands
 {
     public enum DrawCommandType
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TEngine.EngineManagement.AssetManagement.GameObjects.Cameras;
-using TEngine.EngineManagement.Drivers;
-using TEngine.EngineManagement.RenderingEngines.Text;
+using TEngine.Core.AssetManagement.GameObjects.Cameras;
+using TEngine.Core.Drivers;
+using TEngine.Core.RenderingEngines.Text;
 
-namespace TEngine.EngineManagement.AssetManagement.GameObjects.Cameras.Text
+namespace TEngine.Core.AssetManagement.GameObjects.Cameras.Text
 {
     public class CameraTextFactory : ICameraFactory
     {

@@ -1,6 +1,6 @@
-﻿using TEngine.EngineManagement.AssetManagement;
+﻿using TEngine.Core.AssetManagement;
 using TEngine.TMath;
-using TEngine.EngineManagement.Commands;
+using TEngine.Core.Commands;
 
 namespace TEngine.Core.AssetManagement.Strategy
 {
