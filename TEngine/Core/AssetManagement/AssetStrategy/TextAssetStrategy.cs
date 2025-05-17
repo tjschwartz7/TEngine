@@ -2,7 +2,7 @@
 using TEngine.TMath;
 using TEngine.Core.Commands;
 
-namespace TEngine.Core.AssetManagement.Strategy
+namespace TEngine.Core.AssetManagement.AssetStrategy
 {
     public class TextAssetStrategy : IAssetStrategy
     {

@@ -3,6 +3,7 @@ using TEngine.Core.Commands;
 using TEngine.Utils.Logging;
 using TEngine.Core.AssetManagement.Strategy;
 using TEngine.Utils;
+using TEngine.Core.AssetManagement.Loading;
 
 namespace TEngine.Core.AssetManagement
 {
@@ -10,7 +11,12 @@ namespace TEngine.Core.AssetManagement
     {
         IAssetStrategy AssetStrategy;
         ILoadStrategy LoadStrategy;
-        public IEnumerable<int> AssetIDs { get; private set; } = new List<int>();
+        public AssetLoader AssetLoader { get; private set; }
+        int _currentMaxAssetID = 0; // Used to assign unique IDs to assets
+        public Dictionary<int, string> AssetIDs { get; private set; } = new Dictionary<int, string>();
+        public Dictionary<int, string> UnloadedAssetIDs { get; private set; } = new Dictionary<int, string>();
+        public Dictionary<int, string> LoadedAssetIDs { get; private set; } = new Dictionary<int, string>();
+
         public AssetManager(GraphicSystem graphicSystem) 
         {
             switch(graphicSystem)
@@ -29,6 +35,9 @@ namespace TEngine.Core.AssetManagement
                     Logging.Critical($"Graphic system {graphicSystem} is not implemented.");
                     throw new NotImplementedException($"Graphic system {graphicSystem} is not implemented.");
             }
+
+            AssetLoader = new AssetLoader(AssetStrategy);
+            LoadStrategy = LoadTypes.Caching; // Default load strategy
         }
 
 
@@ -54,6 +63,10 @@ namespace TEngine.Core.AssetManagement
                 {
                     // Placeholder for asset registration logic
                     Logging.Info($"Registering asset: {file}");
+                    AssetIDs.Add(_currentMaxAssetID, file);
+                    UnloadedAssetIDs.Add(_currentMaxAssetID, file);
+
+                    _currentMaxAssetID++;
                 }
             }
             catch (Exception ex)
@@ -62,14 +75,14 @@ namespace TEngine.Core.AssetManagement
             }
         }
 
-        public void LoadAssets(IEnumerable<int> assetIDs)
+        public void LoadAssets()
         {
-            LoadStrategy.LoadAssets(assetIDs);
+            LoadStrategy.LoadAssets(UnloadedAssetIDs, LoadedAssetIDs);
         }
 
-        public void UnloadAssets(IEnumerable<int> assetIDs)
+        public void UnloadAssets()
         {
-            LoadStrategy.UnloadAssets(assetIDs);
+            LoadStrategy.UnloadAssets(UnloadedAssetIDs, LoadedAssetIDs);
         }
 
     }
@@ -81,9 +94,16 @@ namespace TEngine.Core.AssetManagement
 
     public interface ILoadStrategy
     {
-        void LoadAssets(IEnumerable<int> assetIDs);
-        void UnloadAssets(IEnumerable<int> assetIDs);
+        void LoadAssets(Dictionary<int, string> unloadedAssets, Dictionary<int, string> loadedAssets);
+        void UnloadAssets(Dictionary<int, string> unloadedAssets, Dictionary<int, string> loadedAssets);
     }
 
+    public enum LoadTypes
+    {
+        Preloading,
+        LazyLoad,
+        Caching,
+
+    }
 
 }

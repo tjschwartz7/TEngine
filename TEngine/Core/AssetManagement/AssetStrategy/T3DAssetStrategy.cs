@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TEngine.Core.Commands;
 using TEngine.Utils.Logging;
 
-namespace TEngine.Core.AssetManagement.Strategy
+namespace TEngine.Core.AssetManagement.AssetStrategy
 {
     public class T3DAssetStrategy : IAssetStrategy
     {

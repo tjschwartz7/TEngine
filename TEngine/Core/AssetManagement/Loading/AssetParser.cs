@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using TEngine.Utils.Logging;
 
-namespace TEngine.Core.AssetManagement
+namespace TEngine.Core.AssetManagement.Loading
 {
-    public class AssetLoader
+    internal class AssetParser
     {
 
         public static IEnumerable<string> LoadRawData(string path)
@@ -26,6 +27,7 @@ namespace TEngine.Core.AssetManagement
             }
             else
             {
+                Logging.Critical($"File not found: {path}");
                 throw new FileNotFoundException($"File not found: {path}");
             }
         }
