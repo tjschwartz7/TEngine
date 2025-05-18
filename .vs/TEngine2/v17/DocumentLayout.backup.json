@@ -3,8 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\strategy\\textassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\strategy\\textassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\assetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\assetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\loadstrategy\\preloadingstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\loadstrategy\\preloadingstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\assetstrategy\\textassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\assetstrategy\\textassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\assetstrategy\\t3dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\assetstrategy\\t3dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\assetstrategy\\t2dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\assetstrategy\\t2dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\loading\\assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\loading\\assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\loading\\assetparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\loading\\assetparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\gameobjects\\gameobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\gameobjects\\gameobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\gameobjects\\comparers\\gameobjectzindexcomparer .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -47,24 +75,8 @@
       "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\assetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\assetmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\gameobjects\\gameobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\gameobjects\\gameobjectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\gameobjects\\lifecyclemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\gameobjects\\lifecyclemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\strategy\\t2dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\strategy\\t2dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\strategy\\t3dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\strategy\\t3dassetstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\services\\cameraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -201,10 +213,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\components\\rendering\\renderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\components\\rendering\\renderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\assetmanagement\\assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|solutionrelative:tengine\\core\\assetmanagement\\assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BC3AD587-6A0B-400F-887D-B71878BCB7C3}|TEngine\\TEngine.csproj|c:\\users\\tjsch\\source\\repos\\tengine2.0\\tengine\\core\\drivers\\text\\terminaldriver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -461,7 +469,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -473,46 +481,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "T3DDriverFactory.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
-              "RelativeToolTip": "TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "PreloadingStrategy.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\LoadStrategy\\PreloadingStrategy.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\LoadStrategy\\PreloadingStrategy.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\LoadStrategy\\PreloadingStrategy.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\LoadStrategy\\PreloadingStrategy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:31:49.739Z",
+              "WhenOpened": "2025-05-17T13:37:19.099Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Component.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Component.cs",
-              "RelativeDocumentMoniker": "TEngine\\Components\\Component.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Component.cs",
-              "RelativeToolTip": "TEngine\\Components\\Component.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAA6wAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "AssetLoader.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Loading\\AssetLoader.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\Loading\\AssetLoader.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Loading\\AssetLoader.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\Loading\\AssetLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T14:43:16.86Z",
+              "WhenOpened": "2025-05-17T13:19:07.379Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Camera.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
-              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA7AAAAAAAAAA==",
+              "Title": "TextAssetStrategy.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetStrategy\\TextAssetStrategy.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\AssetStrategy\\TextAssetStrategy.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetStrategy\\TextAssetStrategy.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\AssetStrategy\\TextAssetStrategy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T20:11:59.88Z",
+              "WhenOpened": "2025-05-11T15:22:29.578Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "AssetManager.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetManager.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\AssetManager.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetManager.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\AssetManager.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAADwv08AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T15:18:35.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "T2DAssetStrategy.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetStrategy\\T2DAssetStrategy.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\AssetStrategy\\T2DAssetStrategy.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetStrategy\\T2DAssetStrategy.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\AssetStrategy\\T2DAssetStrategy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T12:59:06.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "T3DAssetStrategy.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetStrategy\\T3DAssetStrategy.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\AssetStrategy\\T3DAssetStrategy.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetStrategy\\T3DAssetStrategy.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\AssetStrategy\\T3DAssetStrategy.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-17T12:59:19.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AssetParser.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Loading\\AssetParser.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\Loading\\AssetParser.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Loading\\AssetParser.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\Loading\\AssetParser.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T13:30:31.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GameObjectManager.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwAEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T12:12:52.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "GameObjectZIndexComparer .cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Comparers\\GameObjectZIndexComparer .cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Comparers\\GameObjectZIndexComparer .cs",
@@ -520,25 +593,47 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Comparers\\GameObjectZIndexComparer .cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T14:21:35.33Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-13T14:21:35.33Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TextAssetStrategy.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Strategy\\TextAssetStrategy.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\Strategy\\TextAssetStrategy.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Strategy\\TextAssetStrategy.cs",
-              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\Strategy\\TextAssetStrategy.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "Camera.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
+              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Camera.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T15:22:29.578Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-05T20:11:59.88Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
+              "Title": "Component.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Component.cs",
+              "RelativeDocumentMoniker": "TEngine\\Components\\Component.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Component.cs",
+              "RelativeToolTip": "TEngine\\Components\\Component.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAA6wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T14:43:16.86Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "T3DDriverFactory.cs",
+              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
+              "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
+              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
+              "RelativeToolTip": "TEngine\\Core\\Drivers\\T3D\\T3DDriverFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-25T00:31:49.739Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "GameObject.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\GameObject.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\GameObject.cs",
@@ -546,12 +641,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\GameObject.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T12:25:13.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-29T12:25:13.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "T2DDriverFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\T2D\\T2DDriverFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\T2D\\T2DDriverFactory.cs",
@@ -559,12 +653,11 @@
               "RelativeToolTip": "TEngine\\Core\\Drivers\\T2D\\T2DDriverFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:32:32.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T00:32:32.369Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 14,
               "Title": "CameraController.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Controllers\\CameraController.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Controllers\\CameraController.cs",
@@ -572,12 +665,11 @@
               "RelativeToolTip": "TEngine\\Components\\Controllers\\CameraController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T14:45:38.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-13T14:45:38.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "DrawObjectManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Mediation\\DrawObjectManager.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Mediation\\DrawObjectManager.cs",
@@ -585,12 +677,11 @@
               "RelativeToolTip": "TEngine\\Core\\Mediation\\DrawObjectManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T12:16:55.675Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-11T12:16:55.675Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 16,
               "Title": "Canvas.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\UI\\Layouts\\Canvas.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\UI\\Layouts\\Canvas.cs",
@@ -598,12 +689,11 @@
               "RelativeToolTip": "TEngine\\Components\\UI\\Layouts\\Canvas.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAgwAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T18:43:53.239Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T18:43:53.239Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 17,
               "Title": "Application.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Application.cs",
               "RelativeDocumentMoniker": "TEngine\\Application.cs",
@@ -611,38 +701,11 @@
               "RelativeToolTip": "TEngine\\Application.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-22T12:45:17.112Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-22T12:45:17.112Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AssetManager.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetManager.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\AssetManager.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetManager.cs",
-              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\AssetManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T15:18:35.629Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "GameObjectManager.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
-              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\GameObjectManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T12:12:52.523Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "LifecycleManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\LifecycleManager.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\LifecycleManager.cs",
@@ -650,38 +713,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\LifecycleManager.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T15:18:42.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-13T15:18:42.058Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "T2DAssetStrategy.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Strategy\\T2DAssetStrategy.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\Strategy\\T2DAssetStrategy.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Strategy\\T2DAssetStrategy.cs",
-              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\Strategy\\T2DAssetStrategy.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T12:59:06.287Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "T3DAssetStrategy.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Strategy\\T3DAssetStrategy.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\Strategy\\T3DAssetStrategy.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\Strategy\\T3DAssetStrategy.cs",
-              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\Strategy\\T3DAssetStrategy.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T12:59:19.818Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "CameraText.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Text\\CameraText.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Text\\CameraText.cs",
@@ -689,12 +725,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Text\\CameraText.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T15:52:07.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-06T15:52:07.364Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "T3DRenderingPipelineFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\T3D\\T3DRenderingPipelineFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\T3D\\T3DRenderingPipelineFactory.cs",
@@ -702,12 +737,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\T3D\\T3DRenderingPipelineFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:45:32.884Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T00:45:32.884Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "T3DRenderingPipeline.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\T3D\\T3DRenderingPipeline.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\T3D\\T3DRenderingPipeline.cs",
@@ -715,12 +749,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\T3D\\T3DRenderingPipeline.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T14:11:51.362Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T14:11:51.362Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "CameraService.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Services\\CameraService.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Services\\CameraService.cs",
@@ -728,12 +761,11 @@
               "RelativeToolTip": "TEngine\\Core\\Services\\CameraService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:38:26.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:38:26.585Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "RenderingPipelineFactoryProvider.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\RenderingPipelineFactoryProvider.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\RenderingPipelineFactoryProvider.cs",
@@ -741,12 +773,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\RenderingPipelineFactoryProvider.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:35:32.097Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T00:35:32.097Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "RenderingPipeline.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\RenderingPipeline.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\RenderingPipeline.cs",
@@ -754,12 +785,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\RenderingPipeline.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T11:53:09.823Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T11:53:09.823Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "TextRenderingPipelineFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\Text\\TextRenderingPipelineFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\Text\\TextRenderingPipelineFactory.cs",
@@ -767,12 +797,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\Text\\TextRenderingPipelineFactory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:37:15.499Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T00:37:15.499Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "TextRenderingPipeline.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\Text\\TextRenderingPipeline.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\Text\\TextRenderingPipeline.cs",
@@ -780,12 +809,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\Text\\TextRenderingPipeline.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-19T12:01:21.586Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-19T12:01:21.586Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "SceneManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\SceneManagement\\SceneManager.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\SceneManagement\\SceneManager.cs",
@@ -793,12 +821,11 @@
               "RelativeToolTip": "TEngine\\Core\\SceneManagement\\SceneManager.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T01:18:14.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T01:18:14.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "Scene.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\SceneManagement\\Scene.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\SceneManagement\\Scene.cs",
@@ -806,12 +833,11 @@
               "RelativeToolTip": "TEngine\\Core\\SceneManagement\\Scene.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T01:20:41.007Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-27T01:20:41.007Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "TEngine.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\TEngine.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\TEngine.cs",
@@ -819,12 +845,11 @@
               "RelativeToolTip": "TEngine\\Core\\TEngine.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T22:49:42.673Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-21T22:49:42.673Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "T2DRenderingPipelineFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\T2D\\T2DRenderingPipelineFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\T2D\\T2DRenderingPipelineFactory.cs",
@@ -832,12 +857,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\T2D\\T2DRenderingPipelineFactory.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:44:33.217Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T00:44:33.217Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "TextAnimation.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\TextAnimation.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\TextAnimation.cs",
@@ -845,12 +869,11 @@
               "RelativeToolTip": "TEngine\\Components\\Animations\\Text\\TextAnimation.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T14:19:34.792Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T14:19:34.792Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "Animation.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Animation.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Animation.cs",
@@ -858,12 +881,11 @@
               "RelativeToolTip": "TEngine\\Components\\Animations\\Animation.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T13:25:24.209Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-12T13:25:24.209Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "Driver2D.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\T2D\\Driver2D.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\T2D\\Driver2D.cs",
@@ -871,12 +893,11 @@
               "RelativeToolTip": "TEngine\\Core\\Drivers\\T2D\\Driver2D.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T13:58:52.92Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T13:58:52.92Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "Driver3D.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\T3D\\Driver3D.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\T3D\\Driver3D.cs",
@@ -884,12 +905,11 @@
               "RelativeToolTip": "TEngine\\Core\\Drivers\\T3D\\Driver3D.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T13:59:42.716Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T13:59:42.716Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "TextDriverFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\Text\\TextDriverFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\Text\\TextDriverFactory.cs",
@@ -897,12 +917,11 @@
               "RelativeToolTip": "TEngine\\Core\\Drivers\\Text\\TextDriverFactory.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:28:28.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T00:28:28.157Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "CanvasContext.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\UI\\Layouts\\CanvasContext.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\UI\\Layouts\\CanvasContext.cs",
@@ -910,12 +929,11 @@
               "RelativeToolTip": "TEngine\\Components\\UI\\Layouts\\CanvasContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T12:33:30.736Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T12:33:30.736Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "Camera2D.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T2D\\Camera2D.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T2D\\Camera2D.cs",
@@ -923,12 +941,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T2D\\Camera2D.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T13:22:55.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T13:22:55.815Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "Camera2DFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T2D\\Camera2DFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T2D\\Camera2DFactory.cs",
@@ -936,12 +953,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T2D\\Camera2DFactory.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:35:35.93Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:35:35.93Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "Camera3D.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T3D\\Camera3D.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T3D\\Camera3D.cs",
@@ -949,12 +965,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T3D\\Camera3D.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T13:23:10.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T13:23:10.954Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 40,
               "Title": "Camera3DFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T3D\\Camera3DFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T3D\\Camera3DFactory.cs",
@@ -962,12 +977,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\T3D\\Camera3DFactory.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:35:01.496Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:35:01.496Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "Driver.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\Driver.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\Driver.cs",
@@ -975,12 +989,11 @@
               "RelativeToolTip": "TEngine\\Core\\Drivers\\Driver.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T13:43:18.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T13:43:18.04Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 42,
               "Title": "CameraFactoryProvider.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\CameraFactoryProvider.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\CameraFactoryProvider.cs",
@@ -988,12 +1001,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\CameraFactoryProvider.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:29:09.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:29:09.764Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 43,
               "Title": "DriverFactoryProvider.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\DriverFactoryProvider.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\DriverFactoryProvider.cs",
@@ -1001,12 +1013,11 @@
               "RelativeToolTip": "TEngine\\Core\\Drivers\\DriverFactoryProvider.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T18:54:30.154Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T18:54:30.154Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 44,
               "Title": "CameraTextFactory.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Text\\CameraTextFactory.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Text\\CameraTextFactory.cs",
@@ -1014,12 +1025,11 @@
               "RelativeToolTip": "TEngine\\Core\\AssetManagement\\GameObjects\\Cameras\\Text\\CameraTextFactory.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-27T17:33:57.838Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-27T17:33:57.838Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 45,
               "Title": "RenderableComponent.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\RenderableComponent.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\RenderableComponent.cs",
@@ -1027,12 +1037,11 @@
               "RelativeToolTip": "TEngine\\Components\\RenderableComponent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T13:33:50.228Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T13:33:50.228Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 46,
               "Title": "SceneGameObjectsManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Mediation\\SceneGameObjectsManager.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Mediation\\SceneGameObjectsManager.cs",
@@ -1040,12 +1049,11 @@
               "RelativeToolTip": "TEngine\\Core\\Mediation\\SceneGameObjectsManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T18:59:35.582Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-10T18:59:35.582Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 47,
               "Title": "IRenderer.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Rendering\\IRenderer.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Rendering\\IRenderer.cs",
@@ -1053,12 +1061,11 @@
               "RelativeToolTip": "TEngine\\Components\\Rendering\\IRenderer.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T12:25:26.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-11T12:25:26.254Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 48,
               "Title": "T2DRenderingPipeline.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Pipelines\\T2D\\T2DRenderingPipeline.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Pipelines\\T2D\\T2DRenderingPipeline.cs",
@@ -1066,12 +1073,11 @@
               "RelativeToolTip": "TEngine\\Core\\Pipelines\\T2D\\T2DRenderingPipeline.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-20T14:10:46.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-20T14:10:46.22Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 49,
               "Title": "DrawCommandBuffer.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Commands\\DrawCommandBuffer.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Commands\\DrawCommandBuffer.cs",
@@ -1079,12 +1085,11 @@
               "RelativeToolTip": "TEngine\\Core\\Commands\\DrawCommandBuffer.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-04T12:28:08.271Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-04T12:28:08.271Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 50,
               "Title": "UI.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GoneMedieval\\UI\\UI.cs",
               "RelativeDocumentMoniker": "TEngine\\GoneMedieval\\UI\\UI.cs",
@@ -1092,12 +1097,11 @@
               "RelativeToolTip": "TEngine\\GoneMedieval\\UI\\UI.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T19:28:09.107Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-23T19:28:09.107Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 51,
               "Title": "UIElement.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\UI\\Elements\\UIElement.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\UI\\Elements\\UIElement.cs",
@@ -1105,12 +1109,11 @@
               "RelativeToolTip": "TEngine\\Components\\UI\\Elements\\UIElement.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAMAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T14:33:38.273Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T14:33:38.273Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 52,
               "Title": "Renderer.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Rendering\\Renderer.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Rendering\\Renderer.cs",
@@ -1118,25 +1121,11 @@
               "RelativeToolTip": "TEngine\\Components\\Rendering\\Renderer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-08T23:16:33.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T23:16:33.822Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "AssetLoader.cs",
-              "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetLoader.cs",
-              "RelativeDocumentMoniker": "TEngine\\Core\\AssetManagement\\AssetLoader.cs",
-              "ToolTip": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\AssetManagement\\AssetLoader.cs",
-              "RelativeToolTip": "TEngine\\Core\\AssetManagement\\AssetLoader.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T13:30:31.78Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 53,
               "Title": "TerminalDriver.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Drivers\\Text\\TerminalDriver.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Drivers\\Text\\TerminalDriver.cs",
@@ -1144,12 +1133,11 @@
               "RelativeToolTip": "TEngine\\Core\\Drivers\\Text\\TerminalDriver.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T13:59:10.829Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-13T13:59:10.829Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 54,
               "Title": "DrawCommand.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Commands\\DrawCommand.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Commands\\DrawCommand.cs",
@@ -1157,12 +1145,11 @@
               "RelativeToolTip": "TEngine\\Core\\Commands\\DrawCommand.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T12:34:21.499Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T12:34:21.499Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 55,
               "Title": "Util.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Utils\\Util.cs",
               "RelativeDocumentMoniker": "TEngine\\Utils\\Util.cs",
@@ -1170,12 +1157,11 @@
               "RelativeToolTip": "TEngine\\Utils\\Util.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T21:35:30.767Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-05T21:35:30.767Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 56,
               "Title": "RenderingPipelineService.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Services\\RenderingPipelineService.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Services\\RenderingPipelineService.cs",
@@ -1183,12 +1169,11 @@
               "RelativeToolTip": "TEngine\\Core\\Services\\RenderingPipelineService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T01:25:05.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T01:25:05.311Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 57,
               "Title": "DriverService.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Core\\Services\\DriverService.cs",
               "RelativeDocumentMoniker": "TEngine\\Core\\Services\\DriverService.cs",
@@ -1196,12 +1181,11 @@
               "RelativeToolTip": "TEngine\\Core\\Services\\DriverService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T00:57:03.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T00:57:03.964Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 60,
               "Title": "InputManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\InputManager.cs",
               "RelativeDocumentMoniker": "TEngine\\InputManager.cs",
@@ -1213,7 +1197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 59,
               "Title": "TextCollider.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Colliders\\Text\\TextCollider.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Colliders\\Text\\TextCollider.cs",
@@ -1225,7 +1209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 58,
               "Title": "Logging.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Utils\\Logging\\Logging.cs",
               "RelativeDocumentMoniker": "TEngine\\Utils\\Logging\\Logging.cs",
@@ -1237,7 +1221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 61,
               "Title": "ScriptableObject.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\ScriptableObject\\ScriptableObject.cs",
               "RelativeDocumentMoniker": "TEngine\\ScriptableObject\\ScriptableObject.cs",
@@ -1249,7 +1233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 62,
               "Title": "Layers.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Utils\\Layers.cs",
               "RelativeDocumentMoniker": "TEngine\\Utils\\Layers.cs",
@@ -1261,7 +1245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 63,
               "Title": "Circles.json",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GoneMedieval\\Assets\\UI\\Circles.json",
               "RelativeDocumentMoniker": "TEngine\\GoneMedieval\\Assets\\UI\\Circles.json",
@@ -1273,7 +1257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 64,
               "Title": "IUIComponent.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\UI\\IUIComponent.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\UI\\IUIComponent.cs",
@@ -1285,7 +1269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 65,
               "Title": "NETConfigLoader.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Utils\\Configurations\\NETConfig\\NETConfigLoader.cs",
               "RelativeDocumentMoniker": "TEngine\\Utils\\Configurations\\NETConfig\\NETConfigLoader.cs",
@@ -1297,7 +1281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 66,
               "Title": "app.config",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Config\\app.config",
               "RelativeDocumentMoniker": "TEngine\\Config\\app.config",
@@ -1309,7 +1293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 67,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GoneMedieval\\Player\\Player.cs",
               "RelativeDocumentMoniker": "TEngine\\GoneMedieval\\Player\\Player.cs",
@@ -1321,7 +1305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 68,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GoneMedieval\\Managers\\GameManager.cs",
               "RelativeDocumentMoniker": "TEngine\\GoneMedieval\\Managers\\GameManager.cs",
@@ -1333,7 +1317,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 69,
               "Title": "RectTransform.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\UI\\Layouts\\RectTransform.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\UI\\Layouts\\RectTransform.cs",
@@ -1345,7 +1329,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 70,
               "Title": "ANSI.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\ANSI.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\ANSI.cs",
@@ -1357,7 +1341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 71,
               "Title": "Blink.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\Blink.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\Blink.cs",
@@ -1369,7 +1353,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 72,
               "Title": "Dithering.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\Dithering.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\Dithering.cs",
@@ -1381,7 +1365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 73,
               "Title": "Glow.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\Glow.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\Glow.cs",
@@ -1393,7 +1377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 74,
               "Title": "RandomDithering.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\RandomDithering.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\RandomDithering.cs",
@@ -1405,7 +1389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 75,
               "Title": "RippleDithering.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\RippleDithering.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\RippleDithering.cs",
@@ -1417,7 +1401,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 76,
               "Title": "RippleGlow.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\RippleGlow.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\RippleGlow.cs",
@@ -1429,7 +1413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 77,
               "Title": "TextEffects.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Animations\\Text\\TextEffects.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Animations\\Text\\TextEffects.cs",
@@ -1441,7 +1425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 78,
               "Title": "Sprite.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Styles\\Sprite.cs",
               "RelativeDocumentMoniker": "TEngine\\Styles\\Sprite.cs",
@@ -1453,7 +1437,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 79,
               "Title": "TextAttribute.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Styles\\TextAttribute.cs",
               "RelativeDocumentMoniker": "TEngine\\Styles\\TextAttribute.cs",
@@ -1465,7 +1449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 80,
               "Title": "Texture.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Styles\\Texture.cs",
               "RelativeDocumentMoniker": "TEngine\\Styles\\Texture.cs",
@@ -1477,7 +1461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 81,
               "Title": "Material.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Styles\\Material.cs",
               "RelativeDocumentMoniker": "TEngine\\Styles\\Material.cs",
@@ -1489,7 +1473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 82,
               "Title": "Font.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Styles\\UI\\Font.cs",
               "RelativeDocumentMoniker": "TEngine\\Styles\\UI\\Font.cs",
@@ -1501,7 +1485,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 83,
               "Title": "TextAlignment.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Styles\\UI\\TextAlignment.cs",
               "RelativeDocumentMoniker": "TEngine\\Styles\\UI\\TextAlignment.cs",
@@ -1513,7 +1497,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 87,
               "Title": "RectangleF.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\RectangleF.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\RectangleF.cs",
@@ -1525,7 +1509,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 86,
               "Title": "RectangleInt.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\RectangleInt.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\RectangleInt.cs",
@@ -1537,7 +1521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 85,
               "Title": "RectExtensions.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\RectExtensions.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\RectExtensions.cs",
@@ -1549,7 +1533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 84,
               "Title": "Matrix4x4.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\Matrix4x4.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\Matrix4x4.cs",
@@ -1561,7 +1545,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 88,
               "Title": "Transform.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Transforms\\Transform.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Transforms\\Transform.cs",
@@ -1573,7 +1557,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 89,
               "Title": "Game.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Game.cs",
               "RelativeDocumentMoniker": "TEngine\\Game.cs",
@@ -1585,7 +1569,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 90,
               "Title": "EventManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Events\\EventManager.cs",
               "RelativeDocumentMoniker": "TEngine\\Events\\EventManager.cs",
@@ -1597,7 +1581,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 91,
               "Title": "GameEvent.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Events\\GameEvent.cs",
               "RelativeDocumentMoniker": "TEngine\\Events\\GameEvent.cs",
@@ -1609,7 +1593,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 92,
               "Title": "KeyboardInputBinder.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Inputs\\KeyboardInputBinder.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Inputs\\KeyboardInputBinder.cs",
@@ -1621,7 +1605,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 93,
               "Title": "GameStateManager.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GameStateManager.cs",
               "RelativeDocumentMoniker": "TEngine\\GameStateManager.cs",
@@ -1633,7 +1617,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 94,
               "Title": "GoneMedieval.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GoneMedieval\\GoneMedieval.cs",
               "RelativeDocumentMoniker": "TEngine\\GoneMedieval\\GoneMedieval.cs",
@@ -1645,7 +1629,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 95,
               "Title": "Rigidbody.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Physics\\Rigidbody.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Physics\\Rigidbody.cs",
@@ -1657,7 +1641,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 97,
               "Title": "RaycastHit.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Colliders\\RaycastHit.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Colliders\\RaycastHit.cs",
@@ -1669,7 +1653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 96,
               "Title": "Collider.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Colliders\\Collider.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Colliders\\Collider.cs",
@@ -1681,7 +1665,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 98,
               "Title": "TextTransform.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Transforms\\Text\\TextTransform.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Transforms\\Text\\TextTransform.cs",
@@ -1693,7 +1677,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 99,
               "Title": "Vector3Int.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\Vector3Int.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\Vector3Int.cs",
@@ -1705,7 +1689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 100,
               "Title": "Behavior.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Behaviors\\Behavior.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Behaviors\\Behavior.cs",
@@ -1717,7 +1701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 101,
               "Title": "MonoBehavior.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Behaviors\\MonoBehavior.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Behaviors\\MonoBehavior.cs",
@@ -1729,7 +1713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 102,
               "Title": "Vector3.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\Vector3.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\Vector3.cs",
@@ -1741,7 +1725,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 103,
               "Title": "Vector2.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\Vector2.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\Vector2.cs",
@@ -1753,7 +1737,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 104,
               "Title": "Vector2Int.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\Vector2Int.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\Vector2Int.cs",
@@ -1765,7 +1749,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 105,
               "Title": "TextMesh.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Mesh\\Text\\TextMesh.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Mesh\\Text\\TextMesh.cs",
@@ -1777,7 +1761,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 106,
               "Title": "Mesh.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\Mesh\\Mesh.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\Mesh\\Mesh.cs",
@@ -1789,7 +1773,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 105,
+              "DocumentIndex": 107,
               "Title": "Ray.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TMath\\Ray.cs",
               "RelativeDocumentMoniker": "TEngine\\TMath\\Ray.cs",
@@ -1801,7 +1785,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 106,
+              "DocumentIndex": 108,
               "Title": "AudioSource.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Components\\AudioSources\\AudioSource.cs",
               "RelativeDocumentMoniker": "TEngine\\Components\\AudioSources\\AudioSource.cs",
@@ -1813,7 +1797,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 107,
+              "DocumentIndex": 109,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GoneMedieval\\Player\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "TEngine\\GoneMedieval\\Player\\PlayerMovement.cs",
@@ -1825,7 +1809,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 108,
+              "DocumentIndex": 110,
               "Title": "PlayerStats.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\GoneMedieval\\Player\\PlayerStats.cs",
               "RelativeDocumentMoniker": "TEngine\\GoneMedieval\\Player\\PlayerStats.cs",
@@ -1837,7 +1821,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 109,
+              "DocumentIndex": 111,
               "Title": "Time.cs",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\Utils\\Time.cs",
               "RelativeDocumentMoniker": "TEngine\\Utils\\Time.cs",
@@ -1849,7 +1833,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 110,
+              "DocumentIndex": 112,
               "Title": "TEngine",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj",
               "RelativeDocumentMoniker": "TEngine\\TEngine.csproj",
@@ -1860,7 +1844,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 111,
+              "DocumentIndex": 113,
               "Title": "lemonade.json",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\MoneyMan\\MoneyMan\\Saves\\save0\\lemonade.json",
               "RelativeDocumentMoniker": "..\\MoneyMan\\MoneyMan\\Saves\\save0\\lemonade.json",
@@ -1871,7 +1855,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 112,
+              "DocumentIndex": 114,
               "Title": "TEngine.csproj",
               "DocumentMoniker": "C:\\Users\\tjsch\\source\\repos\\TEngine2.0\\TEngine\\TEngine.csproj",
               "RelativeDocumentMoniker": "TEngine\\TEngine.csproj",

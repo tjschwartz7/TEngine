@@ -1,6 +1,16 @@
 ﻿using TEngine.Core.AssetManagement;
 using TEngine.TMath;
 using TEngine.Core.Commands;
+using TEngine.Utils.Logging;
+
+/*
+ * TextAssetStrategy.cs
+ * Trenton Schwartz
+ * 
+ * This class is responsible for converting Text assets into draw commands.
+ * 
+ */
+
 
 namespace TEngine.Core.AssetManagement.AssetStrategy
 {

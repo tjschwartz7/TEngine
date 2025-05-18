@@ -7,7 +7,7 @@ namespace TEngine.Core.Commands
     /// </summary>
     public class DrawCommandBuffer
     {
-        private readonly Dictionary<int, List<DrawCommand>> _layeredCommands = new();
+        private readonly SortedDictionary<int, List<DrawCommand>> _layeredCommands = new();
 
         /// <summary>
         /// Adds a draw command to the appropriate layer.

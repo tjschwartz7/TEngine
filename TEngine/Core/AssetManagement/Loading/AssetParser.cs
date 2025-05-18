@@ -1,5 +1,14 @@
-﻿using System.Collections.Generic;
+﻿
 using TEngine.Utils.Logging;
+
+/*
+ * AssetParser.cs
+ * Trenton Schwartz
+ * 
+ * The Asset Parser is responsible for parsing the raw data from the asset files. 
+ * It reads in the data and converts it into a format that can be used by the asset manager.
+ * 
+ */
 
 namespace TEngine.Core.AssetManagement.Loading
 {

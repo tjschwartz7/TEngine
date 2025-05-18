@@ -1,79 +1,69 @@
 ﻿
 using TEngine.Core.Commands;
 using TEngine.Utils.Logging;
-using TEngine.Core.AssetManagement.Strategy;
+using TEngine.Core.AssetManagement.LoadStrategy;
+using TEngine.Core.AssetManagement.AssetStrategy;
 using TEngine.Utils;
 using TEngine.Core.AssetManagement.Loading;
+
+/*
+ * AssetManager.cs
+ * Trenton Schwartz
+ * 
+ * The AssetManager has the responsibility of, well,
+ * managing assets. This mostly includes managing the AssetBuckets class,
+ * who is actually in charge of loading and unloading assets, and keeping track of the different 
+ * asset buckets.
+ * 
+ */
 
 namespace TEngine.Core.AssetManagement
 {
     public class AssetManager
     {
-        IAssetStrategy AssetStrategy;
-        ILoadStrategy LoadStrategy;
-        public AssetLoader AssetLoader { get; private set; }
-        int _currentMaxAssetID = 0; // Used to assign unique IDs to assets
-        public Dictionary<int, string> AssetIDs { get; private set; } = new Dictionary<int, string>();
-        public Dictionary<int, string> UnloadedAssetIDs { get; private set; } = new Dictionary<int, string>();
-        public Dictionary<int, string> LoadedAssetIDs { get; private set; } = new Dictionary<int, string>();
+        public AssetBuckets AssetBuckets { get; private set; } 
 
-        public AssetManager(GraphicSystem graphicSystem) 
+        public AssetManager(GraphicSystem graphicSystem, LoadTypes LoadType) 
         {
-            switch(graphicSystem)
+            IAssetStrategy assetStrategy;
+            ILoadStrategy loadStrategy;
+            switch (graphicSystem)
             {
                 case GraphicSystem.Text:
-                    AssetStrategy = new TextAssetStrategy();
-
+                    assetStrategy = new TextAssetStrategy();
                     break;
                 case GraphicSystem.T2D:
-                    AssetStrategy = new T2DAssetStrategy();
+                    assetStrategy = new T2DAssetStrategy();
                     break;
                 case GraphicSystem.T3D:
-                    AssetStrategy = new T3DAssetStrategy();
+                    assetStrategy = new T3DAssetStrategy();
                     break;
                 default:
                     Logging.Critical($"Graphic system {graphicSystem} is not implemented.");
                     throw new NotImplementedException($"Graphic system {graphicSystem} is not implemented.");
             }
 
-            AssetLoader = new AssetLoader(AssetStrategy);
-            LoadStrategy = LoadTypes.Caching; // Default load strategy
+            switch (LoadType)
+            {
+                case LoadTypes.Preloading:
+                    loadStrategy = new PreloadStrategy();
+                    break;
+                case LoadTypes.LazyLoad:
+                    loadStrategy = new LazyLoadStrategy();
+                    break;
+                case LoadTypes.Caching:
+                    loadStrategy = new CachingStrategy();
+                    break;
+                default:
+                    Logging.Critical($"Load type {LoadType} is not implemented.");
+                    throw new NotImplementedException($"Load type {LoadType} is not implemented.");
+            }
+
+            AssetBuckets = new AssetBuckets(assetStrategy, loadStrategy);
         }
 
 
-        /// <summary>
-        /// Register assets from a given path.
-        /// </summary>
-        /// <param name="path">The path to the top assets directory.</param>
-        /// <param name="includeSubdirs">Choose whether to include subdirectories when registering assets.</param>
-        public void RegisterAssets(string path, bool includeSubdirs = false)
-        {
-            if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
-            {
-                Logging.Error($"Invalid path: {path}");
-                return;
-            }
-
-            SearchOption option = includeSubdirs ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-            try
-            {
-
-                //TODO: Update this so it looks for specific file types
-                foreach (string file in Directory.GetFiles(path, "*.*", option))
-                {
-                    // Placeholder for asset registration logic
-                    Logging.Info($"Registering asset: {file}");
-                    AssetIDs.Add(_currentMaxAssetID, file);
-                    UnloadedAssetIDs.Add(_currentMaxAssetID, file);
-
-                    _currentMaxAssetID++;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logging.Error($"Error while registering assets: {ex.Message}");
-            }
-        }
+        
 
         public void LoadAssets()
         {
@@ -94,8 +84,8 @@ namespace TEngine.Core.AssetManagement
 
     public interface ILoadStrategy
     {
-        void LoadAssets(Dictionary<int, string> unloadedAssets, Dictionary<int, string> loadedAssets);
-        void UnloadAssets(Dictionary<int, string> unloadedAssets, Dictionary<int, string> loadedAssets);
+        void LoadAssets(AssetBuckets assetBuckets);
+        void UnloadAssets(AssetBuckets assetBuckets);
     }
 
     public enum LoadTypes
