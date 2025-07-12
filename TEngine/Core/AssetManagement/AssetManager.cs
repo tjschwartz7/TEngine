@@ -17,6 +17,16 @@ using TEngine.Core.AssetManagement.Loading;
  * 
  */
 
+/*
+ * Asset Structure
+ * Asset Manager
+ * Manages
+ * Asset Buckets
+ * Manages
+ * 
+ * 
+ */ 
+
 namespace TEngine.Core.AssetManagement
 {
     public class AssetManager

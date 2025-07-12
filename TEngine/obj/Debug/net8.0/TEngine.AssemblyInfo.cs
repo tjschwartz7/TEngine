@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TEngine")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a404bcf551e17363ca77fc4dc056889cc5ef1de6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84f404d1dea497607ea0ea58c095ee3ec6c4083a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TEngine")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TEngine")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

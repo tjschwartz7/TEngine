@@ -19,7 +19,7 @@ namespace TEngine.Core.AssetManagement
         private int _currentMaxAssetID = 0; // Used to assign unique IDs to assets
         public Dictionary<int, string> AssetIDs { get; private set; } = new Dictionary<int, string>();
         public Dictionary<int, string> UnloadedAssetIDs { get; private set; } = new Dictionary<int, string>();
-        public Dictionary<int, string> LoadedAssetIDs { get; private set; } = new Dictionary<int, string>();
+        public Dictionary<int, Asset> LoadedAssetIDs { get; private set; } = new Dictionary<int, Asset>();
 
         public IAssetStrategy AssetStrategy { get; private set; }
         public ILoadStrategy LoadStrategy { get; private set; }
